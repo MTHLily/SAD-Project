@@ -17,6 +17,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::resources(
+	[
+		'components' => 'ComponentController',
+	]
+);
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

@@ -10,14 +10,14 @@ class Component extends Model
 	protected $fillable = [
 		'asset_tag',
 		'component_name',
-		'component_type',
+		'component_type_id',
 		'system_id',
 		'warranty_id',
 		'status',
 	];
 
 	public function type(){
-		return $this->belongsTo('App\ComponentType');
+		return $this->belongsTo('App\ComponentType', 'component_type_id');
 	}
 
 	public function warranty(){

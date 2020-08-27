@@ -15,7 +15,7 @@ class ComponentController extends Controller
     public function index()
     {
 
-        return view( 'component.index', [ 'components' => Component::all() ] );
+        return view( 'components.index', [ 'components' => Component::all() ] );
 
     }
 
@@ -27,7 +27,7 @@ class ComponentController extends Controller
     public function create()
     {
         
-        return view( 'component.create' );
+        return view( 'components.create' );
 
     }
 
@@ -39,7 +39,19 @@ class ComponentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+    
+        $validatedData = $request->validate(
+            [
+                'asset_tag' => 'required|max:255',
+                'component_name' => 'required|max:255',
+                'component_type_id' => 'required',
+            ]
+        );
+
+        Component::create( $validatedData );
+
+        return redirect( '/components' );
+
     }
 
     /**
@@ -50,7 +62,7 @@ class ComponentController extends Controller
      */
     public function show($id)
     {
-        //
+        
     }
 
     /**
@@ -59,9 +71,11 @@ class ComponentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit( $id )
     {
-        //
+
+        return view( 'components.edit', [ 'component' => Component::find( $id ) ] );
+
     }
 
     /**
@@ -73,7 +87,25 @@ class ComponentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+        $component = Component::find( $id );
+
+        $validatedData = $request->validate(
+            [
+                'asset_tag' => 'required|max:255',
+                'component_name' => 'required|max:255',
+                'component_type_id' => 'required',
+            ]
+        );
+
+        $component->asset_tag = $validatedData['asset_tag'];
+        $component->component_name = $validatedData['component_name'];
+        $component->component_type_id = $validatedData['component_type_id'];
+
+        $component->save();
+
+        return redirect( '/components' );
+
     }
 
     /**
@@ -84,6 +116,9 @@ class ComponentController extends Controller
      */
     public function destroy($id)
     {
-        //
+
+        Component::destroy($id);
+        return redirect( '/components' );
+
     }
 }

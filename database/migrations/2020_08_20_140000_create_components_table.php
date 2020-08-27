@@ -18,9 +18,9 @@ class CreateComponentsTable extends Migration
 
             $table->string('asset_tag');
             $table->string('component_name');
-            $table->foreignId('component_type')->references('id')->on('component_types');
+            $table->foreignId('component_type_id')->references('id')->on('component_types');
             $table->foreignId('system_id')->nullable();
-            $table->foreignId('warranty_id')->references('id')->on('warranties')->nullable();
+            $table->foreignId('warranty_id')->nullable()->references('id')->on('warranties');
             $table->string('status')->default('Available');
 
             $table->timestamps();

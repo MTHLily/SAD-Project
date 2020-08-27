@@ -27,7 +27,7 @@ class ExampleSeed extends Seeder
 
     	$component->asset_tag = "1234";
     	$component->component_name = "motherboard";
-    	$component->component_type = 1;
+    	$component->component_type_id = 1;
     	$component->warranty_id = 1;
     	$component->status = "Available";
 

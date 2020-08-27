@@ -1,0 +1,19 @@
+.fa-trash-alt{
+	color: red;
+}
+
+.fa-trash-alt:hover{
+	color: darkred;
+}
+
+.fa-edit{
+	color: royalblue;
+}
+
+.fa-edit:hover{
+	color: darkblue;
+}
+
+.fa-plus{
+	color: white;
+}
