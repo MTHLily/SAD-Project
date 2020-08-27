@@ -20,6 +20,7 @@ Route::get('/', function () {
 Route::resources(
 	[
 		'components' => 'ComponentController',
+		'warranties' => 'WarrantyController',
 	]
 );
 
