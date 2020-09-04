@@ -32,6 +32,8 @@
 				<tr>
 					<td><button data-toggle="modal" data-target="#component-{{$component->id}}-info">Open Info</button></td>
 					<td>{{ $component->asset_tag }}</td>
+					<td>{{ $component->remarks }}</td>
+					<td>{{ $component->issues }}</td>
 					<td>{{ $component->component_name }}</td>
 					<td>{{ $component->type()->get()[0]->component_type }}</td>
 					<td>{{ $component->system_id }}</td>

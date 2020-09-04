@@ -14,6 +14,7 @@ class CreateComponentsTable extends Migration
     public function up()
     {
         Schema::create('components', function (Blueprint $table) {
+            
             $table->id();
 
             $table->string('asset_tag');
@@ -21,6 +22,8 @@ class CreateComponentsTable extends Migration
             $table->foreignId('component_type_id')->references('id')->on('component_types');
             $table->foreignId('system_id')->nullable();
             $table->foreignId('warranty_id')->nullable()->references('id')->on('warranties');
+            $table->text('remarks')->nullable();
+            $table->text('issues')->nullable();
             $table->string('status')->default('Available');
 
             $table->timestamps();

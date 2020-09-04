@@ -13,6 +13,8 @@ class Component extends Model
 		'component_type_id',
 		'system_id',
 		'warranty_id',
+		'issues',
+		'remarks',
 		'status',
 	];
 

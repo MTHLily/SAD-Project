@@ -45,6 +45,8 @@ class ComponentController extends Controller
                 'asset_tag' => 'required|max:255',
                 'component_name' => 'required|max:255',
                 'component_type_id' => 'required',
+                'issues' => '',
+                'remarks' => '',
             ]
         );
 
