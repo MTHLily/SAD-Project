@@ -31,6 +31,11 @@
 			<option value="5">Storage</option>
 		</select>
 
+		<textarea name="issues" class="form-control"></textarea>
+		<textarea name="remarks" class="form-control"></textarea>
+
+
+	
 		<button class="btn btn-success">Add Item</button>
 		<a class="btn btn-danger" href="/components">Return</a>
 	</form>

@@ -30,7 +30,7 @@
 		<tbody>
 			@foreach( $components as $component )
 				<tr>
-					<td><input type="checkbox" class="w-100"name="index" value="{{$component->id}}"></td>
+					<td><button data-toggle="modal" data-target="#component-{{$component->id}}-info">Open Info</button></td>
 					<td>{{ $component->asset_tag }}</td>
 					<td>{{ $component->component_name }}</td>
 					<td>{{ $component->type()->get()[0]->component_type }}</td>
@@ -48,7 +48,7 @@
 							<form class="w-100" action="/components/{{$component->id}}" method="POST">
 								@method('delete')
 								@csrf
-								<button class="btn w-100"><i class="fas fa-trash-alt fa-lg"></i></button>
+								<button type="submit" class="btn w-100"><i class="fas fa-trash-alt fa-lg"></i></button>
 							</form>
 						</div>
 					</td>
@@ -56,5 +56,70 @@
 			@endforeach
 		</tbody>
 	</table>
+
+	@foreach( $components as $component )
+
+	<div class="modal" id="component-{{$component->id}}-info">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<h1>Edit Component</h1>
+				<form action="/components/{{$component->id}}" method="POST">
+					@csrf
+					@method('PATCH')
+					<input  type="text" name="asset_tag" placeholder="Asset Tag" 
+							class="form-control" 
+							value="{{$component->asset_tag}}" 
+							required>
+					<input  type="text" name="component_name" placeholder="Name" 
+							class="form-control" 
+							value="{{$component->component_name}}"
+							required>
+					<select name="component_type_id" class="custom-select" required>
+						<option value="1"
+							@if($component->component_type_id == 1)
+							selected
+							@endif
+						>
+							Motherboard
+						</option>
+						<option value="2"
+							@if($component->component_type_id == 2)
+							selected
+							@endif 
+						>
+							CPU
+						</option>
+						<option value="3"
+							@if($component->component_type_id == 3)
+							selected
+							@endif 
+						>
+							GPU
+						</option>
+						<option value="4"
+							@if($component->component_type_id == 4)
+							selected
+							@endif 
+						>
+							RAM
+						</option>
+						<option value="5"
+							@if($component->component_type_id == 5)
+							selected
+							@endif 
+						>
+							Storage
+						</option>
+					</select>
+
+					<button class="btn btn-primary">Edit Item</button>
+					<a class="btn btn-danger" href="/components">Return</a>
+				</form>
+
+			</div>
+		</div>
+	</div>
+
+	@endforeach
 
 @endsection
