@@ -31,21 +31,27 @@
 		<select name="motherboard_id" class="custom-select" required>
 			<option  value="">Select Motherboard...</option>
 			@foreach( $motherboards as $motherboard )
-				<option  value="{{$motherboard->id}}">{{$motherboard->component_name}}</option>
+				@if( $motherboard->status == "Available" )
+					<option  value="{{$motherboard->id}}">{{$motherboard->component_name}}</option>
+				@endif
 			@endforeach
 		</select>
 
 		<select name="processor_id" class="custom-select" required>
 			<option value="">Select Processor...</option>
 			@foreach( $cpus as $cpu )
-				<option value="{{$cpu->id}}">{{$cpu->component_name}}</option>
+				@if( $cpu->status == "Available" )
+					<option value="{{$cpu->id}}">{{$cpu->component_name}}</option>
+				@endif
 			@endforeach
 		</select>
 
 		<select name="gpu_id" class="custom-select" required>
 			<option value="">Select Graphics Card...</option>
 			@foreach( $gpus as $gpu )
-				<option value="{{$gpu->id}}">{{$gpu->component_name}}</option>
+				@if( $gpu->status == "Available" )
+					<option value="{{$gpu->id}}">{{$gpu->component_name}}</option>
+				@endif
 			@endforeach
 		</select>
 
@@ -59,8 +65,11 @@
 		<div id="ramDiv" class="d-flex">
 			<select name="ram_id" class="custom-select" required>
 				<option value="">Select RAM...</option>
+
 				@foreach( $rams as $ram )
-					<option value="{{$ram->id}}">{{$ram->component_name}}</option>
+					@if( $ram->status == "Available" )
+						<option value="{{$ram->id}}">{{$ram->component_name}}</option>
+					@endif
 				@endforeach
 			</select>
 		</div>
@@ -68,8 +77,11 @@
 		<div id="storageDiv" class="d-flex">
 			<select name="storage_id" class="custom-select" required>
 				<option value="">Select Storage...</option>
+
 				@foreach( $storages as $storage )
-					<option value="{{$storage->id}}">{{$storage->component_name}}</option>
+					@if( $storage->status == "Available" )
+						<option value="{{$storage->id}}">{{$storage->component_name}}</option>
+					@endif
 				@endforeach
 			</select>
 		</div>

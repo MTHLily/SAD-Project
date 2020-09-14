@@ -36,3 +36,4 @@ Route::patch('/computers/edit_network_details/{id}', 'ComputerController@editNet
 Route::get('/computers/create_system_details/{id}','ComputerController@createSystemDetails' );
 Route::post('/computers/assign_system/{id}','ComputerController@assignSystem' );
 Route::get('/computers/system_details/{id}', 'ComputerController@showSystem' );
+Route::patch('/computers/system_details/{id}', 'ComputerController@updateSystem' );

@@ -42,7 +42,7 @@
 					<td>{{ $computer->department_id }}</td>
 					<td>
 						@if($computer->system_details_id != null)
-							<a href="/computers/system_details/{{ $computer->department_id }}">View System Details</a>
+							<a href="/computers/system_details/{{ $computer->system_details_id }}">View System Details</a>
 						@else
 							<a href="/computers/create_system_details/{{$computer->id}}">Assign System Details</a>
 						@endif

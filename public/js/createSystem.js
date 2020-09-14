@@ -1,14 +1,14 @@
 let addRam = document.createElement( 'button' );
-addRam.innerHTML = "Add More"
-addRam.classList.add( 'btn')
-addRam.classList.add( 'w-100')
+addRam.innerHTML = "Add More";
+addRam.classList.add( 'btn');
+addRam.classList.add( 'w-100');
 addRam.type = 'button';
 addRam.onclick = addRAMInput;
 
 let addStorage = document.createElement( 'button' );
-addStorage.innerHTML = "Add More"
-addStorage.classList.add( 'btn')
-addStorage.classList.add( 'w-100')
+addStorage.innerHTML = "Add More";
+addStorage.classList.add( 'btn');
+addStorage.classList.add( 'w-100');
 addStorage.type = 'button';
 addStorage.onclick = addStorageInput;
 
