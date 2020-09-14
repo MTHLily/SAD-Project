@@ -378,10 +378,12 @@ class ComputerController extends Controller
                 $index = array_search( $ram->component->id, $ram_ids );
                 unset( $ram_ids[$index] );
             }
-            else
+            else{
                 //If not, then existing storage component is made avaialable and model is deleted
                 $ram->component->status = 'Available';
+                $ram->component->save();
                 $ram->delete();
+            }
         }
 
         //Searches for existing storage entries with the same ID
@@ -394,6 +396,7 @@ class ComputerController extends Controller
             else{
                 //If not, then existing storage component is made avaialable and model is deleted
                 $storage->component->status = 'Available';
+                $storage->component->save();
                 $storage->delete();
             }
         }
@@ -401,11 +404,11 @@ class ComputerController extends Controller
         foreach( $ram_ids as $ram_id ){
 
             $ram = new \App\Ram;
-            $ram->component_id = ram_id;
+            $ram->component_id = $ram_id;
             $ram->system_id = $system->id;
             $ram->save();
 
-            $ramComp = \App\Component::find( ram_id );
+            $ramComp = \App\Component::find( $ram_id );
             $ramComp->status = 'In Use';
             $ramComp->save();
 
@@ -414,11 +417,11 @@ class ComputerController extends Controller
         foreach( $storage_ids as $storage_id){
 
             $storage = new \App\Storage;
-            $storage->component_id = storage_id;
+            $storage->component_id = $storage_id;
             $storage->system_id = $system->id;
             $storage->save();
 
-            $storageComp = \App\Component::find( storage_id );
+            $storageComp = \App\Component::find( $storage_id );
             $storageComp->status = 'In Use';
             $storageComp->save();
 

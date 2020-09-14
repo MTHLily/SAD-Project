@@ -34,18 +34,18 @@ function selectHandler( event ){
 
 function addRAMInput( event ){
 	let select = document.querySelector('#ramDiv select').cloneNode( true );
-	select.name = "ram_add_id";
+	select.name = "ram_id";
 	select.classList.add('w-100')
 	select.getElementsByTagName('option')[0].innerHTML = "Add More RAM";
-	select.addEventListener( 'change', ramHandler );
+	select.addEventListener( 'change', selectHandler );
 	event.target.parentElement.insertBefore( select, event.target );
 }
 function addStorageInput( event ){
 	let select = document.querySelector('#storageDiv select').cloneNode( true );
-	select.name = "storage_add_id";
+	select.name = "storage_id";
 	select.classList.add('w-100')
 	select.getElementsByTagName('option')[0].innerHTML = "Add More Storage";
-	select.addEventListener( 'change', storageHandler );
+	select.addEventListener( 'change', selectHandler );
 	event.target.parentElement.insertBefore( select, event.target );
 }
 
