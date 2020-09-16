@@ -24,6 +24,28 @@
     </div>
 	@endif
 
+	{{-- 
+
+		Values of name for each corresponding field.
+		
+		Straight values: just pass it on to /computers/assign_system/computer_id
+		'motherboard_id'
+		'processor_id'
+		'gpu_id'
+		'operating_system_id'
+		
+		Currently, javascript gets all the values with the names:
+		'ram_id'
+		'storage_id'
+		^backend will check for the presence of the above names. it will return an error if no ram_id or storage_id is found.
+
+		And then pass it on as a JSON array ( Ex. "[1, 2, 3 ]" ) to
+		'rams'
+		'storages'
+		^ this is what backend actually uses to make the references for the ram and storage tables.
+
+	 --}}
+
 	<h1>Assign System to {{$computer->pc_name}}</h1>
 
 	<form id="assignSystemForm" action="/computers/assign_system/{{$computer->id}}" method="POST">
@@ -86,14 +108,14 @@
 			</select>
 		</div>
 
-		<input type="hidden" name="additionalRAM" value="" id="additionalRAM" value="">
-		<input type="hidden" name="additionalStorage" value="" id="additionalStorage" value="">
+		<input type="hidden" name="rams" value="" id="ram_ids" value="">
+		<input type="hidden" name="storages" value="" id="storage_ids" value="">
 
 		<a href="/computers" class="btn btn-danger">Back</a>
 		<button type="submit" class="btn btn-primary">Assign System</button>
 	</form>
 
-	{{-- Add script to handle the new department thing --}}
+	{{-- Add script to handle the ram and storages thing thing --}}
 	<script src="{{asset('js/createSystem.js')}}"></script>
 
 @endsection

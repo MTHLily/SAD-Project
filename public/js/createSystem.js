@@ -1,3 +1,4 @@
+//Buttons to add ram amd storages
 let addRam = document.createElement( 'button' );
 addRam.innerHTML = "Add More";
 addRam.classList.add( 'btn');
@@ -12,72 +13,65 @@ addStorage.classList.add( 'w-100');
 addStorage.type = 'button';
 addStorage.onclick = addStorageInput;
 
+//Adds a ram input to the #ram_div div
 function addRAMInput( event ){
 	let select = document.querySelector('#ramDiv select').cloneNode( true );
-	select.name = "ram_add_id";
+	select.name = "ram_id";
 	select.classList.add('w-100')
 	select.getElementsByTagName('option')[0].innerHTML = "Add More RAM";
-	select.addEventListener( 'change', ramHandler );
+	select.addEventListener( 'change', selectHandler );
 	event.target.parentElement.insertBefore( select, event.target );
 }
 
-function ramHandler( event ){
-	if( event.target.name == 'ram_id')
-		if( event.target.value != '')
-			document.querySelector('#ramDiv').appendChild(addRam);
-		else
-			document.querySelector('#ramDiv').removeChild(addRam);
-	else{
-		if( event.target.value == ''){
-			document.querySelector('#ramDiv').removeChild(event.target);
-		}
-	}
-}
-
+//Same, but for storages
 function addStorageInput( event ){
 	let select = document.querySelector('#storageDiv select').cloneNode( true );
-	select.name = "storage_add_id";
+	select.name = "storage_id";
 	select.classList.add('w-100')
 	select.getElementsByTagName('option')[0].innerHTML = "Add More Storage";
-	select.addEventListener( 'change', storageHandler );
+	select.addEventListener( 'change', selectHandler );
 	event.target.parentElement.insertBefore( select, event.target );
 }
 
-function storageHandler( event ){
-	if( event.target.name == 'storage_id')
-		if( event.target.value != '')
-			document.querySelector('#storageDiv').appendChild(addStorage);
-		else
-			document.querySelector('#storageDiv').removeChild(addStorage);
-	else{
-		if( event.target.value == ''){
-			document.querySelector('#storageDiv').removeChild(event.target);
-		}
-	}
-}
+//Handles the select for both ram and storages
+function selectHandler( event ){
+	//Find the first select of the ram_div/storage_div
+	let firstSelect = event.target.parentElement.querySelector('select');
 
-document.querySelector('#ramDiv select').addEventListener('change', ramHandler );
-document.querySelector('#storageDiv select').addEventListener('change', storageHandler );
+	if( event.target == firstSelect )
+		//Adds the add button if the first select is not blank. You should change this to be less finicky
+		if( event.target.value != '')
+			event.target.parentElement.appendChild( (event.target.parentElement.id == 'ramDiv' ) ? addRam : addStorage );
+		else
+		//Removes the add button if first select is blank.
+			event.target.parentElement.removeChild( (event.target.parentElement.id == 'ramDiv' ) ? addRam : addStorage );
+	else
+		//Removes the select if a null value is selected AND it's not the first select.
+		if( event.target.value == '')
+			event.target.parentElement.removeChild(event.target);
+}
 
 $("#assignSystemForm").submit(function(event) {
 
     event.preventDefault(); // avoid to execute the actual submit of the form.
 
-    let additionalRams = [], additionalStorages = [];
+	let rams = [], storages = [];
 
-    Array.from(document.querySelectorAll('select[name="ram_add_id"]')).forEach(
+    document.querySelectorAll('select[name="ram_id"]').forEach(
     	ram => {
-    		additionalRams.push( ram.value );
+    		rams.push( ram.value );
     	});
-    Array.from(document.querySelectorAll('select[name="storage_add_id"]')).forEach(
+    document.querySelectorAll('select[name="storage_id"]').forEach(
     	storage => {
-    		additionalStorages.push( storage.value );
+    		storages.push( storage.value );
     	});
 
-
-    document.querySelector("#additionalRAM").value = JSON.stringify(additionalRams);
-    document.querySelector("#additionalStorage").value = JSON.stringify(additionalStorages);
+    document.querySelector("#ram_ids").value = JSON.stringify(rams);
+    document.querySelector("#storage_ids").value = JSON.stringify(storages);
 
     $(this).submit();
     
 });
+
+document.querySelector('#ramDiv select').addEventListener('change', selectHandler );
+document.querySelector('#storageDiv select').addEventListener('change', selectHandler );
