@@ -1,3 +1,7 @@
+//Refer to createSystem.js for other comments
+//The only difference here is that form id being used and the addRam and addStorage
+//button being added at the start
+
 let addRam = document.createElement( 'button' );
 addRam.innerHTML = "Add More";
 addRam.classList.add( 'btn');
@@ -12,14 +16,18 @@ addStorage.classList.add( 'w-100');
 addStorage.type = 'button';
 addStorage.onclick = addStorageInput;
 
-Array.from(document.querySelectorAll('#ramDiv select'))
+document.querySelectorAll('#ramDiv select')
 	.forEach( select => {
 		select.addEventListener('change', selectHandler );
 	});
-Array.from(document.querySelectorAll('#storageDiv select'))
+document.querySelectorAll('#storageDiv select')
 	.forEach( select => {
 		select.addEventListener('change', selectHandler );
 	});
+
+document.querySelector('#ramDiv').appendChild(addRam);
+document.querySelector('#storageDiv').appendChild(addStorage);
+
 function selectHandler( event ){
 	let firstSelect = event.target.parentElement.querySelector('select');
 	if( event.target == firstSelect )
@@ -40,6 +48,7 @@ function addRAMInput( event ){
 	select.addEventListener( 'change', selectHandler );
 	event.target.parentElement.insertBefore( select, event.target );
 }
+
 function addStorageInput( event ){
 	let select = document.querySelector('#storageDiv select').cloneNode( true );
 	select.name = "storage_id";
@@ -55,11 +64,11 @@ $("#editSystemForm").submit(function(event) {
 
     let rams = [], storages = [];
 
-    Array.from(document.querySelectorAll('select[name="ram_id"]')).forEach(
+    document.querySelectorAll('select[name="ram_id"]').forEach(
     	ram => {
     		rams.push( ram.value );
     	});
-    Array.from(document.querySelectorAll('select[name="storage_id"]')).forEach(
+    document.querySelectorAll('select[name="storage_id"]').forEach(
     	storage => {
     		storages.push( storage.value );
     	});
