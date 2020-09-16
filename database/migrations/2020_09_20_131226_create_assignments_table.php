@@ -15,9 +15,9 @@ class CreateAssignmentsTable extends Migration
     {
         Schema::create('assignments', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('employee_id')->references('id')->on('employee');
-            $table->foreignId('computer_id')->references('id')->on('computer');
-            $table->foreignId('peripheral_setup_id')->references('id')->on('peripheral_setup');
+            $table->foreignId('employee_id')->references('id')->on('employees');
+            $table->foreignId('computer_id')->references('id')->on('computers');
+            $table->foreignId('peripheral_setup_id')->references('id')->on('peripheral_setups');
             $table->string('status')->default('Available');
 
             $table->timestamps();

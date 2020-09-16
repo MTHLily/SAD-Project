@@ -15,8 +15,8 @@ class CreateMonitorsTable extends Migration
     {
         Schema::create('monitors', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('setup_id')->references('id')->on('peripheral');
-            $table->foreignId('monitor_id')->references('id')->on('peripheral');
+            $table->foreignId('setup_id')->references('id')->on('peripherals');
+            $table->foreignId('monitor_id')->references('id')->on('peripherals');
 
             $table->timestamps();
         });

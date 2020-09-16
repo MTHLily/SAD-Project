@@ -15,8 +15,8 @@ class CreateMiscellaneousesTable extends Migration
     {
         Schema::create('miscellaneouses', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('setup_id')->references('id')->on('peripheral');
-            $table->foreignId('device_id')->references('id')->on('peripheral');
+            $table->foreignId('setup_id')->references('id')->on('peripherals');
+            $table->foreignId('device_id')->references('id')->on('peripherals');
             $table->timestamps();
         });
     }

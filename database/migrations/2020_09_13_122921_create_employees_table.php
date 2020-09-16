@@ -19,7 +19,7 @@ class CreateEmployeesTable extends Migration
             $table->string('first_name',255);
             $table->string('middle_initial');
             $table->string('email_address');
-            $table->foreignId('department_id')->refences('id')->on('department');
+            $table->foreignId('department_id')->references('id')->on('departments');
             $table->string('status');
 
             $table->timestamps();
