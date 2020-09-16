@@ -14,6 +14,7 @@ class StaticLookup extends Seeder
     	$component_types = [ "Motherboard", "CPU", "GPU", "RAM", "Storage" ];
         $pc_types = [ "Desktop", "Laptop" ];
         $os = ["Windows", "Mac", "Linux", "ChromeOS" ];
+        $peripheral_types = [ "Monitor", "Keyboard", "Device", "Miscellaneous" ];
 
     	foreach( $component_types as $type ){
     		DB::table('component_types')->insert(
@@ -30,6 +31,12 @@ class StaticLookup extends Seeder
         foreach( $os as $operatingSystem ){
             DB::table('operating_systems')->insert(
                 [ 'name' => $operatingSystem ],
+            );
+        }
+
+        foreach( $peripheral_types as $type ){
+            DB::table( 'peripheral_types' )->insert(
+                [ 'peripheral_type' => $type ],
             );
         }
 
