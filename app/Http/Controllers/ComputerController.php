@@ -214,24 +214,24 @@ class ComputerController extends Controller
             "ram_id" => 'required',
             "storage_id" => 'required',
             "operating_system_id" => 'required',
-            "additionalRAM" => '',
-            "additionalStorage" => '',
+            "rams" => 'JSON',
+            "storages" => 'JSON',
         ]);
 
         //Create new instance of system details
-        $systemDetail = new \App\SystemDetails;
+        $system = new \App\SystemDetails;
 
         //Fill in data for the simple relationships
-        $systemDetail->motherboard_id = $validatedData['motherboard_id'];
-        $systemDetail->processor_id = $validatedData['processor_id'];
-        $systemDetail->gpu_id = $validatedData['gpu_id'];
-        $systemDetail->operating_system_id = $validatedData['operating_system_id'];
-        $systemDetail->save();
+        $system->motherboard_id = $validatedData['motherboard_id'];
+        $system->processor_id = $validatedData['processor_id'];
+        $system->gpu_id = $validatedData['gpu_id'];
+        $system->operating_system_id = $validatedData['operating_system_id'];
+        $system->save();
 
         //Set the used components statuses to be In Use
-        $motherboard = \App\Component::find($validatedData['motherboard_id']);
-        $processor = \App\Component::find($validatedData['processor_id']);
-        $gpu = \App\Component::find($validatedData['gpu_id']);
+        $motherboard = $system->motherboard;
+        $processor = $system->processor;
+        $gpu = $system->gpu;
 
         $motherboard->status = "In Use";
         $processor->status = "In Use";
@@ -241,52 +241,34 @@ class ComputerController extends Controller
         $processor->save();
         $gpu->save();
 
-        $computer->system_details_id = $systemDetail->id;
+        $computer->system_details_id = $system->id;
         $computer->save();
 
         //Create the complicated relationships
-        $ram = new \App\Ram;
-        $ram->component_id = $validatedData['ram_id'];
-        $ram->system_id = $systemDetail->id;
-        $ram->save();
+        $ram_ids = json_decode($validatedData['rams']);
+        $storage_ids = json_decode($validatedData['storages']);
 
-        $ramComp = \App\Component::find( $validatedData['ram_id'] );
-        $ramComp->status = 'In Use';
-        $ramComp->save();
-
-        $storage = new \App\Storage;
-        $storage->component_id = $validatedData['storage_id'];
-        $storage->system_id = $systemDetail->id;
-        $storage->save();
-
-        $storageComp = \App\Component::find( $validatedData['storage_id'] );
-        $storageComp->status = 'In Use';
-        $storageComp->save();
-
-        $addRam = json_decode($validatedData['additionalRAM']);
-        $addStorage = json_decode($validatedData['additionalStorage']);
-
-        foreach( $addRam as $ram ){
+        foreach( $ram_ids as $ram_id ){
 
             $ram = new \App\Ram;
-            $ram->component_id = $validatedData['ram_id'];
-            $ram->system_id = $systemDetail->id;
+            $ram->component_id = $ram_id;
+            $ram->system_id = $system->id;
             $ram->save();
 
-            $ramComp = \App\Component::find( $validatedData['ram_id'] );
+            $ramComp = \App\Component::find( $ram_id );
             $ramComp->status = 'In Use';
             $ramComp->save();
 
         }
 
-        foreach( $addStorage as $storage ){
+        foreach( $storage_ids as $storage_id ){
 
             $storage = new \App\Storage;
-            $storage->component_id = $validatedData['storage_id'];
-            $storage->system_id = $systemDetail->id;
+            $storage->component_id = $storage_id;
+            $storage->system_id = $system->id;
             $storage->save();
 
-            $storageComp = \App\Component::find( $validatedData['storage_id'] );
+            $storageComp = \App\Component::find( $storage_id );
             $storageComp->status = 'In Use';
             $storageComp->save();
 
@@ -327,8 +309,8 @@ class ComputerController extends Controller
             "ram_id" => 'required',
             "storage_id" => 'required',
             "operating_system_id" => 'required',
-            "rams" => '',
-            "storages" => '',
+            "rams" => 'JSON',
+            "storages" => 'JSON',
         ]);
 
         //Free the old components
