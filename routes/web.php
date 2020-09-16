@@ -23,6 +23,7 @@ Route::resources(
 		'components' => 'ComponentController',
 		'warranties' => 'WarrantyController',
 		'computers' => 'ComputerController',
+		'peripherals' => 'PeripheralController',
 	]
 );
 
