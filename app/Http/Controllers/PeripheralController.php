@@ -69,7 +69,7 @@ class PeripheralController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view( 'peripherals.edit', ['peripheral' => Peripheral::find($id)] );
     }
 
     /**
