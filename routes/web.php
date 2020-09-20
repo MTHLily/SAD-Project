@@ -21,6 +21,7 @@ Route::resources(
 	[
 		'components' => 'ComponentController',
 		'warranties' => 'WarrantyController',
+		'employees' =>'EmployeeController',
 	]
 );
 

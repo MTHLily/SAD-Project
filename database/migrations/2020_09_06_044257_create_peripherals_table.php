@@ -19,7 +19,7 @@ class CreatePeripheralsTable extends Migration
             $table->string('peripheral_name');
             $table->foreignId('setup_id')->refences('id')->on('peripheral_setups');
             $table->foreignId('peripheral_type')->references('id')->on('peripheral_types');
-            $table->foreignId('warranty_id')->refences('id')->on('warranty') ;
+            $table->foreignId('warranty_id')->refences('id')->on('warranties') ;
             $table->string('status')->default('Available');
 
             $table->timestamps();
