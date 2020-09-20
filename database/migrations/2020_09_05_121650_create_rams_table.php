@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateEmployeesTable extends Migration
+class CreateRamsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,11 @@ class CreateEmployeesTable extends Migration
      */
     public function up()
     {
-        Schema::create('employees', function (Blueprint $table) {
+        Schema::create('rams', function (Blueprint $table) {
             $table->id();
-            $table->string('last_name',255);
-            $table->string('first_name',255);
-            $table->string('middle_initial');
-            $table->string('email_address');
-            $table->foreignId('department_id')->references('id')->on('departments');
-            $table->string('status');
+
+            $table->foreignId('system_id')->references('id')->on('system_details');
+            $table->foreignId('component_id')->references('id')->on('components');
 
             $table->timestamps();
             $table->softDeletes();
@@ -34,6 +31,6 @@ class CreateEmployeesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('employees');
+        Schema::dropIfExists('rams');
     }
 }

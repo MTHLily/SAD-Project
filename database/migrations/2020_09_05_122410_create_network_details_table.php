@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateEmployeesTable extends Migration
+class CreateNetworkDetailsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,10 @@ class CreateEmployeesTable extends Migration
      */
     public function up()
     {
-        Schema::create('employees', function (Blueprint $table) {
+        Schema::create('network_details', function (Blueprint $table) {
             $table->id();
-            $table->string('last_name',255);
-            $table->string('first_name',255);
-            $table->string('middle_initial');
-            $table->string('email_address');
-            $table->foreignId('department_id')->references('id')->on('departments');
-            $table->string('status');
-
+            $table->string('mac_address', 255);
+            $table->string('wifi_address', 255);
             $table->timestamps();
             $table->softDeletes();
         });
@@ -34,6 +29,6 @@ class CreateEmployeesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('employees');
+        Schema::dropIfExists('network_details');
     }
 }

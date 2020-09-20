@@ -15,7 +15,7 @@
 
 @section('content')
 
-	<a href="/components/create" class="btn btn-success w-100"><i class="fas fa-plus"></i> Add New</a>
+	<a href="/perihperals/create" class="btn btn-success w-100"><i class="fas fa-plus"></i> Add New</a>
 	<table class="table">
 		<thead>
 			<th></th>
@@ -28,7 +28,7 @@
 			<th>Actions</th>
 		</thead>
 		<tbody>
-			@foreach( $components as $component )
+			@foreach( $perihperals as $perihperal )
 				<tr>
 					<td><button data-toggle="modal" data-target="#component-{{$component->id}}-info">Open Info</button></td>
 					<td>{{ $component->asset_tag }}</td>
