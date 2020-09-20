@@ -81,7 +81,20 @@ class PeripheralController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validatedData = $request->validate(
+            [
+                'asset_tag' => 'required|max:255',
+                'peripheral_name' => 'required|max:255',
+                'peripheral_type' => 'required',
+                'issues' => '',
+                'remarks' => '',
+            ]
+        );
+
+        $peripheral = Peripheral::find( $id );
+        $peripheral->update( $validatedData );
+
+        return redirect('/peripherals');
     }
 
     /**

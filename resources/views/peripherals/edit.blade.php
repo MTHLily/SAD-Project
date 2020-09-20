@@ -19,8 +19,9 @@
 @endif
 
 	<h1>Edit {{$peripheral->peripheral_name}}</h1>
-	<form action="/peripherals" method="POST">
+	<form action="/peripherals/{{$peripheral->id}}" method="POST">
 		@csrf
+		@method('PATCH')
 		<input type="text" value="{{$peripheral->asset_tag}}" name="asset_tag" placeholder="Asset Tag" class="form-control" required>
 		<input type="text" value="{{$peripheral->peripheral_name}}" name="peripheral_name" placeholder="Name" class="form-control" required>
 		<select name="peripheral_type" class="custom-select" required>
