@@ -26,7 +26,7 @@
             <th>Status</th>
         </thead>
         <tbody>
-            @foreach($employees as employee)
+            @foreach($employees as $employee)
             <tr>
                 <td><button data-toggle="modal" data-target="#employee-{{$employee->id}}-info">Open Info</button></td>
                 <td>{{$employee->last_name}}</td>
@@ -49,7 +49,7 @@
             @endforeach
         </tbody>
     </table>
-    @foreach($employees as employee)
+    @foreach($employees as $employee)
         <div class="modal" id="employee-{{$employee->id}}-info">
             <div class="modal-dialog">
                 <div class = "modal-content">
