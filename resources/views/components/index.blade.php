@@ -44,7 +44,7 @@
 				@foreach( $components as $component )
 					<tr>
 						<td>{{ $component->asset_tag }}</td>
-						<td class='name'>{{ $component->component_name }}</td>
+						<td class='name text-truncate'>{{ $component->component_name }}</td>
 						<td>{{ $component->type()->get()[0]->component_type }}</td>
 						<td>
 							{!! ($component->warranty_id != null) ? 
