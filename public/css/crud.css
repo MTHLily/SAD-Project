@@ -1,19 +1,21 @@
-.fa-trash-alt{
-	color: red;
+h1 {
+	color: #14A83B;
 }
 
-.fa-trash-alt:hover{
-	color: darkred;
+th {
+	color: #ffffff;
+	background-color: #333333;
 }
 
-.fa-edit{
-	color: royalblue;
+table {
+	text-align: center;
 }
 
-.fa-edit:hover{
-	color: darkblue;
+.name {
+	text-align: left;
 }
 
-.fa-plus{
-	color: white;
+.btn {
+	background-color: #14A83B;
 }
+
