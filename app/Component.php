@@ -26,4 +26,20 @@ class Component extends Model
 		return $this->belongsTo('App\Warranty');
 	}
 
+	public static function motherboards(){
+		return Component::where( 'component_type_id', 1 );
+	}
+	public static function cpus(){
+		return Component::where( 'component_type_id', 2 );
+	}
+	public static function gpus(){
+		return Component::where( 'component_type_id', 3 );
+	}
+	public static function rams(){
+		return Component::where( 'component_type_id', 4 );
+	}
+	public static function storages(){
+		return Component::where( 'component_type_id', 5 );
+	}
+
 }

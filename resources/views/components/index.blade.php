@@ -14,112 +14,354 @@
 @endpush
 
 @section('content')
+	
+	<div class="container">
 
-	<a href="/components/create" class="btn btn-success w-100"><i class="fas fa-plus"></i> Add New</a>
-	<table class="table">
-		<thead>
-			<th></th>
-			<th>Asset Tag</th>
-			<th>Component</th>
-			<th>Type</th>
-			<th>System</th>
-			<th>Warranty</th>
-			<th>Status</th>
-			<th>Actions</th>
-		</thead>
-		<tbody>
-			@foreach( $components as $component )
-				<tr>
-					<td><button data-toggle="modal" data-target="#component-{{$component->id}}-info">Open Info</button></td>
-					<td>{{ $component->asset_tag }}</td>
-					<td>{{ $component->remarks }}</td>
-					<td>{{ $component->issues }}</td>
-					<td>{{ $component->component_name }}</td>
-					<td>{{ $component->type()->get()[0]->component_type }}</td>
-					<td>{{ $component->system_id }}</td>
-					<td>
-						{!! ($component->warranty_id != null) ? 
-								"<a href='/warranties/$component->warranty_id'>View Warranty</a>" : 
-								"<a href='/warranties/create'>Assign Warranty</a>"
-						!!}
-					</td>
-					<td>{{ $component->status }}</td>
-					<td>
-						<div class="d-flex w-100">
-							<a class="btn w-100" href="/components/{{$component->id}}/edit"><i class="fas fa-edit fa-lg"></i></a>
-							<form class="w-100" action="/components/{{$component->id}}" method="POST">
-								@method('delete')
-								@csrf
-								<button type="submit" class="btn w-100"><i class="fas fa-trash-alt fa-lg"></i></button>
-							</form>
-						</div>
-					</td>
-				</tr>
-			@endforeach
-		</tbody>
-	</table>
+		<div class="row">
+			<div class="col-12">
+				<form class="form-inline float-sm-left">
+					<div class="form-group mr-2">
+						<h1>Component Inventory</h1>
+					</div>
+				</form>
+				<form class="form-inline float-sm-right">
+					<a href="/components/create" class="btn btn-success float-sm-right"><i class="fas fa-plus"></i> Add Item</a>
+					<input type="text" class="form-control ml-2" placeholder="Search">
+				</form>
+			</div>
+		</div>
+		
+		<table class="table table-striped">
+			<thead>
+				<th>Asset Tag</th>
+				<th>Component</th>
+				<th>Type</th>
+				<th>Warranty</th>
+				<th>Status</th>
+				<th>Item Details</th>
+			</thead>
+			<tbody>
+				@foreach( $components as $component )
+					<tr>
+						<td>{{ $component->asset_tag }}</td>
+						<td class='name'>{{ $component->component_name }}</td>
+						<td>{{ $component->type()->get()[0]->component_type }}</td>
+						<td>
+							{!! ($component->warranty_id != null) ? 
+									"<a href='/warranties/$component->warranty_id'>View Warranty</a>" : 
+									"<a href='/warranties/create'>Assign Warranty</a>"
+							!!}
+						</td>
+						<td>{{ $component->status }}</td>
+						<td>
+							<a data-toggle="modal" href="#component-{{$component->id}}-info">View Details</a>
+						</td>  
+					</tr>
+				@endforeach
+			</tbody>
+		</table>
+	</div>
 
 	@foreach( $components as $component )
 
-	<div class="modal" id="component-{{$component->id}}-info">
-		<div class="modal-dialog">
+	<div class="modal fade" id="component-{{$component->id}}-add" tabindex="-1" role="dialog">
+  		<div class="modal-dialog" role="document">
 			<div class="modal-content">
-				<h1>Edit Component</h1>
 				<form action="/components/{{$component->id}}" method="POST">
+							@csrf
+							@method('PATCH')
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">Update Details</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<div class="form-group row">
+							<label for="asset_tag" class="col-sm-3 col-form-label">Asset Tag</label>
+							<div class="col-sm-9">
+								<input  type="text" name="asset_tag" placeholder="Asset Tag" 
+											class="form-control" 
+											value="{{$component->asset_tag}}"
+											required>
+							</div>
+						</div>
+						<div class="form-group row">
+							<label for="component_name" class="col-sm-3 col-form-label">Name</label>
+							<div class="col-sm-9">
+								<input  type="text" name="component_name" placeholder="Name" 
+											class="form-control" 
+											value="{{$component->component_name}}"
+											required>
+							</div>
+						</div>
+						<div class="form-group row">
+							<label for="component_type" class="col-sm-3 col-form-label">Type</label>
+							<div class="col-sm-9">
+								<select name="component_type_id" class="custom-select" required>
+									<option value="1"
+										@if($component->component_type_id == 1)
+										selected
+										@endif
+									>
+										Motherboard
+									</option>
+									<option value="2"
+										@if($component->component_type_id == 2)
+										selected
+										@endif 
+									>
+										CPU
+									</option>
+									<option value="3"
+										@if($component->component_type_id == 3)
+										selected
+										@endif 
+									>
+										GPU
+									</option>
+									<option value="4"
+										@if($component->component_type_id == 4)
+										selected
+										@endif 
+									>
+										RAM
+									</option>
+									<option value="5"
+										@if($component->component_type_id == 5)
+										selected
+										@endif 
+									>
+										Storage
+									</option>
+								</select>
+							</div>
+						</div>
+						<div class="form-group row">
+							<label for="component_issues" class="col-sm-3 col-form-label">Issues</label>
+							<div class="col-sm-9">
+								<input  type="text" name="component_issues" placeholder="Issues" 
+											class="form-control" 
+											value="{{$component->issues}}"
+											required>
+							</div>
+						</div>
+						<div class="form-group row">
+							<label for="component_remarks" class="col-sm-3 col-form-label">Remarks</label>
+							<div class="col-sm-9">
+								<input  type="text" name="component_remarks" placeholder="Remarks" 
+											class="form-control" 
+											value="{{$component->remarks}}"
+											required>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-success" data-dismiss="modal">Back</button>
+						<button type="submit" class="btn btn-success">Done</button>
+					</div>
+				</form>
+    		</div>
+  		</div>
+	</div>
+
+	@endforeach
+
+	@foreach( $components as $component )
+
+	<div class="modal fade" id="component-{{$component->id}}-info" tabindex="-1" role="dialog">
+  		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Component Details</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+      			</div>
+      			<div class="modal-body">
+				  <form action="/components/{{$component->id}}" method="POST">
 					@csrf
 					@method('PATCH')
-					<input  type="text" name="asset_tag" placeholder="Asset Tag" 
-							class="form-control" 
-							value="{{$component->asset_tag}}" 
-							required>
-					<input  type="text" name="component_name" placeholder="Name" 
-							class="form-control" 
-							value="{{$component->component_name}}"
-							required>
-					<select name="component_type_id" class="custom-select" required>
-						<option value="1"
-							@if($component->component_type_id == 1)
-							selected
-							@endif
-						>
-							Motherboard
-						</option>
-						<option value="2"
-							@if($component->component_type_id == 2)
-							selected
-							@endif 
-						>
-							CPU
-						</option>
-						<option value="3"
-							@if($component->component_type_id == 3)
-							selected
-							@endif 
-						>
-							GPU
-						</option>
-						<option value="4"
-							@if($component->component_type_id == 4)
-							selected
-							@endif 
-						>
-							RAM
-						</option>
-						<option value="5"
-							@if($component->component_type_id == 5)
-							selected
-							@endif 
-						>
-							Storage
-						</option>
-					</select>
+					<div class="form-group row">
+						<label for="asset_tag" class="col-sm-3 col-form-label">Asset Tag</label>
+						<div class="col-sm-9">
+							<input  type="text" name="asset_tag" placeholder="Asset Tag" 
+										class="form-control" 
+										value="{{$component->asset_tag}}" 
+										readonly>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label for="component_name" class="col-sm-3 col-form-label">Name</label>
+						<div class="col-sm-9">
+							<input  type="text" name="component_name" placeholder="Name" 
+								class="form-control" 
+								value="{{$component->component_name}}"
+								readonly>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label for="component_type" class="col-sm-3 col-form-label">Type</label>
+						<div class="col-sm-9">
+							<input  type="text" name="component_type" placeholder="Component Type" 
+								class="form-control" 
+								value="{{$component->type()->get()[0]->component_type}}"
+								readonly>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label for="component_status" class="col-sm-3 col-form-label">Status</label>
+						<div class="col-sm-9">
+							<input  type="text" name="component_status" placeholder="Component Status" 
+								class="form-control" 
+								value="{{$component->status}}"
+								readonly>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label for="component_issues" class="col-sm-3 col-form-label">Issues</label>
+						<div class="col-sm-9">
+							<input  type="text" name="component_issues" placeholder="Issues" 
+								class="form-control" 
+								value="{{$component->issues}}"
+								readonly>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label for="component_remarks" class="col-sm-3 col-form-label">Remarks</label>
+						<div class="col-sm-9">
+							<input  type="text" name="component_remarks" placeholder="Remarks" 
+								class="form-control" 
+								value="{{$component->remarks}}"
+								readonly>
+						</div>
+					</div>
+      			</div>
+				<div class="modal-footer">
+					<form action="/components/{{$component->id}}" method="POST">
+						@method('delete')
+						@csrf
+						<button type="submit"class="btn btn-success">Remove</button>
+					</form>
+					<a class="btn btn-success" data-toggle="modal" href="#component-{{$component->id}}-edit">Update</a>
+					<button type="button" class="btn btn-success" data-dismiss="modal">Return</button>
+				</div>
+    		</div>
+  		</div>
+	</div>
+	
+	@endforeach
 
-					<button class="btn btn-primary">Edit Item</button>
-					<a class="btn btn-danger" href="/components">Return</a>
+	@foreach( $components as $component )
+
+	<div class="modal fade" id="component-{{$component->id}}-edit" tabindex="-1" role="dialog">
+  		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<form action="/components/{{$component->id}}" method="POST">
+							@csrf
+							@method('PATCH')
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">Update Details</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<div class="form-group row">
+							<label for="asset_tag" class="col-sm-3 col-form-label">Asset Tag</label>
+							<div class="col-sm-9">
+								<input  type="text" name="asset_tag" placeholder="Asset Tag" 
+											class="form-control" 
+											value="{{$component->asset_tag}}"
+											required>
+							</div>
+						</div>
+						<div class="form-group row">
+							<label for="component_name" class="col-sm-3 col-form-label">Name</label>
+							<div class="col-sm-9">
+								<input  type="text" name="component_name" placeholder="Name" 
+											class="form-control" 
+											value="{{$component->component_name}}"
+											required>
+							</div>
+						</div>
+						<div class="form-group row">
+							<label for="component_type" class="col-sm-3 col-form-label">Type</label>
+							<div class="col-sm-9">
+								<select name="component_type_id" class="custom-select" required>
+									<option value="1"
+										@if($component->component_type_id == 1)
+										selected
+										@endif
+									>
+										Motherboard
+									</option>
+									<option value="2"
+										@if($component->component_type_id == 2)
+										selected
+										@endif 
+									>
+										CPU
+									</option>
+									<option value="3"
+										@if($component->component_type_id == 3)
+										selected
+										@endif 
+									>
+										GPU
+									</option>
+									<option value="4"
+										@if($component->component_type_id == 4)
+										selected
+										@endif 
+									>
+										RAM
+									</option>
+									<option value="5"
+										@if($component->component_type_id == 5)
+										selected
+										@endif 
+									>
+										Storage
+									</option>
+								</select>
+							</div>
+						</div>
+						<div class="form-group row">
+							<label for="component_status" class="col-sm-3 col-form-label">Status</label>
+							<div class="col-sm-9">
+								<input  type="text" name="component_status" placeholder="Component Status" 
+											class="form-control" 
+											value="{{$component->status}}"
+											readonly>
+							</div>
+						</div>
+						<div class="form-group row">
+							<label for="component_issues" class="col-sm-3 col-form-label">Issues</label>
+							<div class="col-sm-9">
+								<input  type="text" name="component_issues" placeholder="Issues" 
+											class="form-control" 
+											value="{{$component->issues}}"
+											required>
+							</div>
+						</div>
+						<div class="form-group row">
+							<label for="component_remarks" class="col-sm-3 col-form-label">Remarks</label>
+							<div class="col-sm-9">
+								<input  type="text" name="component_remarks" placeholder="Remarks" 
+											class="form-control" 
+											value="{{$component->remarks}}"
+											required>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-success" data-dismiss="modal">Back</button>
+						<button type="submit" class="btn btn-success">Done</button>
+					</div>
 				</form>
-
-			</div>
-		</div>
+    		</div>
+  		</div>
 	</div>
 
 	@endforeach
