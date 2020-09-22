@@ -22,7 +22,7 @@
             <th>First Name</th>
             <th>Middle Initial</th>
             <th>Email Address</th>
-            <th>Depaertment</th>
+            <th>Department</th>
             <th>Status</th>
         </thead>
         <tbody>
@@ -73,11 +73,14 @@
                             class = "form-control"
                             value = "{{$employee->email_address}}"
                             required>
-                        <input type = "text" name = "deaprtment_id" placeholder = "Department ID" 
+                        <input type = "text" name = "department_id" placeholder = "Department ID" 
                             class = "form-control"
-                            value = "{{$employee->Department}}"
+                            value = "{{$employee->department_id}}"
                             required>
-
+                        <input type = "text" name = "status" placeholder = "status" 
+                            class = "form-control"
+                            value = "{{$employee->status}"
+                            required>
                     </form>
                 </div>
             </div>

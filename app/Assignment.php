@@ -14,7 +14,7 @@ class Assignment extends Model
     ];
     
     public function setup(){
-        return $this->belongsTo('PeripheralSetup');
+        return $this->belongsTo('App\PeripheralSetup');
     }
     public function employee(){
         return $this->belongsTo('App\Employee');
