@@ -14,7 +14,7 @@ class PeripheralController extends Controller
      */
     public function index()
     {
-        return view( 'peripherals.index' );
+        return view( 'peripherals.index', [ 'peripherals' => Peripheral::all(), ] );
     }
 
     /**
@@ -24,7 +24,7 @@ class PeripheralController extends Controller
      */
     public function create()
     {
-        //
+        return view('peripherals.create');
     }
 
     /**
@@ -35,7 +35,19 @@ class PeripheralController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate(
+            [
+                'asset_tag' => 'required|max:255',
+                'peripheral_name' => 'required|max:255',
+                'peripheral_type' => 'required',
+                'issues' => '',
+                'remarks' => '',
+            ]
+        );
+
+        Peripheral::create( $validatedData );
+
+        return redirect( '/peripherals' );
     }
 
     /**
@@ -57,7 +69,7 @@ class PeripheralController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view( 'peripherals.edit', ['peripheral' => Peripheral::find($id)] );
     }
 
     /**
@@ -69,7 +81,20 @@ class PeripheralController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validatedData = $request->validate(
+            [
+                'asset_tag' => 'required|max:255',
+                'peripheral_name' => 'required|max:255',
+                'peripheral_type' => 'required',
+                'issues' => '',
+                'remarks' => '',
+            ]
+        );
+
+        $peripheral = Peripheral::find( $id );
+        $peripheral->update( $validatedData );
+
+        return redirect('/peripherals');
     }
 
     /**
@@ -80,6 +105,7 @@ class PeripheralController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Peripheral::destroy($id);
+        return redirect( '/peripherals' );
     }
 }
