@@ -15,6 +15,7 @@
 13. php artisan migrate:fresh
 14. php artisan db:seed
 
+
 **Update Guide**
 1. Open the SAD-project folder in VS Code
 2. In terminal:
@@ -22,6 +23,7 @@
 4. git pull
 5. npm run dev
 6. Ready to start a new branch!
+
 
 **Project Branching Guide**
 1. Make sure to get the latest update from master. (See above)
@@ -33,5 +35,10 @@
 7. git push
     * If there's an error, use instead git push --set-upstream origin *your-branch-name*
 
+
 **To Do List**
 * Add Issues and remarks to components
+
+**Useful Links, Resources and Keywords**
+DataTables - datatables.net
+SASS - better css everything. (Run with npm run watch)
