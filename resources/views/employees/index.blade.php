@@ -23,7 +23,7 @@
             <th>Middle Initial</th>
             <th>Email Address</th>
             <th>Department</th>
-            <th>Status</th>
+           
         </thead>
         <tbody>
             @foreach($employees as $employee)
@@ -34,7 +34,7 @@
                 <td>{{$employee->middle_initial}}</td>
                 <td>{{$employee->email_address}}</td>
                 <td>{{$employee->department_id}}</td>
-                <td>{{$employee->status}}</td>
+                
                 <td>
 					<div class="d-flex w-100">
 						<a class="btn w-100" href="/employees/{{$employee->id}}/edit"><i class="fas fa-edit fa-lg"></i></a>
@@ -54,7 +54,7 @@
             <div class="modal-dialog">
                 <div class = "modal-content">
                     <h1>Edit Employee Details</h1>
-                    <form action = "/employees/{{$employee->$id}}" method = "POST">
+                    <form action = "/employees/{{$employee->id}}" method = "POST">
                         @csrf
 					    @method('PATCH')
                         <input type = "text" name = "last_name" placeholder = "Last Name" 
@@ -77,10 +77,7 @@
                             class = "form-control"
                             value = "{{$employee->department_id}}"
                             required>
-                        <input type = "text" name = "status" placeholder = "status" 
-                            class = "form-control"
-                            value = "{{$employee->status}"
-                            required>
+                        
                     </form>
                 </div>
             </div>

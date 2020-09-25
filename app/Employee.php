@@ -12,7 +12,7 @@ class Employee extends Model
         'middle_initial',
         'email_address',
         'department_id',
-        'status',
+        
     ];
 
     public function department(){

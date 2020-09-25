@@ -36,10 +36,12 @@
 			{{-- Transition is there for pretty pretty. Safe to remove if you dont want to use it --}}
 			<input id="new_department" name="new_department" type="text" class="form-control"  disable style="width: 0; transition: 250ms;" placeholder="New Department">
 		</div>
-        <input type = "text" name = "status" placeholder = "Status" class = "form-control" required>
+        
 
         <button class="btn btn-success">Add</button>
 		<a class="btn btn-danger" href="/employees">Return</a>
-        
+
+       
+	    <script src="{{asset('js/addDepartment.js')}}"></script>
     </form>
 @endsection

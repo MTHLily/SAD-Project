@@ -39,3 +39,7 @@ Route::get('/computers/create_system_details/{id}','ComputerController@createSys
 Route::post('/computers/assign_system/{id}','ComputerController@assignSystem' );
 Route::get('/computers/system_details/{id}', 'ComputerController@showSystem' );
 Route::patch('/computers/system_details/{id}', 'ComputerController@updateSystem' );
+
+Route::get('/employees/create/{id}', 'EmployeeController@create');
+Route::patch('/employees/{id}', 'EmployeeController@update');
+

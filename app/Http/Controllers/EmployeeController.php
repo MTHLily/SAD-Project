@@ -40,16 +40,18 @@ class EmployeeController extends Controller
                 'first_name' =>'required',
                 'middle_initial'=>'required',
                 'email_address' =>'required',
-                'department_id' =>'required ',
-                'status' =>'',
+                'department_id' =>' ',
+                'new_department'=>'max:255',
+                
             ]
         );
         $employee = new Employee;
         $employee->last_name = $validatedData['last_name'];
         $employee->first_name = $validatedData['first_name'];
         $employee->middle_initial = $validatedData['middle_initial'];
+        $employee->email_address = $validatedData['email_address'];
         $employee->department_id =$validatedData['department_id'];
-        $employee->status =$validatedData['status'];
+        
         if( $validatedData['department_id'] != 'new_department' )
             $employee->department_id = $validatedData['department_id'];
         else{
@@ -78,7 +80,7 @@ class EmployeeController extends Controller
      */
 
     public function edit($id){
-        return view('employees.edit',['employee' =>Employee::find($id),'department'=>Department::all()]);
+        return view('employees.edit',['employee' =>Employee::find($id),'departments'=>Department::all()]);
     }
 
     /**
@@ -90,24 +92,23 @@ class EmployeeController extends Controller
      */
 
     public function update(Request $request, $id){
-        $employee = Employee::find( $id );
         $validatedData = $request->validate(
             [
                 'last_name' =>'required',
                 'first_name' =>'required',
                 'middle_initial'=>'required',
                 'department_id' =>'',
+                'email_address' =>'required',
                 'new_department'=>'max:255',
-                'status' => 'required',
-                
             ]
         );
-        $employee = Employee::find($id);
+        $employee = Employee::find( $id );
         $employee->last_name = $validatedData['last_name'];
         $employee->first_name = $validatedData['first_name'];
         $employee->middle_initial = $validatedData['middle_initial'];
-        $employee->department_id =$validatedData['department_id'];
-        $employee = Employee::find($id);
+        $employee->email_address = $validatedData['email_address'];
+       
+
         if( $validatedData['department_id'] != 'new_department' )
             $employee->department_id = $validatedData['department_id'];
         else{
@@ -117,8 +118,6 @@ class EmployeeController extends Controller
         }
         $employee->save();
         return redirect( '/employees' );
-
-        
 
     }
     
