@@ -14,13 +14,16 @@ class PeripheralSetup extends Model
         'tablet_id',
     ];
 
-    public function type(){
-        return $this->belongsTo('App\Peripheral');
+    public function assignment(){
+        return $this->belongsTo('App\Assignment');
     }
     public function monitor(){
         return $this->hasMany('App\Monitor');
     }
-    public function miscellaneous(){
+    public function phone(){
+        return $this->hasMany('App\Miscellaneous');
+    }
+    public function tablet(){
         return $this->hasMany('App\Miscellaneous');
     }
 }
