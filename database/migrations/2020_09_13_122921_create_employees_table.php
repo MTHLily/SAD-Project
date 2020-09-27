@@ -20,7 +20,7 @@ class CreateEmployeesTable extends Migration
             $table->string('middle_initial');
             $table->string('email_address')->nullable();
             $table->foreignId('department_id')->nullable()->references('id')->on('departments');
-           
+            $table->string('status')->default('Available');
 
             $table->timestamps();
             $table->softDeletes();
