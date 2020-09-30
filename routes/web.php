@@ -17,16 +17,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-//Create CRUD routes. Refer to Laravel 7 docs for more info. Keyword: Resource Controller
-Route::resources(
-	[
-		'components' => 'ComponentController',
-		'warranties' => 'WarrantyController',
-		'employees' =>'EmployeeController',
-		'computers' => 'ComputerController',
-		'peripherals' => 'PeripheralController',
-	]
-);
 
 Auth::routes();
 
@@ -43,3 +33,17 @@ Route::patch('/computers/system_details/{id}', 'ComputerController@updateSystem'
 Route::get('/employees/create/{id}', 'EmployeeController@create');
 Route::patch('/employees/{id}', 'EmployeeController@update');
 
+Route::get('/assignments/setup/{peripheralSetup}', 'PeripheralSetupController@edit' )->name('edit_peripheral_setup');
+
+
+//Create CRUD routes. Refer to Laravel 7 docs for more info. Keyword: Resource Controller
+Route::resources(
+	[
+		'components' => 'ComponentController',
+		'warranties' => 'WarrantyController',
+		'employees' => 'EmployeeController',
+		'computers' => 'ComputerController',
+		'peripherals' => 'PeripheralController',
+		'assignments' => 'AssignmentController',
+	]
+);

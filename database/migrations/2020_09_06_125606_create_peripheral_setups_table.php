@@ -15,9 +15,9 @@ class CreatePeripheralSetupsTable extends Migration
     {
         Schema::create('peripheral_setups', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('keyboard_id')->references('id')->on('peripherals');
-            $table->foreignId('phone_id')->references('id')->on('peripherals');
-            $table->foreignId('tablet_id')->references('id')->on('peripherals');
+            $table->foreignId('keyboard_id')->nullable()->references('id')->on('peripherals');
+            $table->foreignId('phone_id')->nullable()->references('id')->on('peripherals');
+            $table->foreignId('tablet_id')->nullable()->references('id')->on('peripherals');
 
             $table->timestamps();
             $table->softDeletes();

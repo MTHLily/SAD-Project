@@ -18,4 +18,9 @@ class Employee extends Model
     public function department(){
         return $this->belongsTo('App\Department');
     }
+
+    public function full_name(){
+        return $this->last_name . ', ' . $this->first_name . ' ' . $this->middle_initial . '.' ;
+    }
+
 }
