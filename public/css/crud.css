@@ -1,5 +1,6 @@
 h1 {
 	color: #14A83B;
+	font-weight: bold;
 }
 
 th {
@@ -19,3 +20,6 @@ table {
 	background-color: #14A83B;
 }
 
+.warranty a, .detail a {
+	color: #14A83B;
+}
