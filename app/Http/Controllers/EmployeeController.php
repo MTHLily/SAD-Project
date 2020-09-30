@@ -131,4 +131,15 @@ class EmployeeController extends Controller
         Employee::destroy($id);
         return redirect( '/employees');
     }
+
+    /**
+     *  Fetch all employees and send as JSON
+     *
+     * @return \Illuminate\Http\Response
+     */
+
+    public function apiAll(){
+        return response()->json( Employee::all() );
+    }
+
 }

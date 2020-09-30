@@ -16,6 +16,7 @@
 
 @section('content')
 
+    {{-- Modal for adding assignments --}}
     <div class="modal" id="addModal">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -38,8 +39,31 @@
                         </select>
                     </div>
                     <div class="modal-footer">
-                        <button class="btn btn-danger" type="button">Cancel</button>
+                        <button class="btn btn-danger" data-dismiss="modal" type="button">Cancel</button>
                         <button class="btn">Add</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    {{-- Modal for editing assignments. Is being modified by JS so look at public/js/assignment.js --}}
+    <div class="modal fade" id="editModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form id="editForm">
+                    @csrf
+                    @method('PATCH')
+                    <div class="modal-body">
+                        <div class="loading">Loading...</div>
+                        <div class="loaded">
+                            <select name="employee_id" id="employeeSelect"></select>
+                            <select name="computer_id" id="computerSelect"></select>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                            <button class="btn btn-danger" data-dismiss="modal" type="button">Cancel</button>
+                            <button class="btn">Add</button>
                     </div>
                 </form>
             </div>
@@ -63,10 +87,23 @@
                     <td>
                     </td>
                     <td></td>
-                    <td><a href={{}}>Action</a></td>
+                    <td>
+                        <button class="btn"
+                            onclick="edit({{$assign->id}}, {{$assign->computer_id}}, {{$assign->employee_id}})">
+                                Edit
+                        </button>
+                        <form method="POST" action="/assignments/{{$assign->id}}">
+                            @csrf
+                            @method('DELETE')
+                            <button class="btn">Delete</button>
+                        </form>
+                    </td>
                 </tr>
             @endforeach
 		</tbody>
-	</table>
+    </table>
+    
+	{{-- Add script to handle the new department thing --}}
+	<script src="{{asset('js/assignment.js')}}"></script> 
 
 @endsection

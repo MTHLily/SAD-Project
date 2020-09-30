@@ -19,5 +19,8 @@ class Assignment extends Model
     public function computer(){
         return $this->belongsTo('App\Computer');
     }
+    public function peripherals(){
+        return $this->hasMany( 'App\Peripheral' );
+    }
     
 }

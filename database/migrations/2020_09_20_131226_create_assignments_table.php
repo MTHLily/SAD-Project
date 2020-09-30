@@ -13,6 +13,7 @@ class CreateAssignmentsTable extends Migration
      */
     public function up()
     {
+        
         Schema::create('assignments', function (Blueprint $table) {
             $table->id();
             $table->foreignId('employee_id')->references('id')->on('employees');
@@ -22,6 +23,7 @@ class CreateAssignmentsTable extends Migration
             $table->timestamps();
             $table->softDeletes();
         });
+
     }
 
     /**

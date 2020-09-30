@@ -37,13 +37,20 @@ class AssignmentController extends Controller
             'employee_id' => 'required',
             'computer_id' => 'required'
         ]);
-        
+
+        $assign = Assignment::create( $data );
+
+        $assign->employee->status = "Assigned";
+        $assign->employee->save();
+        $assign->computer->status = "Assigned";
+        $assign->computer->save();
+
         return redirect('/assignments');
 
     }
 
     /**
-     * Display the specified resource.
+     * Return the specified resource.
      *
      * @param  \App\Assignment  $assignment
      * @return \Illuminate\Http\Response
@@ -51,6 +58,17 @@ class AssignmentController extends Controller
     public function show(Assignment $assignment)
     {
         return response()->json($assignment);
+    }
+
+    /**
+     * Return the specified assignment's peripherals.
+     *
+     * @param  \App\Assignment  $assignment
+     * @return \Illuminate\Http\Response
+     */
+    public function show_peripherals(Assignment $assignment)
+    {
+        return response()->json($assignment->peripherals);
     }
 
     /**
@@ -84,6 +102,10 @@ class AssignmentController extends Controller
      */
     public function destroy(Assignment $assignment)
     {
-        //
+        foreach( $assignment->peripherals as $peripheral ){
+            $peripheral->assignment_id = null;
+        }
+        $assignment->delete();
+        return redirect('/assignments');
     }
 }
