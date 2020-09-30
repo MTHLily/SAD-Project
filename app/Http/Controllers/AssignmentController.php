@@ -37,9 +37,7 @@ class AssignmentController extends Controller
             'employee_id' => 'required',
             'computer_id' => 'required'
         ]);
-
-        $data['peripheral_setup_id'] = \App\PeripheralSetup::create()->id;
-
+        
         return redirect('/assignments');
 
     }

@@ -17,7 +17,6 @@ class CreateAssignmentsTable extends Migration
             $table->id();
             $table->foreignId('employee_id')->references('id')->on('employees');
             $table->foreignId('computer_id')->references('id')->on('computers');
-            $table->foreignId('peripheral_setup_id')->references('id')->on('peripheral_setups');
             $table->string('status')->default('Available');
 
             $table->timestamps();

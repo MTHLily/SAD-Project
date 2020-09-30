@@ -13,9 +13,6 @@ class Assignment extends Model
         'peripheral_setup_id',
     ];
     
-    public function setup(){
-        return $this->belongsTo('App\PeripheralSetup');
-    }
     public function employee(){
         return $this->belongsTo('App\Employee');
     }

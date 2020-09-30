@@ -61,9 +61,6 @@
                     <td>{{$assign->employee->full_name()}}</td>
                     <td>{{$assign->computer->pc_name}}</td>
                     <td>
-                        <a href=
-                        {{ route('edit_peripheral_setup', ['peripheralSetup' => $assign->peripheral_setup_id] ) }}>
-                        Assign Peripherals</a>
                     </td>
                     <td></td>
                     <td><a href={{}}>Action</a></td>
