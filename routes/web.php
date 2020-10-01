@@ -43,3 +43,7 @@ Route::patch('/computers/system_details/{id}', 'ComputerController@updateSystem'
 Route::get('/employees/create/{id}', 'EmployeeController@create');
 Route::patch('/employees/{id}', 'EmployeeController@update');
 
+Route::get('/warranties/create/{id}', 'WarrantyController@create');
+Route::patch('/warranties/{id}', 'WarrantyController@update');
+
+
