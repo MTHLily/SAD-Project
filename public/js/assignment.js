@@ -62,8 +62,10 @@ function populateSelect( el, data ){
         //If else decision tree to determine if current data is either employee, peripheral or computer
         if( opt.last_name )
             option.innerText = `${opt.last_name}, ${opt.first_name} ${opt.middle_initial}`;
-        else if (opt.peripheral_name)
-            option.innerText = `${opt.peripheral_name}`;
+        else if (opt.peripheral_name){
+            let types = ["Monitor", "Keyboard", "Device", "Miscellaneous"];
+            option.innerText = `${types[opt.peripheral_type - 1]} - ${opt.peripheral_name}`;
+        }
         else
             option.innerText = `${opt.pc_name}`;
 
@@ -126,13 +128,16 @@ async function addPeripheralSelect( addOption ){
 
     //Add the additional option (for creating previous thing)
     if (addOption != undefined) {
+        console.log(addOption);
         let option = document.createElement('option');
         option.value = addOption.id;
         //If else decision tree to determine if current data is either employee, peripheral or computer
         if (addOption.last_name)
             option.innerText = `${addOption.last_name}, ${addOption.first_name} ${addOption.middle_initial}`;
-        else if (addOption.peripheral_name)
-            option.innerText = `${addOption.peripheral_name}`;
+        else if (addOption.peripheral_name){
+            let types = ["Monitor", "Keyboard", "Device", "Miscellaneous"];
+            option.innerText = `${types[addOption.peripheral_type - 1]} - ${addOption.peripheral_name}`;
+        }
         else
             option.innerText = `${addOption.pc_name}`;
         select.appendChild(option);

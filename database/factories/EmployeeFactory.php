@@ -11,6 +11,6 @@ $factory->define(Employee::class, function (Faker $faker) {
         'first_name' => $faker->firstName,
         'middle_initial' => $faker->lastName,
         'email_address' => $faker->safeEmail,
-        'department_id' => '1',
+        'department_id' => rand(1, 5),
     ];
 });

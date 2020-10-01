@@ -70,6 +70,7 @@
         </div>
     </div>
 
+    {{-- Modal for editing peripherals. Is JS heavy so check the assignment.js --}}
     <div class="modal fade" id="editPeripheralsModal">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -110,7 +111,7 @@
                     <td>
                         <button class="btn" onclick="editPeripherals({{$assign->id}})">Assign Peripherals</button>
                     </td>
-                    <td></td>
+                    <td>{{$assign->status}}</td>
                     <td>
                         <button class="btn"
                             onclick="edit({{$assign->id}}, {{$assign->computer_id}}, {{$assign->employee_id}})">
