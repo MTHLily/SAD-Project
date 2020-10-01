@@ -66,7 +66,7 @@ class AssignmentController extends Controller
      * @param  \App\Assignment  $assignment
      * @return \Illuminate\Http\Response
      */
-    public function show_peripherals(Assignment $assignment)
+    public function showPeripherals(Assignment $assignment)
     {
         return response()->json($assignment->peripherals);
     }
@@ -83,6 +83,35 @@ class AssignmentController extends Controller
     }
 
     /**
+     * Assign peripherals to an assignment.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Assignment  $assignment
+     * @return \Illuminate\Http\Response
+     */
+
+     public function editPeripherals(Request $request, Assignment $assignment ){
+
+        $data = $request->validate([
+            'peripheral_id' => '',
+            'peripheral_ids' => 'JSON',
+        ]);
+
+        $assignment->clearPeripherals();
+        $ids = json_decode( $data['peripheral_ids'] );
+
+        foreach( $ids as $id ){
+            \App\Peripheral::find( $id )->update([
+                'assignment_id' => $assignment->id,
+                'status' => 'Assigned',
+            ]);
+        }
+
+        return redirect('/assignments');
+
+     }
+
+    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -91,7 +120,29 @@ class AssignmentController extends Controller
      */
     public function update(Request $request, Assignment $assignment)
     {
-        //
+        //Validate data
+        $data = $request->validate([
+                'employee_id' => 'required',
+                'computer_id' => 'required',
+            ]
+        );
+
+        //Unassign
+        $emp = $assignment->employee;
+        $emp->update(['status' => "Available"]);
+        $com = $assignment->computer;
+        $com->update(['status' => "Available"]);
+        
+        $assignment->update( $data );
+
+        //Assign
+        $emp = $assignment->employee;
+        $emp->update(['status' => "Assigned"]);
+        $com = $assignment->computer;
+        $com->update(['status' => "Assigned"]);
+        
+        return redirect('/assignments');
+
     }
 
     /**
@@ -102,9 +153,14 @@ class AssignmentController extends Controller
      */
     public function destroy(Assignment $assignment)
     {
-        foreach( $assignment->peripherals as $peripheral ){
-            $peripheral->assignment_id = null;
-        }
+        
+        $assignment->clearPeripherals();
+
+        $emp = $assignment->employee;
+        $emp->update( ['status' => "Available"] );
+        $com = $assignment->computer;
+        $com->update( ['status' => "Available"] );
+
         $assignment->delete();
         return redirect('/assignments');
     }

@@ -20,6 +20,8 @@ class CreatePeripheralsTable extends Migration
             $table->foreignId('assignment_id')->nullable()->references('id')->on('assignments');
             $table->foreignId('peripheral_type')->references('id')->on('peripheral_types');
             $table->foreignId('warranty_id')->nullable()->refences('id')->on('warranty')->onDelete('cascade');
+            $table->string('issues')->nullable();
+            $table->string('remarks')->nullable();
             $table->string('status')->default('Available');
 
             $table->timestamps();

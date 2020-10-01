@@ -33,11 +33,15 @@ Route::patch('/computers/system_details/{id}', 'ComputerController@updateSystem'
 Route::get('/employees/create/{id}', 'EmployeeController@create');
 Route::patch('/employees/{id}', 'EmployeeController@update');
 
-Route::get('/assignments/setup/{peripheralSetup}', 'PeripheralSetupController@edit' )->name('edit_peripheral_setup');
+Route::post('/assignments/{assignment}/peripherals', 'AssignmentController@editPeripherals');
 
 //API Routes
 Route::get( '/api/employees/all', 'EmployeeController@apiAll');
+Route::get( '/api/employees/available', 'EmployeeController@apiAvailable');
 Route::get( '/api/computers/all', 'ComputerController@apiAll');
+Route::get( '/api/computers/available', 'ComputerController@apiAvailable');
+Route::get( '/api/peripherals/available', 'PeripheralController@apiAvailable');
+Route::get( '/api/assignments/{assignment}/peripherals', 'AssignmentController@showPeripherals');
 
 //Create CRUD routes. Refer to Laravel 7 docs for more info. Keyword: Resource Controller
 Route::resources(

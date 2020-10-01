@@ -9,7 +9,7 @@ class Peripheral extends Model
     protected $fillable = [
         'asset_tag',
         'peripheral_name',
-        'setup_id',
+        'assignment_id',
         'peripheral_type',
         'warranty_id',
         'status',

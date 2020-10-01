@@ -22,5 +22,11 @@ class Assignment extends Model
     public function peripherals(){
         return $this->hasMany( 'App\Peripheral' );
     }
-    
+    public function clearPeripherals(){
+        foreach( $this->peripherals as $peripheral ){
+            $peripheral->assignment_id = null;
+            $peripheral->status = "Available";
+            $peripheral->save();
+        }
+    }
 }

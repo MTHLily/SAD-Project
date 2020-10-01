@@ -51,7 +51,7 @@
     <div class="modal fade" id="editModal">
         <div class="modal-dialog">
             <div class="modal-content">
-                <form id="editForm">
+                <form id="editForm" method="POST">
                     @csrf
                     @method('PATCH')
                     <div class="modal-body">
@@ -62,6 +62,29 @@
                         </div>
                     </div>
                     <div class="modal-footer">
+                            <button class="btn btn-danger" data-dismiss="modal" type="button">Cancel</button>
+                            <button class="btn">Add</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="editPeripheralsModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form id="editPeripheralsForm" method="POST">
+                    @csrf
+
+                    <div class="modal-body">
+                        <div class="loading">Loading...</div>
+                        <div class="loaded">
+                            <div id="peripheralSelectDiv"></div>
+                            <button class="btn btn-primary" onclick="addPeripheralSelect(undefined)"type="button" id="addPeripheralButton">Add Peripheral</button>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                            <input type="hidden" name="peripheral_ids" id="peripheral_ids">
                             <button class="btn btn-danger" data-dismiss="modal" type="button">Cancel</button>
                             <button class="btn">Add</button>
                     </div>
@@ -85,6 +108,7 @@
                     <td>{{$assign->employee->full_name()}}</td>
                     <td>{{$assign->computer->pc_name}}</td>
                     <td>
+                        <button class="btn" onclick="editPeripherals({{$assign->id}})">Assign Peripherals</button>
                     </td>
                     <td></td>
                     <td>
