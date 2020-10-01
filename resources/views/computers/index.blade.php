@@ -7,40 +7,56 @@
 {{-- JQuery Import for Javascript --}}
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.js"></script>
+
 <script src=" {{asset('js/crud.js')}}"></script>
 @endpush
 
 @push('styles')
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css">
+
 <link href="{{ asset('css/crud.css') }}" rel="stylesheet">
 @endpush
 
 @section('content')
 
-	<a href="/computers/create" class="btn btn-success w-100"><i class="fas fa-plus"></i> Add New</a>
-	<table class="table">
+<div class="container">
+	<div class="row">
+		<div class="col-12">
+			<form class="form-inline float-sm-left">
+				<div class="form-group mr-2">
+					<h1>Computer Inventory</h1>
+				</div>
+			</form>
+			<form class="form-inline float-sm-right">
+				<a href="/computers/create" class="btn btn-success float-sm-right"><i class="fas fa-plus"></i> Add Item</a>
+				<input type="text" class="form-control ml-2" id="searchBox" placeholder="Search">
+			</form>
+		</div>
+	</div>
+
+	<table class="table table-striped table-bordered dataTable mb-5">
 		<thead>
-			<th></th>
-			<th>Asset Tag</th>
-			<th>PC Name</th>
-			<th>Type</th>
-			<th>Department</th>
-			<th>System Details</th>
-			<th>Network Details</th>
-			<th>Warranty Details</th>
-			<th>Remarks</th>
-			<th>Issues</th>
-			<th>Status</th>
-			<th>Actions</th>
+			<th>ASSET TAG</th>
+			<th>PC NAME</th>
+			<th>TYPE</th>
+			<th>DEPARTMENT</th>
+			<th>SYSTEM</th>
+			<th>NETWORK</th>
+			<th>WARRANTY</th>
+			<th>STATUS</th>
+			<th>ITEM DETAILS</th>
 		</thead>
 		<tbody>
 			@foreach( $computers as $computer )
 				<tr>
-					<td></td>
-					<td>{{ $computer->asset_tag }}</td>
-					<td>{{ $computer->pc_name }}</td>
-					<td>{{ $computer->type }}</td>
+				<td>{{ $computer->asset_tag }}</td>
+					<td class="name">{{ $computer->pc_name }}</td>
+					<td>{{ $computer->type()->get()[0]->computer_type }}</td>
 					<td>{{ $computer->department_id }}</td>
-					<td>
+					<td class="system">
 						@if($computer->system_details_id != null)
 							<a href="/computers/system_details/{{ $computer->system_details_id }}">View System Details</a>
 						@else
@@ -87,31 +103,23 @@
 									</div>
 								</div>
 							</div>
-							<button class="btn" type="button" data-toggle="modal" data-target="#network_modal_{{$computer->id}}">Assign Network Details</button>
+							<a data-toggle="modal" href="#network_modal_{{$computer->id}}">Assign Network Details</button>
 						@endif
-				</td>
-					<td>
+				    </td>
+					<td class="warranty">
 						{!! ($computer->warranty_id != null) ? 
 								"<a href='/warranties/$computer->warranty_id'>View Warranty</a>" : 
 								"<a href='/warranties/create'>Assign Warranty</a>"
 						!!}
 					</td>
-					<td>{{ $computer->remarks }}</td>
-					<td>{{ $computer->issues }}</td>
 					<td>{{ $computer->status }}</td>
-					<td>
-						<div class="d-flex w-100">
-							<a class="btn w-100" href="/computers/{{$computer->id}}/edit"><i class="fas fa-edit fa-lg"></i></a>
-							<form class="w-100" action="/computers/{{$computer->id}}" method="POST">
-								@method('delete')
-								@csrf
-								<button type="submit" class="btn w-100"><i class="fas fa-trash-alt fa-lg"></i></button>
-							</form>
-						</div>
-					</td>
+					<td class="detail">
+						<a data-toggle="modal" href="#computer-{{$computer->id}}-info">View Details</a>
+					</td>  
 				</tr>
 			@endforeach
 		</tbody>
 	</table>
+</div>
 
 @endsection

@@ -1,14 +1,15 @@
-h1 {
+h2 {
 	color: #14A83B;
 	font-weight: bold;
 }
 
-th {
+.table thead th {
 	color: #ffffff;
 	background-color: #333333;
+	vertical-align: middle;
 }
 
-table {
+.table {
 	text-align: center;
 }
 

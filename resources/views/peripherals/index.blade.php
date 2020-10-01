@@ -19,8 +19,8 @@
 @endpush
 
 @section('content')
-	
-	<!-- <div class="container">
+
+	<div class="container">
 
 		<div class="row">
 			<div class="col-12">
@@ -31,12 +31,12 @@
 				</form>
 				<form class="form-inline float-sm-right">
 					<a data-toggle="modal" href="#peripheral-add" class="btn btn-success float-sm-right"><i class="fas fa-plus"></i> Add Item</a>
-					<input type="text" class="form-control ml-2" placeholder="Search">
+					<input type="text" class="form-control ml-2" id="searchBox" placeholder="Search">
 				</form>
 			</div>
 		</div>
 		
-		<table class="table table-striped table-bordered">
+		<table class="table table-striped table-bordered dataTable">
 			<thead>
 				<th>ASSET TAG</th>
 				<th>PERIPHERAL</th>
@@ -72,7 +72,7 @@
 	<div class="modal fade" id="peripheral-add" tabindex="-1" role="dialog">
   		<div class="modal-dialog modal-dialog-centered" role="document">
 			<div class="modal-content">
-				<form action="/peripheral" method="POST">
+				<form action="/peripherals" method="POST">
 					@csrf
 					<div class="modal-header">
 						<h5 class="modal-title" id="exampleModalLabel">Add Peripheral</h5>
@@ -103,48 +103,10 @@
 							<label for="peripheral_type" class="col-sm-3 col-form-label">Type</label>
 							<div class="col-sm-9">
 								<select name="peripheral_type_id" class="custom-select" required>
-									<option value="1"
-										@if($peripheral->peripheral_type_id == 1)
-										selected
-										@endif
-									>
-										Keyboard
-									</option>
-									<option value="2"
-										@if($peripheral->peripheral_type_id == 2)
-										selected
-										@endif 
-									>
-										Phone
-									</option>
-									<option value="3"
-										@if($peripheral->peripheral_type_id == 3)
-										selected
-										@endif 
-									>
-										Tablet
-									</option>
-									<option value="4"
-										@if($peripheral->peripheral_type_id == 4)
-										selected
-										@endif 
-									>
-										Mouse
-									</option>
-									<option value="5"
-										@if($peripheral->peripheral_type_id == 5)
-										selected
-										@endif 
-									>
-										Monitor
-									</option>
-									<option value="6"
-										@if($peripheral->peripheral_type_id == 6)
-										selected
-										@endif 
-									>
-										Miscellaneous
-									</option>
+								{{ $types = \App\PeripheralType::all() }}
+								@foreach( $types as $type )
+									<option value="{{$type->id}}">{{$type->peripheral_type}}</option>
+								@endforeach
 								</select>
 							</div>
 						</div>
@@ -174,39 +136,6 @@
 				</form>
     		</div>
   		</div>
-	</div> -->
-
-	<div class="container mb-5">
-		<table class="table" id="myTable">
-			  <thead class="thead-dark">
-				    <tr>
-					    <th scope="col">#</th>
-					    <th scope="col">First</th>
-					    <th scope="col">Last</th>
-					    <th scope="col">Handle</th>
-				    </tr>
-			  </thead>
-			  <tbody>
-				    <tr>
-					    <th scope="row">1</th>
-					    <td>Mark</td>
-					    <td>Otto</td>
-					    <td>@mdo</td>
-				    </tr>
-				    <tr>
-				        <th scope="row">2</th>
-				        <td>Jacob</td>
-				        <td>Thornton</td>
-				        <td>@fat</td>
-				    </tr>
-				    <tr>
-				        <th scope="row">3</th>
-				        <td>Larry</td>
-				        <td>the Bird</td>
-				        <td>@twitter</td>
-				    </tr>
-			  </tbody>
-		</table>
 	</div>
 
 	@endforeach
@@ -334,48 +263,10 @@
 							<label for="peripheral_type" class="col-sm-3 col-form-label">Type</label>
 							<div class="col-sm-9">
 								<select name="peripheral_type_id" class="custom-select" required>
-									<option value="1"
-										@if($peripheral->peripheral_type_id == 1)
-										selected
-										@endif
-									>
-										Keyboard
-									</option>
-									<option value="2"
-										@if($peripheral->peripheral_type_id == 2)
-										selected
-										@endif 
-									>
-										Phone
-									</option>
-									<option value="3"
-										@if($peripheral->peripheral_type_id == 3)
-										selected
-										@endif 
-									>
-										Tablet
-									</option>
-									<option value="4"
-										@if($peripheral->peripheral_type_id == 4)
-										selected
-										@endif 
-									>
-										Mouse
-									</option>
-									<option value="5"
-										@if($peripheral->peripheral_type_id == 5)
-										selected
-										@endif 
-									>
-										Monitor
-									</option>
-									<option value="6"
-										@if($peripheral->peripheral_type_id == 6)
-										selected
-										@endif 
-									>
-										Miscellaneous
-									</option>
+								{{ $types = \App\PeripheralType::all() }}
+								@foreach( $types as $type )
+									<option value="{{$type->id}}">{{$type->peripheral_type}}</option>
+								@endforeach
 								</select>
 							</div>
 						</div>
