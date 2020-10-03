@@ -78,6 +78,9 @@
                             value = "{{$employee->department_id}}"
                             required>
                         
+                        <button class="btn btn-primary">Edit Item</button>
+					    <a class="btn btn-danger" href="/components">Return</a>
+                        
                     </form>
                 </div>
             </div>

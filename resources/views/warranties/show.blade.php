@@ -6,7 +6,7 @@
 
 Brand: {{ $warranty->brand_id }}
 Purchase Date: {{ $warranty->purchase_date }}
-Purchase Location: {{ $warranty->purchase_location }}
+Purchase Location: {{ $warranty->location }}
 Receipt: {{ $warranty->receipt_url }}
 Serial No:{{ $warranty->serial_no }}
 Warranty Life: {{ $warranty->warranty_life }}
