@@ -33,7 +33,7 @@
 			<input id="new_brand" name="new_brand" type="text" class="form-control"  disable style="width: 0; transition: 250ms;" placeholder="New Brand">
 		</div>
         <input type = "date" name = "purchase_date" placeholder = "Purchase Date" class = "form-control" required>
-        <input type = "text" name = "location" placeholder = "Location" class = "form-control" required>
+        <input type = "text" name = "purchase_location" placeholder = "Location" class = "form-control" required>
         <input type = "file" name = "receipt_url" placeholder = "Receipt" class = "form-control" required>
         <input type = "text" name = "serial_no" placeholder = "Serial Number" class = "form-control" required>
         <input type = "date" name = "warranty_life" placeholder = "Warranty Life" class = "form-control" required>

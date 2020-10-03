@@ -36,7 +36,7 @@ class WarrantyController extends Controller
                 'brand_id'=>'',
                 'new_brand'=>'',
 		        'purchase_date'=>'required',
-		        'location'=>'required',
+		        'purchase_location'=>'required',
 		        'receipt_url'=>['required','image'],
 		        'serial_no'=>'required',
 		        'warranty_life'=>'required',
@@ -45,12 +45,15 @@ class WarrantyController extends Controller
             ]
 
         );
-        request('receipt_url')->store('uploads','public');
+
+        
+        $imagePath = request('receipt_url')->store( 'warranties', 'local' );
+
         $warranty = new Warranty;
         $warranty->brand_id = $validatedData['brand_id'];
         $warranty->purchase_date = $validatedData['purchase_date'];
-        $warranty->location = $validatedData['location'];
-        $warranty->receipt_url = $validatedData['receipt_url'];
+        $warranty->purchase_location = $validatedData['purchase_location'];
+        $warranty->receipt_url = $imagePath;
         $warranty->serial_no = $validatedData['serial_no'];
         $warranty->warranty_life = $validatedData['warranty_life'];
         $warranty->notes = $validatedData['notes'];
