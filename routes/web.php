@@ -46,6 +46,9 @@ Route::get( '/api/computers/available', 'ComputerController@apiAvailable');
 Route::get( '/api/peripherals/available', 'PeripheralController@apiAvailable');
 Route::get( '/api/assignments/{assignment}/peripherals', 'AssignmentController@showPeripherals');
 
+Route::get( '/api/components', 'APIController@getAllComponents');
+Route::get( '/api/components/{id}', 'APIController@getComponent');
+
 //Create CRUD routes. Refer to Laravel 7 docs for more info. Keyword: Resource Controller
 Route::resources(
 	[

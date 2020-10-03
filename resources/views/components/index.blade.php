@@ -20,6 +20,27 @@
 
 @section('content')
 	
+<div class="modal" id="compDetails">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div id="compdet">
+				Component Details
+				<input type="text" name="asset_tag" placeholder="asset">
+				<input type="text" name="component_name" placeholder="name">
+				<select name="type">
+					<option value="1">Motherboard</option>
+					<option value="2">CPU</option>
+					<option value="3">	GPU</option>
+					<option value="4">	RAM</option>
+					<option value="5">	Storage</option>
+				</select>
+			</div>
+
+		</div>
+	</div>
+</div>
+
+
 	<div class="container">
 
 		<div class="row">
@@ -57,7 +78,7 @@
 									"<a data-toggle='modal' href='#assign-warranty'>Assign Warranty</a>"
 							!!}
 						</td>
-						<td>{{ $component->status }}</td>
+						<td onclick="showCompDetails({{$component->id}})">{{ $component->status }}</td>
 						<td class="detail">
 							<a data-toggle="modal" href="#component-{{$component->id}}-info">View Details</a>
 						</td>  

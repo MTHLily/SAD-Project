@@ -24,3 +24,18 @@ $(document).ready( function () {
 	});
 
 } );
+
+async function showCompDetails( id ){
+	let div = document.querySelector("#compdet");
+
+	const URL = window.location.origin + "/api/components/" + id;
+
+	let comp = await (await fetch(URL)).json();
+
+	div.querySelector("input[name='component_name']").value = comp.component_name
+
+	$("#compDetails").modal('toggle');
+
+	console.log(comp);
+
+}
