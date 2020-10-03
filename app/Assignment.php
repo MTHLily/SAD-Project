@@ -13,13 +13,20 @@ class Assignment extends Model
         'peripheral_setup_id',
     ];
     
-    public function setup(){
-        return $this->belongsTo('App\PeripheralSetup');
-    }
     public function employee(){
         return $this->belongsTo('App\Employee');
     }
     public function computer(){
         return $this->belongsTo('App\Computer');
+    }
+    public function peripherals(){
+        return $this->hasMany( 'App\Peripheral' );
+    }
+    public function clearPeripherals(){
+        foreach( $this->peripherals as $peripheral ){
+            $peripheral->assignment_id = null;
+            $peripheral->status = "Available";
+            $peripheral->save();
+        }
     }
 }

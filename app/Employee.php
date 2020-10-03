@@ -12,10 +12,15 @@ class Employee extends Model
         'middle_initial',
         'email_address',
         'department_id',
-        
+        'status',
     ];
 
     public function department(){
         return $this->belongsTo('App\Department');
     }
+
+    public function full_name(){
+        return $this->last_name . ', ' . $this->first_name . ' ' . $this->middle_initial . '.' ;
+    }
+
 }

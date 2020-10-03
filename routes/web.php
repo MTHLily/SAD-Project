@@ -17,16 +17,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-//Create CRUD routes. Refer to Laravel 7 docs for more info. Keyword: Resource Controller
-Route::resources(
-	[
-		'components' => 'ComponentController',
-		'warranties' => 'WarrantyController',
-		'employees' =>'EmployeeController',
-		'computers' => 'ComputerController',
-		'peripherals' => 'PeripheralController',
-	]
-);
 
 Auth::routes();
 
@@ -46,4 +36,24 @@ Route::patch('/employees/{id}', 'EmployeeController@update');
 Route::get('/warranties/create/{id}', 'WarrantyController@create');
 Route::patch('/warranties/{id}', 'WarrantyController@update');
 
+Route::post('/assignments/{assignment}/peripherals', 'AssignmentController@editPeripherals');
 
+//API Routes
+Route::get( '/api/employees/all', 'EmployeeController@apiAll');
+Route::get( '/api/employees/available', 'EmployeeController@apiAvailable');
+Route::get( '/api/computers/all', 'ComputerController@apiAll');
+Route::get( '/api/computers/available', 'ComputerController@apiAvailable');
+Route::get( '/api/peripherals/available', 'PeripheralController@apiAvailable');
+Route::get( '/api/assignments/{assignment}/peripherals', 'AssignmentController@showPeripherals');
+
+//Create CRUD routes. Refer to Laravel 7 docs for more info. Keyword: Resource Controller
+Route::resources(
+	[
+		'components' => 'ComponentController',
+		'warranties' => 'WarrantyController',
+		'employees' => 'EmployeeController',
+		'computers' => 'ComputerController',
+		'peripherals' => 'PeripheralController',
+		'assignments' => 'AssignmentController',
+	]
+);

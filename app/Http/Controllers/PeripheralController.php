@@ -108,4 +108,16 @@ class PeripheralController extends Controller
         Peripheral::destroy($id);
         return redirect( '/peripherals' );
     }
+
+    /**
+     *  Fetch all available peripherals and send as JSON
+     *
+     * @return \Illuminate\Http\Response
+     */
+
+    public function apiAvailable()
+    {
+        return response()->json(Peripheral::where('status', 'Available')->get());
+    }
+
 }

@@ -413,4 +413,24 @@ class ComputerController extends Controller
 
     }
 
+    /**
+     *  Fetch all computers and send as JSON
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function apiAll()
+    {
+        return response()->json(Computer::all());
+    }
+
+    /**
+     *  Fetch all computers and send as JSON
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function apiAvailable()
+    {
+        return response()->json(Computer::where('status', 'Available')->get());
+    }
+
 }

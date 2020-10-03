@@ -33,8 +33,13 @@ class ExampleSeed extends Seeder
         	$component->component_name = $componentNames[$ind - 1];
         	$component->component_type_id = $ind;
         	$component->save();
-        }
-
+		}
+		
+		factory( App\Department::class, 5 )->create();
+		factory( App\Employee::class, 12 )->create();
+		factory(App\Peripheral::class, 12)->create();
+		factory(App\Computer::class, 12)->create();
+		factory(App\Component::class, 12)->create();
 
 
     }

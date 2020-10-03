@@ -149,7 +149,7 @@ class WarrantyController extends Controller
      */
     public function destroy($id)
     {
-        Employee::destroy($id);
+        Warranty::destroy($id);
         return redirect( '/warranties');
     }
 }
