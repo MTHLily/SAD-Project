@@ -34,14 +34,11 @@ class StaticLookup extends Seeder
             );
         }
 
-<<<<<<< HEAD
         foreach( $peripheral_types as $type ){
             DB::table( 'peripheral_types' )->insert(
                 [ 'peripheral_type' => $type ],
             );
         }
 
-=======
->>>>>>> 07c679ec6a24ea85e8a5cb20d8c13d7649708718
     }
 }

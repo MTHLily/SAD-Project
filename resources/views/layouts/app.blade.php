@@ -24,7 +24,7 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-dark shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
@@ -56,7 +56,7 @@
                                 <a class="nav-link" href="/computers">Computers</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Peripherals</a>
+                                <a class="nav-link" href="/peripherals">Peripherals</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="/components">Components</a>
@@ -64,18 +64,8 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="#">Employees</a>
                             </li>
-                            
-                            <li class="nav-item dropdown">
-
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    Assignment
-                                </a>
-
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item">Computers</a>
-                                    <a class="dropdown-item">Peripherals</a>
-                                    <a class="dropdown-item">Components</a>
-                                </div>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Assignment</a>
                             </li>
 
                             <li class="nav-item dropdown">
