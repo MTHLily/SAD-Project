@@ -29,7 +29,7 @@
             @foreach($employees as $employee)
             <tr>
                 <td><button data-toggle="modal" data-target="#employee-{{$employee->id}}-info">Open Info</button></td>
-                <td>{{$employee->last_name}}</td>
+                <td>{{$employee->status}}</td>
                 <td>{{$employee->first_name}}</td>
                 <td>{{$employee->middle_initial}}</td>
                 <td>{{$employee->email_address}}</td>
