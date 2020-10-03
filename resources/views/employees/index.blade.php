@@ -23,7 +23,7 @@
             <th>Middle Initial</th>
             <th>Email Address</th>
             <th>Department</th>
-           
+            <th>Actions</th>
         </thead>
         <tbody>
             @foreach($employees as $employee)

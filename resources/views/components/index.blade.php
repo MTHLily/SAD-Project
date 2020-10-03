@@ -212,9 +212,9 @@
 							</div>
 						</div>
 						<div class="form-group row">
-							<label for="component_status" class="col-sm-3 col-form-label">Status</label>
+							<label for="status" class="col-sm-3 col-form-label">Status</label>
 							<div class="col-sm-9">
-								<input  type="text" name="component_status" placeholder="Component Status" 
+								<input  type="text" name="status" placeholder="Component Status" 
 									class="form-control" 
 									value="{{$component->status}}"
 									readonly>
@@ -246,6 +246,7 @@
 						@csrf
 						<button type="submit"class="btn btn-success">Remove</button>
 					</form>
+					<a class="btn btn-success" name="update_new")">Update New</a>
 					<a class="btn btn-success" data-toggle="modal" href="#component-{{$component->id}}-edit">Update</a>
 					<button type="button" class="btn btn-success" data-dismiss="modal">Return</button>
 				</div>
