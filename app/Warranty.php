@@ -17,6 +17,12 @@ class Warranty extends Model
 		'status', 
 	];
 
+	protected $dates = [ 'purchase_date', 'warranty_life',];
+
+	public function purchase_date_cast(){
+		return $this->purchase_date->format('Y-m-d');
+	}
+
 	public function brand(){
 		return $this->belongsTo( 'App\Brand' );
 	}
