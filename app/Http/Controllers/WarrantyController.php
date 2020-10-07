@@ -11,7 +11,7 @@ class WarrantyController extends Controller
 {
     public function index()
     {
-        return view ('warranties.index', ['warranties' =>Warranty::all() ]);
+        return view ('warranties.index', ['warranties' =>Warranty::all(), 'brands' => Brand::all() ]);
     }
 
     /**
@@ -21,7 +21,7 @@ class WarrantyController extends Controller
      */
     public function create()
     {
-        return view('warranties.create',['brands'=>Brand::all()]);
+        return view('warranties.create',[ 'brands'=>Brand::all() ]);
     }
 
     /**

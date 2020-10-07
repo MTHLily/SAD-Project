@@ -21,16 +21,16 @@ class Warranty extends Model
 		return $this->belongsTo( 'App\Brand' );
 	}
 
-	public function components(){
+	public function component(){
 		return $this->hasMany( 'App\Component' );
 	}
 	
 	public function computer(){
-		return $this->hasMany( 'App\Component' );
+		return $this->hasMany( 'App\Computer' );
 	}
 
 	public function peripheral(){
-		return $this->hasMany('App\Component');
+		return $this->hasMany('App\Peripheral');
 	}
 
 	public function type(){

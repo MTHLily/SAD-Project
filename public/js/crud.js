@@ -26,6 +26,7 @@ $(document).ready( function () {
 } );
 
 async function showCompDetails( id ){
+
 	let div = document.querySelector("#compdet");
 
 	const URL = window.location.origin + "/api/components/" + id;

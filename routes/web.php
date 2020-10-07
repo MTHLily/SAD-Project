@@ -64,7 +64,7 @@ Route::get('/api/assignments/{id}','APIController@getAssignment');
 
 Route::get('/api/warranties', 'APIController@getAllWarranties');
 Route::get('/api/warranties/{id}', 'APIController@getWarranty');
-
+Route::get('/api/warranties/{id}/products', 'APIController@getWarrantyProducts');
 
 
 //Create CRUD routes. Refer to Laravel 7 docs for more info. Keyword: Resource Controller

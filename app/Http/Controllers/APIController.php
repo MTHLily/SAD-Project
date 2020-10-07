@@ -51,4 +51,12 @@ class APIController extends Controller
     public function getWarranty($id){
         return response()->json(\App\Warranty::find($id));
     }
+    public function getWarrantyProducts($id){
+        $war = \App\Warranty::find($id);
+        return response()->json([
+            'computer' => $war->computer,
+            'peripheral' => $war->peripheral,
+            'component' => $war->component,
+        ]);
+    }
 }
