@@ -81,3 +81,8 @@ async function showWarrantyCreate( category, id) {
 	await Livewire.emit('showWarrantyCreate', category, id );
 	$("#warrantyCreateModal").modal("toggle");
 }
+
+async function showComputerSystemDetails(id) {
+	await Livewire.emit('showComputerSystemDetails', id );
+	$("#computerSystemDetailsModal").modal("toggle");
+}

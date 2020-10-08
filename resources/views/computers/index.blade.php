@@ -11,6 +11,7 @@
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.js"></script> --}}
 
 <script src=" {{asset('js/crud.js')}}"></script>
+<script src=" {{asset('js/computer.js')}}"></script>
 @endpush
 
 @push('styles')
@@ -27,6 +28,7 @@
 @livewire('warranty-details')
 @livewire('computer-create')
 @livewire('computer-details')
+@livewire('computer-system-details')
 
 <div class="container">
 	<div class="row">
@@ -63,11 +65,12 @@
 					<td>{{ $computer->typeName->computer_type }}</td>
 					<td>{{ $computer->department->department_name }}</td>
 					<td class="system">
-						@if($computer->system_details_id != null)
+						<a href="#" onclick="showComputerSystemDetails( {{$computer->id }})">View System Details</a>
+						{{-- @if($computer->system_details_id != null)
 							<a href="/computers/system_details/{{ $computer->system_details_id }}">View System Details</a>
 						@else
 							<a href="/computers/create_system_details/{{$computer->id}}">Assign System Details</a>
-						@endif
+						@endif --}}
 					</td>
 					<td>
 						@if( $computer->network_details_id != null) 

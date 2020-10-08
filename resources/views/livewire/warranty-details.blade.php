@@ -2,7 +2,9 @@
     <div class="modal-dialog w-75 mw-100" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                Warranty Details
+                <h4 class="modal-title">
+                    Warranty Details
+                </h4>
             </div>
             <div class="modal-body">
                 <div class="form-group row">
@@ -14,7 +16,7 @@
                                     <option value="{{$brand->id}}">{{$brand->brand_name}}</option>
                                 @endforeach
                             </select>
-                            <button @if(!$isEditable) disabled @endif class="btn btn-primary h-100 w-25 ml-3" wire:click="toggleNewBrand">Add New</button>
+                            <button @if(!$isEditable) disabled @endif class="btn btn-success h-100 w-25 ml-3" wire:click="toggleNewBrand">Add New</button>
                         </div>
                         <div class="w-100 @if(!$newBrand) d-none @else d-flex @endif" id="new_department_div">
                             <input wire:model="newBrandName" name="new_brand" @if(!$newBrand) disabled @endif @if(!$isEditable) disabled @endif placeholder="New Brand" type="text" class="form-control">

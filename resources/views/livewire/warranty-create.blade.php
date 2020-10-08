@@ -35,7 +35,7 @@
                                 @endforeach
                             </tbody>
                         </table>
-                        <input type="text" wire:model="selectedWarranty" id="selectedWarranty">
+                        <input type="hidden" wire:model="selectedWarranty" id="selectedWarranty">
                     </div>
                 </table>
                 </div>
