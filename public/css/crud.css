@@ -21,6 +21,35 @@ h2 {
 	background-color: #14A83B;
 }
 
-.warranty a, .detail a {
+.system a, .system + td a, .warranty a, .detail a {
 	color: #14A83B;
+}
+
+.warranty span{
+	color: #14A83B;
+	cursor: pointer;
+}
+
+.warranty span:hover{
+	text-decoration: underline;
+}
+
+#oldWarrantyDiv div div.dt-bootstrap4{
+	width: 80%;
+}
+
+#warrantyCreateModal div div div table th{
+	cursor: pointer
+}
+
+.selected{
+	background: #14A83B;
+	color: #ffffff
+}
+
+.dataTables_scrollHeadInner {
+width: 100% !important;
+}
+.dataTables_scrollHeadInner table {
+width: 100% !important;
 }

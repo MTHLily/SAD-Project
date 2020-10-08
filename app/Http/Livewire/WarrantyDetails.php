@@ -34,9 +34,13 @@ class WarrantyDetails extends Component
         $this->warranty = Warranty::find(1);
     }
 
+    public function hydrate(){
+        $this->validate();
+    }
+
     public function showDetails( $id ){
 
-        $this->warranty = Warranty::find($id)[0];
+        $this->warranty = Warranty::find($id);
         $this->brand_id = $this->warranty->brand_id;
         $this->purchase = $this->warranty->purchase_date->format('Y-m-d');
         $this->life = $this->warranty->warranty_life->format('Y-m-d');
@@ -64,6 +68,7 @@ class WarrantyDetails extends Component
         // dd($this->warrantyImage);
         $data = $this->validate([
             'warrantyImage' => '',
+            'warranty.purchase_location' => 'required',
         ]);
 
         // dd( $data );
@@ -85,9 +90,10 @@ class WarrantyDetails extends Component
         else{
             $this->warranty->brand_id = $this->brand_id;
         }
-        $this->warranty->save();
+
+        // $this->warranty->save();
         
-        return redirect()->to('/warranties');
+        return redirect()->back();
 
     }
 

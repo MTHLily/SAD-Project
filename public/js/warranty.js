@@ -9,16 +9,9 @@ document.addEventListener('DOMContentLoaded', function () {
         myTable.search(e.target.value).draw();
     });
 
-    $('input:file').on("change", function () {
-        $('input:submit').prop('disabled', !$(this).val());
-    });
-
-
 });
 
 async function getInfo( id ){
     await Livewire.emit('showWarrantyDetails', { 'id': id });
-    $("#warrantyDetailsModal").modal("toggle");
-    $("#warrantyDetailsModal").modal("toggle");
     $("#warrantyDetailsModal").modal("toggle");
 }

@@ -65,7 +65,7 @@
                 @foreach ( $warranties as $warranty )
                     <tr>
                         <td>
-                            <a onclick="getInfo({{$warranty->id}})">Details</a>
+                            <a href="#" onclick="getInfo({{$warranty->id}})">Details</a>
                         </td>
                         <td>{{$warranty->type()}}</td>
                         {{-- <td>{{$warranty->brand->brand_name}}</td>

@@ -1,10 +1,36 @@
-$(document).ready( function () {
-	$.noConflict();
+document.addEventListener('DOMContentLoaded', function () {
+
 	var myTable = $('.dataTable').DataTable({
 				paging: false,
 				searching: false,
-				info: false
+				info: false,
 	});
+
+	//Do this function if warranty select table is found.
+	if( $("#warrantySelectTable") != undefined ){
+
+		let warrantyTable = $("#warrantySelectTable").DataTable({
+			select: 'single',
+			dom: "tf",
+			autoWidth: false,
+			columnDefs: [
+				{ "width": "15%", "targets": [0, 1],
+				  "width": "70%", "targets": [ 2 ],
+				}
+			],
+			"scrollY": "600px",
+			"scrollCollapse": true,
+
+			"paging": false,
+		});
+
+		warrantyTable.on( 'select', function( e, dt, type, indexes ){
+			// console.log({e, dt, type, indexes});
+			console.log(  );
+			document.querySelector('#selectedWarranty').value = warrantyTable[type](indexes).nodes()[0].dataset.warrantyId;
+		});
+		
+	}
 
 	$('#searchBox').keyup(function(){
 		myTable.search($(this).val()).draw();
@@ -39,4 +65,19 @@ async function showCompDetails( id ){
 
 	console.log(comp);
 
+}
+
+async function getWarrantyInfo(id) {
+	await Livewire.emit('showWarrantyDetails', id );
+	$("#warrantyDetailsModal").modal("toggle");
+}
+
+async function getComputerInfo(id) {
+	await Livewire.emit('showComputerDetails', id );
+	$("#computerDetailsModal").modal("toggle");
+}
+
+async function showWarrantyCreate( category, id) {
+	await Livewire.emit('showWarrantyCreate', category, id );
+	$("#warrantyCreateModal").modal("toggle");
 }
