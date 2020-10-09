@@ -98,3 +98,8 @@ async function getAssignmentInfo(id) {
 	$("#assignmentDetailsModal").modal("toggle");
 	await Livewire.emit('showAssignmentDetails', id);
 }
+
+async function showAssignPeripherals(id) {
+	$("#assignPeripheralsModal").modal("toggle");
+	await Livewire.emit('showAssignPeripherals', id);
+}

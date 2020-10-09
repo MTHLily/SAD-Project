@@ -20,6 +20,7 @@
 
 @livewire('assignment-create')
 @livewire('assignment-details')
+@livewire('assign-peripherals')
 @livewire('computer-system-details')
 @livewire('computer-details')
 
@@ -53,7 +54,7 @@
                     <td>{{$assign->employee->full_name()}}</td>
                     <td>{{$assign->computer->pc_name}}</td>
                     <td>
-                        <button class="btn" onclick="editPeripherals({{$assign->id}})">Assign Peripherals</button>
+                        <a href="#" onclick="showAssignPeripherals({{$assign->id}})">Assign Peripherals</a>
                     </td>
                     <td>{{$assign->employee->department->department_name}}</td>
                 </tr>

@@ -21,7 +21,11 @@ h2 {
 	background-color: #14A83B;
 }
 
-.system a, .system + td a, .warranty a, .detail a {
+.system a, .system + td a, .warranty a, .detail a, td a {
+	color: #14A83B;
+}
+
+td a:hover{
 	color: #14A83B;
 }
 
@@ -82,4 +86,11 @@ tr th{
 
 .th_clickable{
 	cursor: pointer;
+}
+
+option[value='HEADER']{
+	font-weight: bold !important;
+	text-align: center;
+    text-align-last: center;
+    -moz-text-align-last: center;
 }

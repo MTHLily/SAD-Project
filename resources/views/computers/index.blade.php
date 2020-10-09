@@ -12,6 +12,7 @@
 
 <script src=" {{asset('js/crud.js')}}"></script>
 <script src=" {{asset('js/computer.js')}}"></script>
+
 @endpush
 
 @push('styles')

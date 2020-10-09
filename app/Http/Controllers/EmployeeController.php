@@ -14,7 +14,7 @@ class EmployeeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(){
-        return view ('employees.index', ['employees' =>Employee::all() ]);
+        return view ('employees.index', ['employees' =>Employee::all(), 'departments' => Department::all() ]);
     }
     /**
      * Show the form for creating a new resource.
@@ -40,7 +40,7 @@ class EmployeeController extends Controller
                 'first_name' =>'required',
                 'middle_initial'=>'required',
                 'email_address' =>'required',
-                'department_id' =>' ',
+                'department_id' =>'',
                 'new_department'=>'max:255',
                 
             ]
