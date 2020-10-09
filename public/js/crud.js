@@ -20,6 +20,13 @@ document.addEventListener('DOMContentLoaded', function () {
 			],
 			"scrollY": "600px",
 			"scrollCollapse": true,
+			// "scrollX": "100%",
+			// "scrollXInner": "100%",
+			// "aaSorting": [[0, "asc"]],
+			// "sScrollY": 300,
+			// "sScrollX": "90%",
+			// "sScrollXInner": "100%",
+
 
 			"paging": false,
 		});
@@ -85,4 +92,9 @@ async function showWarrantyCreate( category, id) {
 async function showComputerSystemDetails(id) {
 	await Livewire.emit('showComputerSystemDetails', id );
 	$("#computerSystemDetailsModal").modal("toggle");
+}
+
+async function getAssignmentInfo(id) {
+	$("#assignmentDetailsModal").modal("toggle");
+	await Livewire.emit('showAssignmentDetails', id);
 }

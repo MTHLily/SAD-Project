@@ -1,4 +1,4 @@
-<div class="modal" id="warrantyDetailsModal" wire:ignore.self>
+<div class="modal fade" id="warrantyDetailsModal" wire:ignore.self>
     <div class="modal-dialog w-75 mw-100" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -134,6 +134,7 @@
             <div class="modal-footer">
                 @if( $isEditable )
                     <button class="btn btn-success" type="button" wire:click="toggleEdit">Cancel</button>
+                    {{-- <button class="btn btn-success d-none" type="button" wire:click="save"></button> --}}
                     <button class="btn btn-success d-none" type="button" wire:click="save"></button>
                     <button class="btn btn-success" type="button" wire:click="save">Save</button>
                 @else

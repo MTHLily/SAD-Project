@@ -1,4 +1,5 @@
-<div class="modal" id="computerDetailsModal" wire:ignore.self>
+<div>
+<div class="modal fade" id="computerDetailsModal" wire:ignore.self style="z-index: 1400;">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -25,7 +26,7 @@
                 </div>
                 <div class="form-group">
                     <label for="">Type</label>
-                    <select type="text" class="form-control" wire:model="computer.type">
+                    <select @if(!$isEditable) disabled @endif type="text" class="form-control" wire:model="computer.type">
                         @foreach ( $types as $type )
                             <option value="{{$type->id}}">{{$type->computer_type}}</option>
                         @endforeach
@@ -35,15 +36,15 @@
                     <label for="">Department</label>
                     <div class="d-flex">
                         @if( !$newDepartment )
-                            <select type="text" class="form-control w-100" wire:model="existingDepartmentId">
+                            <select type="text" @if(!$isEditable) disabled @endif class="form-control w-100" wire:model="existingDepartmentId">
                                 <option>Don't assign a department</option>
                                 @foreach ($departments as $department)
                                     <option value="{{$department->id}}">{{$department->department_name}}</option>
                                 @endforeach
                             </select>
-                            <button class="btn btn-success w-25 ml-2" wire:click="toggleNewDepartment">Add New</button>
+                            <button class="btn btn-success w-25 ml-2" @if(!$isEditable) disabled @endif wire:click="toggleNewDepartment">Add New</button>
                         @else
-                            <input @if(!$isEditable) disabled @endif type="text" class="form-control w-100 @error('newDepartmentName') is-invalid  @enderror" placeholder="New Department" wire:model="newDepartmentName">
+                            <input type="text" class="form-control w-100 @error('newDepartmentName') is-invalid  @enderror" placeholder="New Department" wire:model="newDepartmentName">
                             <button class="btn btn-success close w-25 ml-2" wire:click="toggleNewDepartment">&times;</button>
                             @error('newDepartmentName')
                                 <div class="invalid-feed">
@@ -56,11 +57,11 @@
                 <div class="row">
                     <div class="form-group col">
                         <label for="issues">Issues</label>
-                        <textarea type="text" class="form-control" wire:model="computer.issues"></textarea>
+                        <textarea @if(!$isEditable) disabled @endif type="text" class="form-control" wire:model="computer.issues"></textarea>
                     </div>
                     <div class="form-group col">
                         <label for="notes">Remarks</label>
-                        <textarea type="text" class="form-control" wire:model="computer.remarks"></textarea>
+                        <textarea @if(!$isEditable) disabled @endif type="text" class="form-control" wire:model="computer.remarks"></textarea>
                     </div>
                 </div>
             </div>
@@ -75,17 +76,7 @@
                         Save
                     </button>
                 @else
-                    <div class="modal" id="computerDeleteConfirmation">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header"><h4 class="modal-title">Are you sure?</h4></div>
-                                <div class="modal-footer">
-                                    <button class="btn btn-success" wire:click="destroy">Yes</button>
-                                    <button class="btn btn-success" data-dismiss="modal">No</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    
                     <button class="btn btn-success" data-target="#computerDeleteConfirmation" data-toggle="modal">Delete</button>
                     <button class="btn btn-success" wire:click="toggleEdit">
                         Update
@@ -97,4 +88,16 @@
             </div>
         </div>
     </div>
+</div>
+<div class="modal fade" id="computerDeleteConfirmation" style="z-index: 2000;">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content" >
+            <div class="modal-header"><h4 class="modal-title">Are you sure?</h4></div>
+            <div class="modal-footer">
+                <button class="btn btn-success" wire:click="destroy">Yes</button>
+                <button class="btn btn-success" data-dismiss="modal">No</button>
+            </div>
+        </div>
+    </div>
+</div>
 </div>

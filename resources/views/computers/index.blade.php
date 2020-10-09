@@ -77,7 +77,7 @@
 							MAC: {{$computer->networkDetails->get()[0]->mac_address}}
 							WIFI: {{$computer->networkDetails->get()[0]->wifi_address}}
 						@else
-							<div class="modal" id="network_modal_{{$computer->id}}">
+							<div class="modal fade" id="network_modal_{{$computer->id}}">
 								<div class="modal-dialog">
 									<div class="modal-content">
 
@@ -98,10 +98,10 @@
 												</div>
 											</div>
 											<div class="modal-footer">
-												<button type="button" data-dismiss="modal" class="btn">
+												<button type="button" data-dismiss="modal" class="btn btn-success">
 													Cancel
 												</button>
-												<button class="btn btn-primary">
+												<button class="btn btn-success">
 													Assign
 												</button>
 											</div>

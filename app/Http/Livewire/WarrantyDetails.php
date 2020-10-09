@@ -28,7 +28,10 @@ class WarrantyDetails extends Component
         'warranty.status' => '',
     ];
 
-    protected $listeners = ['showWarrantyDetails' => 'showDetails'];
+    protected $listeners = [
+        'showWarrantyDetails' => 'showDetails',
+        'refreshComponent' => '$refresh',
+    ];
 
     public function mount(){
         $this->warranty = Warranty::find(1);
@@ -71,17 +74,16 @@ class WarrantyDetails extends Component
             'warranty.purchase_location' => 'required',
         ]);
 
-        // dd( $data );
-
+        
         if( $data['warrantyImage'] != null ){
             $imagePath = $data['warrantyImage']->storePublicly('public/warranties', 'local');
             Storage::disk('local')->delete('public/' . $this->warranty->receipt_url );
             $this->warranty->receipt_url = $imagePath;
         }
-
+        
         $this->warranty->purchase_date = Carbon::createFromFormat( 'Y-m-d' ,$this->purchase);
         $this->warranty->warranty_life = Carbon::createFromFormat( 'Y-m-d' ,$this->life);
-
+        
         if( $this->newBrand ){
             $brand = \App\Brand::firstOrNew(['brand_name' => $this->newBrandName ]);
             $brand->save();
@@ -90,10 +92,12 @@ class WarrantyDetails extends Component
         else{
             $this->warranty->brand_id = $this->brand_id;
         }
-
-        // $this->warranty->save();
         
-        return redirect()->back();
+        // dd( $data );
+        $this->warranty->save();
+        
+        $this->isEditable = false;
+        $this->emitSelf('refreshComponent');
 
     }
 

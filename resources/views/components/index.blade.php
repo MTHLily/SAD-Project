@@ -19,7 +19,6 @@
 @endpush
 
 @section('content')
-	
 <div class="modal" id="compDetails">
 	<div class="modal-dialog">
 		<div class="modal-content">

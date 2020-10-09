@@ -1,4 +1,4 @@
-<div class="modal" id="warrantyCreateModal" wire:ignore.self>
+<div class="modal fade" id="warrantyCreateModal" wire:ignore.self>
     <div class="modal-dialog w-75 mw-100" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -112,10 +112,10 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button class="btn" data-dismiss="modal">
+                    <button class="btn btn-success" data-dismiss="modal">
                         Cancel
                     </button>
-                    <button class="btn" onclick="warrantySave()">
+                    <button class="btn btn-success" onclick="warrantySave()">
                         Save
                     </button>
                 </div>
@@ -128,7 +128,7 @@
 
 function warrantySave(){
 
-    let assign = document.querySelector('#oldWarrantyDiv').classList.contains("show");
+let assign = document.querySelector('#oldWarrantyDiv').classList.contains("show");
     let create = document.querySelector('#newWarrantyDiv').classList.contains("show");
     console.log(assign);
     //Select from existing warranties
