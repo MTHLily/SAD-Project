@@ -33,7 +33,7 @@ class APIController extends Controller
     public function getAllPeripherals(){
         return response()->json(\App\Peripheral::all());
     }
-    public function getPeipheral($id){
+    public function getPeripheral($id){
         return response()->json(\App\Peripheral::find($id));
     }
 

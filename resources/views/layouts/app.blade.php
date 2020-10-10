@@ -62,10 +62,10 @@
                                 <a class="nav-link" href="/components">Components</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Employees</a>
+                                <a class="nav-link" href="/employees">Employees</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Assignment</a>
+                                <a class="nav-link" href="/assignment">Assignment</a>
                             </li>
 
                             <li class="nav-item dropdown">
