@@ -1,13 +1,15 @@
 h1 {
 	color: #14A83B;
+	font-weight: bold;
 }
 
-th {
+.table thead th {
 	color: #ffffff;
 	background-color: #333333;
+	vertical-align: middle;
 }
 
-table {
+.table {
 	text-align: center;
 }
 
@@ -19,3 +21,6 @@ table {
 	background-color: #14A83B;
 }
 
+.warranty a, .detail a {
+	color: #14A83B;
+}

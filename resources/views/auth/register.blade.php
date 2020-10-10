@@ -1,6 +1,18 @@
 @extends('layouts.app')
 
 @section('content')
+<style>
+     .card-header
+            {
+                color: #14A83B;
+                font-size: 20px; 
+            }
+
+            .btn-link
+            {
+                color: #14A83B;
+            }
+</style>
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -63,7 +75,7 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn btn-success">
                                     {{ __('Register') }}
                                 </button>
                             </div>

@@ -35,7 +35,7 @@
 			<option value="1">Desktop</option>
 			<option value="2">Laptop</option>
 		</select>
-		
+
 		<div class="d-flex">
 			{{-- Transition is there for pretty pretty. Safe to remove if you dont want to use it --}}
 			<select id="department_select" name="department_id" class="custom-select w-100" style="transition: 250ms;" required>
