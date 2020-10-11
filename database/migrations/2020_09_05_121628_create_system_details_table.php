@@ -16,10 +16,10 @@ class CreateSystemDetailsTable extends Migration
         Schema::create('system_details', function (Blueprint $table) {
             $table->id();
 
-            $table->foreignId('motherboard_id')->references('id')->on('components');
-            $table->foreignId('processor_id')->references('id')->on('components');
-            $table->foreignId('gpu_id')->references('id')->on('components');
-            $table->foreignId('operating_system_id')->references('id')->on('operating_systems');
+            $table->foreignId('motherboard_id')->nullable()->references('id')->on('components');
+            $table->foreignId('processor_id')->nullable()->references('id')->on('components');
+            $table->foreignId('gpu_id')->nullable()->references('id')->on('components');
+            $table->foreignId('operating_system_id')->nullable()->references('id')->on('operating_systems');
 
             $table->timestamps();
             $table->softDeletes();

@@ -20,7 +20,7 @@ h2 {
 	background-color: #14A83B;
 }
 
-.warranty a, .detail a {
+.system a, .system + td a, .warranty a, .detail a, td a {
 	color: #14A83B;
 }
 
@@ -28,11 +28,72 @@ h2 {
 	text-decoration: underline;
 }
 
+td a:hover{
+	color: #14A83B;
+}
+
+.warranty span{
+	color: #14A83B;
+	cursor: pointer;
+}
+
+.warranty span:hover{
+	text-decoration: underline;
+}
+
+#oldWarrantyDiv div div.dt-bootstrap4{
+	width: 80%;
+}
+
+#warrantyCreateModal div div div table th{
+	cursor: pointer
+}
+
+
+.selected{
+	background: #14A83B;
+	color: #ffffff
+}
+
 .dataTables_scrollHeadInner {
 	width: 100% !important;
 }
-	
+
 .dataTables_scrollHeadInner table {
 	width: 100% !important;
 	margin-bottom: 0 !important;
+}
+
+.modal-content{
+	border-radius: 0;
+}
+
+.modal-header, button.close{
+	background: #333333;
+	border-radius: 0;
+	color:white;
+}
+
+button.close:hover{
+	color:white;
+}
+
+tr th{
+	background: #333333;
+	color:white;
+}
+
+.addRamStorage + .addRamStorage{
+	margin-top: 1%
+}
+
+.th_clickable{
+	cursor: pointer;
+}
+
+option[value='HEADER']{
+	font-weight: bold !important;
+	text-align: center;
+    text-align-last: center;
+    -moz-text-align-last: center;
 }

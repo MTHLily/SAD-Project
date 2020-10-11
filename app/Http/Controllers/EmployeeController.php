@@ -40,7 +40,7 @@ class EmployeeController extends Controller
                 'first_name' =>'required',
                 'middle_initial'=>'required',
                 'email_address' =>'required',
-                'department_id' =>' ',
+                'department_id' =>'',
                 'new_department'=>'max:255',
                 
             ]

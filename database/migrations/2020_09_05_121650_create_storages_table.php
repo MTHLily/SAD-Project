@@ -16,7 +16,7 @@ class CreateStoragesTable extends Migration
         Schema::create('storages', function (Blueprint $table) {
             $table->id();
 
-            $table->foreignId('system_id')->references('id')->on('system_details');
+            $table->foreignId('system_id')->nullable()->references('id')->on('system_details');
             $table->foreignId('component_id')->references('id')->on('components');
 
             $table->timestamps();

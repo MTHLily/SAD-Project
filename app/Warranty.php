@@ -17,12 +17,34 @@ class Warranty extends Model
 		'status', 
 	];
 
+	protected $dates = [ 'purchase_date', 'warranty_life',];
+
+	public function purchase_date_cast(){
+		return $this->purchase_date->format('Y-m-d');
+	}
+
 	public function brand(){
 		return $this->belongsTo( 'App\Brand' );
 	}
 
-	public function products(){
+	public function component(){
 		return $this->hasMany( 'App\Component' );
+	}
+	
+	public function computer(){
+		return $this->hasMany( 'App\Computer' );
+	}
+
+	public function peripheral(){
+		return $this->hasMany('App\Peripheral');
+	}
+
+	public function type(){
+		if( $this->peripheral != null )
+			return "Peripheral";
+		if( $this->computer != null )
+			return "Computer";
+		return "Component";
 	}
 
 }

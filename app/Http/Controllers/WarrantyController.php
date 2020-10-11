@@ -5,12 +5,13 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Warranty;
 use App\Brand;
+use Illuminate\Support\Facades\Storage;
 
 class WarrantyController extends Controller
 {
     public function index()
     {
-        return view ('warranties.index', ['warranties' =>Warranty::all() ]);
+        return view ('warranties.index', ['warranties' =>Warranty::all(), 'brands' => Brand::all() ]);
     }
 
     /**
@@ -20,7 +21,7 @@ class WarrantyController extends Controller
      */
     public function create()
     {
-        return view('warranties.create',['brands'=>Brand::all()]);
+        return view('warranties.create',[ 'brands'=>Brand::all() ]);
     }
 
     /**
@@ -47,7 +48,7 @@ class WarrantyController extends Controller
         );
 
         
-        $imagePath = request('receipt_url')->store( 'warranties', 'local' );
+        $imagePath = request('receipt_url')->store( 'public/warranties', 'local' );
 
         $warranty = new Warranty;
         $warranty->brand_id = $validatedData['brand_id'];
@@ -109,20 +110,25 @@ class WarrantyController extends Controller
                 'brand_id'=>'',
                 'new_brand'=>'',
 		        'purchase_date'=>'required',
-		        'location'=>'required',
-		        'receipt_url'=>['required','image'],
+		        'purchase_location'=>'required',
+		        'receipt_url'=> 'image',
 		        'serial_no'=>'required',
 		        'warranty_life'=>'required',
 		        'notes'=>'',
 		        'status'=>'required', 
             ]
-
         );
+
         $warranty = Warranty::find($id);
+
+        if( isset( $validatedData['receipt_url']) ){
+            Storage::disk('local')->delete( $warranty->receipt_url );
+            $imagePath = request('receipt_url')->store('public/warranties', 'local');
+        }
+
         $warranty->brand_id = $validatedData['brand_id'];
         $warranty->purchase_date = $validatedData['purchase_date'];
-        $warranty->location = $validatedData['location'];
-        $warranty->receipt_url = $validatedData['receipt_url'];
+        $warranty->purchase_location = $validatedData['purchase_location'];
         $warranty->serial_no = $validatedData['serial_no'];
         $warranty->warranty_life = $validatedData['warranty_life'];
         $warranty->notes = $validatedData['notes'];

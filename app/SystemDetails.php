@@ -18,8 +18,57 @@ class SystemDetails extends Model
 		return $this->hasMany( 'App\Storage', 'system_id' );
 	}
 
+	public function addStorage($component_id)
+	{
+		$storage = \App\Storage::firstOrNew([
+			'component_id' => $component_id,
+		]);
+		$storage->system_id = $this->id;
+		$storage->save();
+
+		$component = \App\Component::find($component_id);
+		$component->status = 'Assigned';
+		$component->save();
+	}
+
+	public function clearStorage()
+	{
+		foreach ($this->storage as $storage) {
+			$storage->system_id = null;
+			$storage->save();
+
+			$component = \App\Component::find($storage->component_id);
+			$component->status = 'Available';
+			$component->save();
+		}
+	}
+
 	public function ram(){
 		return $this->hasMany( 'App\Ram', 'system_id' );
+	}
+
+	public function addRam( $component_id ){
+		$ram = \App\Ram::firstOrNew([
+			'component_id' => $component_id,
+		]);
+		$ram->system_id = $this->id;
+		$ram->save();
+
+		$component = \App\Component::find($component_id);
+		$component->status = 'Assigned';
+		$component->save();
+
+	}
+
+	public function clearRam(){
+		foreach( $this->ram as $ram ){
+			$ram->system_id = null;
+			$ram->save();
+
+			$component = \App\Component::find($ram->component_id);
+			$component->status = 'Available';
+			$component->save();
+		}
 	}
 
 	public function computer(){

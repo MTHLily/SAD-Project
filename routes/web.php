@@ -47,6 +47,7 @@ Route::get( '/api/computers/available', 'ComputerController@apiAvailable');
 Route::get( '/api/peripherals/available', 'PeripheralController@apiAvailable');
 Route::get( '/api/assignments/{assignment}/peripherals', 'AssignmentController@showPeripherals');
 */
+
 Route::get( '/api/components', 'APIController@getAllComponents');
 Route::get( '/api/components/{id}', 'APIController@getComponent');
 
@@ -54,7 +55,7 @@ Route::get('/api/employees', 'APIController@getAllEmployees');
 Route::get('/api/employees/{id}','APIController@getEmployee');
 
 Route::get('/api/computers','APIController@getAllComputers');
-Route::get('/api/computers/{id}', 'APICcontroller@getComputer');
+Route::get('/api/computers/{id}', 'APIController@getComputer');
 
 Route::get('/api/peripherals', 'APIController@getAllPeripherals');
 Route::get('/api/peripherals/{id}', 'APIController@getPeripheral');
@@ -64,7 +65,7 @@ Route::get('/api/assignments/{id}','APIController@getAssignment');
 
 Route::get('/api/warranties', 'APIController@getAllWarranties');
 Route::get('/api/warranties/{id}', 'APIController@getWarranty');
-
+Route::get('/api/warranties/{id}/products', 'APIController@getWarrantyProducts');
 
 
 //Create CRUD routes. Refer to Laravel 7 docs for more info. Keyword: Resource Controller

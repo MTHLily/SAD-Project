@@ -19,7 +19,11 @@ class Computer extends Model
 		'status',
     ];
 
-    public function type(){
+	public function department(){
+		return $this->belongsTo('App\Department');
+	}
+
+    public function typeName(){
     	return $this->belongsTo('App\ComputerType', 'type');
     }
 
