@@ -13,6 +13,8 @@ class Peripheral extends Model
         'peripheral_type',
         'warranty_id',
         'status',
+		'issues',
+		'remarks'
     ];
 
     public function type(){

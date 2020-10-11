@@ -6,7 +6,6 @@ h2 {
 .table thead th {
 	color: #ffffff;
 	background-color: #333333;
-	vertical-align: middle;
 }
 
 .table {
@@ -23,4 +22,17 @@ h2 {
 
 .warranty a, .detail a {
 	color: #14A83B;
+}
+
+.warranty a:hover, .detail a:hover{
+	text-decoration: underline;
+}
+
+.dataTables_scrollHeadInner {
+	width: 100% !important;
+}
+	
+.dataTables_scrollHeadInner table {
+	width: 100% !important;
+	margin-bottom: 0 !important;
 }

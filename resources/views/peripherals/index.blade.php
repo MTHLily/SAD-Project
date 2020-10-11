@@ -21,12 +21,11 @@
 @section('content')
 
 	<div class="container">
-
 		<div class="row">
 			<div class="col-12">
 				<form class="form-inline float-sm-left">
 					<div class="form-group mr-2">
-						<h1>Peripheral Inventory</h1>
+						<h2>Peripheral Inventory</h1>
 					</div>
 				</form>
 				<form class="form-inline float-sm-right">
@@ -35,8 +34,8 @@
 				</form>
 			</div>
 		</div>
-		
-		<table class="table table-striped table-bordered dataTable">
+
+		<table class="table table-striped table-bordered dataTable mb-5">
 			<thead>
 				<th>ASSET TAG</th>
 				<th>PERIPHERAL</th>
@@ -54,12 +53,12 @@
 						<td class="warranty">
 							{!! ($peripheral->warranty_id != null) ? 
 									"<a href='/warranties/$peripheral->warranty_id'>View Warranty</a>" : 
-									"<a href='/warranties/create'>Assign Warranty</a>"
+									"<a data-toggle='modal' href='#assign-warranty'>Assign Warranty</a>"
 							!!}
 						</td>
 						<td>{{ $peripheral->status }}</td>
 						<td class="detail">
-							<a data-toggle="modal" href="#peripheral-{{$peripheral->id}}-info">View Details</a>
+							<a data-toggle="modal" onclick="perDetails({{$peripheral->id}})" href="#peripheral-info">View Details</a>
 						</td>  
 					</tr>
 				@endforeach
@@ -67,6 +66,7 @@
 		</table>
 	</div>
 
+	<!-- Add Peripheral -->
 	@foreach( $peripherals as $peripheral )
 
 	<div class="modal fade" id="peripheral-add" tabindex="-1" role="dialog">
@@ -102,7 +102,7 @@
 						<div class="form-group row">
 							<label for="peripheral_type" class="col-sm-3 col-form-label">Type</label>
 							<div class="col-sm-9">
-								<select name="peripheral_type_id" class="custom-select" required>
+								<select name="peripheral_type" class="custom-select" required>
 								{{ $types = \App\PeripheralType::all() }}
 								@foreach( $types as $type )
 									<option value="{{$type->id}}">{{$type->peripheral_type}}</option>
@@ -111,21 +111,17 @@
 							</div>
 						</div>
 						<div class="form-group row">
-							<label for="peripheral_issues" class="col-sm-3 col-form-label">Issues</label>
+							<label for="issues" class="col-sm-3 col-form-label">Issues</label>
 							<div class="col-sm-9">
-								<input  type="text" name="peripheral_issues" placeholder="Issues" 
-											class="form-control" 
-											value="{{$peripheral->issues}}"
-											required>
+								<input  type="text" name="issues" placeholder="Issues" 
+											class="form-control">
 							</div>
 						</div>
 						<div class="form-group row">
-							<label for="peripheral_remarks" class="col-sm-3 col-form-label">Remarks</label>
+							<label for="remarks" class="col-sm-3 col-form-label">Remarks</label>
 							<div class="col-sm-9">
-								<input  type="text" name="peripheral_remarks" placeholder="Remarks" 
-											class="form-control" 
-											value="{{$peripheral->remarks}}"
-											required>
+								<input  type="text" name="remarks" placeholder="Remarks" 
+											class="form-control">
 							</div>
 						</div>
 					</div>
@@ -140,84 +136,79 @@
 
 	@endforeach
 
+	<!-- Peripheral Details -->
 	@foreach( $peripherals as $peripheral )
 
-	<div class="modal fade" id="peripheral-{{$peripheral->id}}-info" tabindex="-1" role="dialog">
-  		<div class="modal-dialog modal-dialog-centered" role="document">
+	<div class="modal fade" id="peripheral-info" tabindex="-1" role="dialog">
+		<div class="modal-dialog modal-dialog-centered" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
 					<h5 class="modal-title" id="exampleModalLabel">Peripheral Details</h5>
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
-      			</div>
-      			<div class="modal-body">
-					<form action="/peripheral/{{$peripheral->id}}" method="POST">
-						@csrf
-						@method('PATCH')
+				</div>
+				<div class="modal-body" id="perDetail">
 						<div class="form-group row">
 							<label for="asset_tag" class="col-sm-3 col-form-label">Asset Tag</label>
 							<div class="col-sm-9">
 								<input  type="text" name="asset_tag" placeholder="Asset Tag" 
 											class="form-control" 
-											value="{{$peripheral->asset_tag}}" 
-											readonly>
+											disabled>
 							</div>
 						</div>
 						<div class="form-group row">
 							<label for="peripheral_name" class="col-sm-3 col-form-label">Name</label>
 							<div class="col-sm-9">
 								<input  type="text" name="peripheral_name" placeholder="Name" 
-									class="form-control" 
-									value="{{$peripheral->peripheral_name}}"
-									readonly>
+									class="form-control"
+									disabled>
 							</div>
 						</div>
 						<div class="form-group row">
 							<label for="peripheral_type" class="col-sm-3 col-form-label">Type</label>
 							<div class="col-sm-9">
-								<input  type="text" name="peripheral_type" placeholder="Peripheral Type" 
-									class="form-control" 
-									value="{{$peripheral->type()->get()[0]->peripheral}}"
-									readonly>
+								<select name="peripheral_type" class="custom-select" disabled>
+								{{ $types = \App\PeripheralType::all() }}
+								@foreach( $types as $type )
+									<option value="{{$type->id}}">{{$type->peripheral_type}}</option>
+								@endforeach
+								</select>
 							</div>
 						</div>
 						<div class="form-group row">
-							<label for="peripheral_status" class="col-sm-3 col-form-label">Status</label>
+							<label for="status" class="col-sm-3 col-form-label">Status</label>
 							<div class="col-sm-9">
-								<input  type="text" name="peripheral_status" placeholder="Peripheral Status" 
+								<input  type="text" name="status" placeholder="Peripheral Status" 
 									class="form-control" 
-									value="{{$peripheral->status}}"
-									readonly>
+									disabled>
 							</div>
 						</div>
 						<div class="form-group row">
-							<label for="peripheral_issues" class="col-sm-3 col-form-label">Issues</label>
+							<label for="issues" class="col-sm-3 col-form-label">Issues</label>
 							<div class="col-sm-9">
-								<input  type="text" name="peripheral_issues" placeholder="Issues" 
-									class="form-control" 
-									value="{{$peripheral->issues}}"
-									readonly>
+								<input  type="text" name="issues" placeholder="Issues" 
+									class="form-control"
+									disabled>
 							</div>
 						</div>
 						<div class="form-group row">
-							<label for="peripheral_remarks" class="col-sm-3 col-form-label">Remarks</label>
+							<label for="remarks" class="col-sm-3 col-form-label">Remarks</label>
 							<div class="col-sm-9">
-								<input  type="text" name="peripheral_remarks" placeholder="Remarks" 
-									class="form-control" 
-									value="{{$peripheral->remarks}}"
-									readonly>
+								<input  type="text" name="remarks" placeholder="Remarks" 
+									class="form-control"
+									disabled>
 							</div>
 						</div>
 					</form>
-      			</div>
+				</div>
 				<div class="modal-footer">
-					<form action="/peripheral/{{$peripheral->id}}" method="POST">
+					<form id="remove" method="POST">
 						@method('delete')
 						@csrf
 						<button type="submit"class="btn btn-success">Remove</button>
 					</form>
-					<a class="btn btn-success" data-toggle="modal" href="#peripheral-{{$peripheral->id}}-edit">Update</a>
+					<button type="button" class="btn btn-success" name="update_new">Update</button>
 					<button type="button" class="btn btn-success" data-dismiss="modal">Return</button>
 				</div>
     		</div>
@@ -263,55 +254,10 @@
 							<label for="peripheral_type" class="col-sm-3 col-form-label">Type</label>
 							<div class="col-sm-9">
 								<select name="peripheral_type_id" class="custom-select" required>
-<<<<<<< HEAD
 								{{ $types = \App\PeripheralType::all() }}
 								@foreach( $types as $type )
-									<option value="{{$type->id}}">{{$type->peripheral_type}}</option>
+									<option value="{{$type->id}}" @if($peripheral->peripheral_type_id == $type->id) selected @endif>{{$type->peripheral_type}}</option>
 								@endforeach
-=======
-									<option value="1"
-										@if($peripheral->peripheral_type_id == 1)
-										selected
-										@endif
-									>
-										Keyboard
-									</option>
-									<option value="2"
-										@if($peripheral->peripheral_type_id == 2)
-										selected
-										@endif 
-									>
-										Phone
-									</option>
-									<option value="3"
-										@if($peripheral->peripheral_type_id == 3)
-										selected
-										@endif 
-									>
-										Tablet
-									</option>
-									<option value="4"
-										@if($peripheral->peripheral_type_id == 4)
-										selected
-										@endif 
-									>
-										Mouse
-									</option>
-									<option value="5"
-										@if($peripheral->peripheral_type_id == 5)
-										selected
-										@endif 
-									>
-										Monitor
-									</option>
-									<option value="6"
-										@if($peripheral->peripheral_type_id == 6)
-										selected
-										@endif 
-									>
-										Miscellaneous
-									</option>
->>>>>>> origin/front-end-landpage
 								</select>
 							</div>
 						</div>
