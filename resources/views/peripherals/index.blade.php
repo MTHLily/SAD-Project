@@ -263,10 +263,55 @@
 							<label for="peripheral_type" class="col-sm-3 col-form-label">Type</label>
 							<div class="col-sm-9">
 								<select name="peripheral_type_id" class="custom-select" required>
+<<<<<<< HEAD
 								{{ $types = \App\PeripheralType::all() }}
 								@foreach( $types as $type )
 									<option value="{{$type->id}}">{{$type->peripheral_type}}</option>
 								@endforeach
+=======
+									<option value="1"
+										@if($peripheral->peripheral_type_id == 1)
+										selected
+										@endif
+									>
+										Keyboard
+									</option>
+									<option value="2"
+										@if($peripheral->peripheral_type_id == 2)
+										selected
+										@endif 
+									>
+										Phone
+									</option>
+									<option value="3"
+										@if($peripheral->peripheral_type_id == 3)
+										selected
+										@endif 
+									>
+										Tablet
+									</option>
+									<option value="4"
+										@if($peripheral->peripheral_type_id == 4)
+										selected
+										@endif 
+									>
+										Mouse
+									</option>
+									<option value="5"
+										@if($peripheral->peripheral_type_id == 5)
+										selected
+										@endif 
+									>
+										Monitor
+									</option>
+									<option value="6"
+										@if($peripheral->peripheral_type_id == 6)
+										selected
+										@endif 
+									>
+										Miscellaneous
+									</option>
+>>>>>>> origin/front-end-landpage
 								</select>
 							</div>
 						</div>

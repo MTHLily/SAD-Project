@@ -1,8 +1,31 @@
 @extends('layouts.app')
 
 @section('content')
+<style>
+     .card-header
+            {
+                color: #14A83B;
+                font-size: 20px; 
+            }
+
+            .btn-link
+            {
+                color: #14A83B;
+            }
+            
+            h2
+            {
+                color: #14A83B;
+                font-weight: bold;
+                font-family: 'Nunito', sans-serif;
+                margin-bottom: 30px;
+            }
+</style>
 <div class="container">
     <div class="row justify-content-center">
+
+        <h2>Use your Rococo Account to Login</h2>
+
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">{{ __('Login') }}</div>
@@ -53,7 +76,7 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn btn-success">
                                     {{ __('Login') }}
                                 </button>
 
