@@ -56,4 +56,5 @@ class AssignmentCreate extends Component
     {
         return view('livewire.assignment-create');
     }
+
 }

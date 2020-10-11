@@ -12,6 +12,6 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 async function getInfo( id ){
-    await Livewire.emit('showWarrantyDetails', { 'id': id });
+    await Livewire.emit('showWarrantyDetails', id );
     $("#warrantyDetailsModal").modal("toggle");
 }
