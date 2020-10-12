@@ -16,8 +16,8 @@ class CreateAssignmentsTable extends Migration
         
         Schema::create('assignments', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('employee_id')->references('id')->on('employees');
-            $table->foreignId('computer_id')->references('id')->on('computers');
+            $table->foreignId('employee_id')->references('id')->on('employees')->onDelete('cascade');
+            $table->foreignId('computer_id')->references('id')->on('computers')->onDelete('cascade');
             $table->string('status')->default('Available');
 
             $table->timestamps();

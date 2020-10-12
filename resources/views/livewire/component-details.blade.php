@@ -92,7 +92,7 @@
         <div class="modal-content">
             <div class="modal-header"><h4 class="modal-title">Are you sure?</h4></div>
             <div class="modal-footer">
-                <button class="btn btn-success" wire:click="destroy">Yes</button>
+                <button class="btn btn-danger" wire:click="destroy">Yes</button>
                 <button class="btn btn-success" data-dismiss="modal">No</button>
             </div>
         </div>

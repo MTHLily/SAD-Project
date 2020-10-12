@@ -80,6 +80,12 @@ class ComputerDetails extends Component
     }
 
     public function destroy(){
+
+        if( $this->computer->systemDetails != null ){
+            $sys = $this->computer->systemDetails;
+            $sys->clearPeripherals();
+        }
+
         $this->computer->delete();
         return redirect()->to('/computers');
     }

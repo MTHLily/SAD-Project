@@ -9,7 +9,7 @@
             </div>
             <div class="modal-body">
                 @if( $isEditable )
-                    {{ "[ ".implode( ",", $peripheralInd )." ] COUNT: ".count($peripheralInd)." CAN ADD MORE: " }}@if($this->canAdd) "YES" @else "NO" @endif
+                    {{-- {{ "[ ".implode( ",", $peripheralInd )." ] COUNT: ".count($peripheralInd)." CAN ADD MORE: " }}@if($this->canAdd) "YES" @else "NO" @endif --}}
                     @for ($i = 0; $i < count($peripheralInd); $i++)
                     <div class="d-flex addRamStorage">
                         <select class="custom-select w-75" wire:model.lazy="peripheralInd.{{$i}}">

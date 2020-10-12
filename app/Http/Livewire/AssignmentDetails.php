@@ -82,6 +82,9 @@ class AssignmentDetails extends Component
         $this->employee->status = "Available";
         $this->employee->save();
 
+        $assignment = $this->assign;
+        $assignment->clearPeripherals();
+
         $this->assign->delete();
         return redirect()->to('/assignments');
     }
