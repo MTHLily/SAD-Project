@@ -39,6 +39,10 @@ class Warranty extends Model
 		return $this->hasMany('App\Peripheral');
 	}
 
+	public function products(){
+		return $this->component->merge( $this->peripheral )->merge($this->computer);
+	}
+
 	public function type(){
 		if( $this->peripheral != null )
 			return "Peripheral";

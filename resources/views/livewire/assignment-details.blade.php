@@ -55,10 +55,23 @@
                                     <td>@if( $computer != null ) {{$computer->asset_tag}} @endif</td>
                                 </tr>
                                 <tr>
-                                    <th class="th_clickable" colspan="2" @if( $computer != null && $computer->id != null ) onclick="getComputerInfo({{$computer->id}})" @endif>Details</th>
+                                    <th class="th_clickable" colspan="2" @if( $computer != null && $computer->id != null ) onclick="getComputerInfo({{$computer->id}})" @endif><i class="fa fa-info-circle" aria-hidden="true"></i> Details</th>
                                 </tr>
                                 <tr>
-                                    <th class="th_clickable" colspan="2" @if( $computer != null && $computer->id != null ) onclick="showComputerSystemDetails({{$computer->id}})" @endif>System Details</th>
+                                    
+                                    @if( $computer != null && $computer->id != null )
+                                        <th class="th_clickable" colspan="2"  onclick="showComputerSystemDetails({{$computer->id}})">
+                                            @if( $computer->systemDetails != null && $computer->systemDetails->isComplete() )
+                                                <i class="fa fa-info-circle" aria-hidden="true"></i> System Details
+                                            @else
+                                                <span class="danger-red-light"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> System Lacking Components</span>
+                                            @endif
+                                        </th>
+                                    @else
+                                        <th class="th_clickable" colspan="2">
+                                                <i class="fa fa-info-circle" aria-hidden="true"></i> System Details
+                                        </th>
+                                    @endif
                                 </tr>
                             </table>
                     </div>
@@ -68,20 +81,20 @@
                 @if( $isEditable )
                     <button class="d-none"></button>
                     <button class="btn btn-success" wire:click="toggleEdit">
-                        Cancel
+                        <i class="fa fa-times" aria-hidden="true"></i> Cancel
                     </button>
                     <button class="d-none"></button>
                     <button class="btn btn-success" wire:click="save">
-                        Save
+                        <i class="fas fa-save    "></i> Save
                     </button>
                 @else
                     
-                    <button class="btn btn-success" data-target="#assignmentDeleteConfirmation" data-toggle="modal">Delete</button>
+                    <button class="btn btn-success" data-target="#assignmentDeleteConfirmation" data-toggle="modal"><i class="fa fa-trash" aria-hidden="true"></i> Delete</button>
                     <button class="btn btn-success" wire:click="toggleEdit">
-                        Update
+                        <i class="fa fa-upload" aria-hidden="true"></i> Update
                     </button>
                     <button class="btn btn-success" data-dismiss="modal">
-                        OK
+                        <i class="fa fa-check" aria-hidden="true"></i> OK
                     </button>
                 @endif
             </div>

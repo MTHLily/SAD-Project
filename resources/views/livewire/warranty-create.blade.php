@@ -2,7 +2,8 @@
     <div class="modal-dialog w-75 mw-100" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                Assign Warranty
+                <h4 class="modal-title">Assign Warranty</h4>
+                <button class='close' data-dismiss='modal'>&times</button>;
             </div>
             <div class="modal-body">
                 {{-- <div class="card">
@@ -55,7 +56,7 @@
                                         <option value="{{$brand->id}}">{{$brand->brand_name}}</option>
                                     @endforeach
                                 </select>
-                                <button class="btn btn-primary h-100 w-25 ml-3" wire:click="toggleNewBrand">Add New</button>
+                                <button class="btn btn-secondary h-100 w-25 ml-3" wire:click="toggleNewBrand">Add New</button>
                             </div>
                             <div class="w-100 @if(!$newBrand) d-none @else d-flex @endif" id="new_department_div">
                                 <input wire:model="newBrandName" name="new_brand" @if(!$newBrand) disabled @endif placeholder="New Brand" type="text" class="form-control">
@@ -91,6 +92,7 @@
                                 <label class="custom-file-label" for="receipt_url">Choose file</label>
                                 <input name="receipt_url" type="file" class="custom-file-input" wire:model="warrantyImage">
                             </div>
+                            <div wire:loading wire:target="warrantyImage">The file is being uploaded...</div>
                             @error('warrantyImage')
                             <div class="invalid-feedback">
                                 Please provide a valid image.
@@ -112,11 +114,11 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-success" data-dismiss="modal">
-                        Cancel
+                    <button class="btn btn-outline-danger" data-dismiss="modal">
+                        <i class="fa fa-times" aria-hidden="true"></i> Cancel
                     </button>
                     <button class="btn btn-success" onclick="warrantySave()">
-                        Save
+                        <i class="fas fa-save    "></i> Save
                     </button>
                 </div>
             </div>

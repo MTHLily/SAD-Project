@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     var myTable = $('.dataTable').DataTable({
 		"dom": "lrtip",
-		"scrollY": "400px",
+		"scrollY": "60vh",
         "scrollCollapse": true,
 		paging: false,
 		info: false
@@ -60,8 +60,19 @@ document.addEventListener('DOMContentLoaded', function () {
 			select.forEach( select => {
 				select.disabled = !select.disabled;
 			});
+
+			a.parentElement.querySelector( 'button[name="save_new"]' ).classList.remove('d-none');
+			a.classList.add( 'd-none' );
+
 		});
 	});
+
+	if( document.querySelector('#savePeripheralButton') != undefined ){
+		console.log("NUT OFUND");
+		document.querySelector('#savePeripheralButton').addEventListener('click', function (e) {
+			console.log(document.getElementById("updatePeripherals"));
+		});
+	}
 
 } );
 
@@ -100,6 +111,11 @@ async function perDetails( id ){
 	div.querySelector("input[name='issues']").value = per.issues
 	div.querySelector("input[name='remarks']").value = per.remarks
 	document.getElementById("remove").action = "/peripherals/" + id;
+	document.getElementById("updatePeripherals").action = "/peripherals/" + id;
+
+	document.querySelector('button[name="save_new"]').classList.add('d-none');
+	document.querySelector('button[name="update_new"]').classList.remove('d-none');
+
 }
 
 async function empDetails( id ){
@@ -122,12 +138,27 @@ async function empDetails( id ){
 
 async function getWarrantyInfo(id) {
 	await Livewire.emit('showWarrantyDetails', id );
-	$("#warrantyDetailsModal").modal("toggle");
+	// $("#warrantyDetailsModal").modal("toggle");
 }
 
 async function getComputerInfo(id) {
 	await Livewire.emit('showComputerDetails', id );
 	$("#computerDetailsModal").modal("toggle");
+}
+
+async function getPeripheralInfo(id) {
+	await Livewire.emit('showPeripheralDetails', id );
+	$("#peripheralDetailsModal").modal("toggle");
+}
+
+async function getComponentInfo(id) {
+	await Livewire.emit('showComponentDetails', id );
+	$("#componentDetailsModal").modal("toggle");
+}
+
+async function getEmployeeInfo(id) {
+	await Livewire.emit('showEmployeeDetails', id );
+	$("#employeeDetailsModal").modal("toggle");
 }
 
 async function showWarrantyCreate( category, id) {
@@ -149,3 +180,7 @@ async function showAssignPeripherals(id) {
 	$("#assignPeripheralsModal").modal("toggle");
 	await Livewire.emit('showAssignPeripherals', id);
 }
+
+window.addEventListener( 'show-warranty-details', e=>{
+	$("#warrantyDetailsModal").modal("toggle");
+});

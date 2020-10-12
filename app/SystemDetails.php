@@ -13,7 +13,14 @@ class SystemDetails extends Model
 		'gpu_id',
 		'operating_system_id',
 	];
-    
+	
+	public function isComplete(){
+		return $this->motherboard_id != null && 
+			$this->processor_id != null &&
+			$this->gpu_id != null &&
+			$this->operating_system_id != null;
+	}
+
 	public function storage(){
 		return $this->hasMany( 'App\Storage', 'system_id' );
 	}

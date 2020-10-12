@@ -9,6 +9,15 @@ use Illuminate\Support\Facades\Storage;
 
 class WarrantyController extends Controller
 {
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index()
     {
         return view ('warranties.index', ['warranties' =>Warranty::all(), 'brands' => Brand::all() ]);

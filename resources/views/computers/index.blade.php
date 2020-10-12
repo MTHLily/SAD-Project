@@ -16,7 +16,7 @@
 @endpush
 
 @push('styles')
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+{{-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> --}}
 {{-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css"> --}}
 
 <link href="{{ asset('css/crud.css') }}" rel="stylesheet">
@@ -32,17 +32,12 @@
 @livewire('computer-system-details')
 
 <div class="container">
-	<div class="row">
-		<div class="col-12">
-			<form class="form-inline float-sm-left">
-				<div class="form-group mr-2">
-					<h1>Computer Inventory</h1>
-				</div>
-			</form>
-			<div class="float-sm-right d-flex">
-				<button class="btn btn-success" data-toggle="modal" data-target="#computerCreateModal"><i class="fas fa-plus"></i> Add Item</button>
-				<input type="text" class="form-control ml-2" id="searchBox" placeholder="Search">
-			</div>
+	<div class="d-flex justify-content-between">
+		<h2>Computer Inventory</h2>
+		</form>
+		<div class="d-flex form-inline">
+			<button class="btn btn-success" data-toggle="modal" data-target="#computerCreateModal"><i class="fas fa-plus"></i> Add Computer</button>
+			<input type="text" class="form-control ml-2" id="searchBox" placeholder="Search">
 		</div>
 	</div>
 
@@ -56,7 +51,7 @@
 			<th>NETWORK</th>
 			<th>WARRANTY</th>
 			<th>STATUS</th>
-			<th>ITEM DETAILS</th>
+			<th>DETAILS</th>
 		</thead>
 		<tbody>
 			@foreach( $computers as $computer )
@@ -66,44 +61,46 @@
 					<td>{{ $computer->typeName->computer_type }}</td>
 					<td>{{ $computer->department->department_name }}</td>
 					<td class="system">
-						<a href="#" onclick="showComputerSystemDetails( {{$computer->id }})">View System Details</a>
-						{{-- @if($computer->system_details_id != null)
-							<a href="/computers/system_details/{{ $computer->system_details_id }}">View System Details</a>
+						@if($computer->system_details_id != null)
+							@if( $computer->systemDetails->isComplete() )
+								<a href="#" onclick="showComputerSystemDetails( {{$computer->id }})"><i class="fa fa-info-circle" aria-hidden="true"></i> View System Details</a>
+							@else
+								<a class="warning-yellow" href="#" onclick="showComputerSystemDetails( {{$computer->id }})"><i class="fas fa-exclamation-circle    "></i> System Details Incomplete</a>
+							@endif
 						@else
-							<a href="/computers/create_system_details/{{$computer->id}}">Assign System Details</a>
-						@endif --}}
+							<a href="#" class="danger-red" onclick="showComputerSystemDetails( {{$computer->id }})"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Assign System Details</a>
+						@endif
 					</td>
 					<td>
 						@if( $computer->network_details_id != null) 
-							MAC: {{$computer->networkDetails->get()[0]->mac_address}}
-							WIFI: {{$computer->networkDetails->get()[0]->wifi_address}}
-						@else
-							<div class="modal fade" id="network_modal_{{$computer->id}}">
+							<div class="modal fade" id="network_modal_{{$computer->id}}_modify">
 								<div class="modal-dialog">
 									<div class="modal-content">
 
 										<div class="modal-header">
-											<h4 class="modal-title">Assign Network Details</h4>
+											<h4 class="modal-title">Modify Network Details</h4>
+											<button class='close' data-dismiss='modal'>&times</button>;
 										</div>
 
-										<form action="/computers/assign_network_details/{{$computer->id}}" method="POST">
+										<form action="/computers/edit_network_details/{{$computer->network_details_id}}" method="POST">
 											@csrf
+											@method('PATCH')
 											<div class="modal-body">
 												<div class="form-group">
-													<label for="mac_address">LAN MAC Address</label>
-													<input class="form-control" type="text" name="mac_address" required> 
+													<label for="mac_address">MAC Address</label>
+													<input class="form-control" value="{{$computer->networkDetails->mac_address}}" type="text" name="mac_address" required> 
 												</div>
 												<div class="form-group">
-													<label for="wifi_address">Wi-Fi MAC Address</label>
-													<input class="form-control" type="text" name="wifi_address" required>
+													<label for="wifi_address">Wi-Fi Address</label>
+													<input class="form-control" value="{{$computer->networkDetails->wifi_address}}" type="text" name="wifi_address" required>
 												</div>
 											</div>
 											<div class="modal-footer">
-												<button type="button" data-dismiss="modal" class="btn btn-success">
-													Cancel
+												<button type="button" data-dismiss="modal" class="btn btn-outline-danger">
+													<i class="fa fa-times" aria-hidden="true"></i> Cancel
 												</button>
 												<button class="btn btn-success">
-													Assign
+													<i class="fas fa-edit    "></i> Update
 												</button>
 											</div>
 										</form>
@@ -111,19 +108,55 @@
 									</div>
 								</div>
 							</div>
-							<a data-toggle="modal" href="#network_modal_{{$computer->id}}">Assign Network Details</button>
+							<a data-toggle="modal" href="#network_modal_{{$computer->id}}_modify"><i class="fa fa-info-circle" aria-hidden="true"></i> View Network Details</button>
+						@else
+							<div class="modal fade" id="network_modal_{{$computer->id}}">
+								<div class="modal-dialog">
+									<div class="modal-content">
+
+										<div class="modal-header">
+											<h4 class="modal-title">Assign Network Details</h4>
+											<button class='close' data-dismiss='modal'>&times</button>;
+										</div>
+
+										<form action="/computers/assign_network_details/{{$computer->id}}" method="POST">
+											@csrf
+											<div class="modal-body">
+												<div class="form-group">
+													<label for="mac_address">MAC Address</label>
+													<input class="form-control" type="text" name="mac_address" required> 
+												</div>
+												<div class="form-group">
+													<label for="wifi_address">Wi-Fi Address</label>
+													<input class="form-control" type="text" name="wifi_address" required>
+												</div>
+											</div>
+											<div class="modal-footer">
+												<button type="button" data-dismiss="modal" class="btn btn-outline-danger">
+													<i class="fa fa-times" aria-hidden="true"></i> Cancel
+												</button>
+												<button class="btn btn-success">
+													<i class="fas fa-save    "></i> Assign
+												</button>
+											</div>
+										</form>
+
+									</div>
+								</div>
+							</div>
+							<a class="warning-yellow" data-toggle="modal" href="#network_modal_{{$computer->id}}"><i class="fa fa-exclamation-circle" aria-hidden="true"></i> Assign Network Details</button>
 						@endif
 				    </td>
 					<td class="warranty">
 						@if($computer->warranty_id != null)
-							<span onclick="getWarrantyInfo({{$computer->warranty_id}})">View Warranty</span>
+							<span onclick="getWarrantyInfo({{$computer->warranty_id}})"><i class="fa fa-info-circle" aria-hidden="true"></i> View Warranty</span>
 						@else
-							<span onclick="showWarrantyCreate( 'Computer', {{$computer->id}} )">Assign Warranty</span>
+							<span class="danger-red" onclick="showWarrantyCreate( 'Computer', {{$computer->id}} )"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Assign Warranty</span>
 						@endif
 					</td>
 					<td>{{ $computer->status }}</td>
 					<td class="detail">
-						<a href="#" onclick="getComputerInfo({{$computer->id}})">View Details</a>
+						<a href="#" onclick="getComputerInfo({{$computer->id}})"><i class="fa fa-info-circle" aria-hidden="true"></i> View Details</a>
 					</td>  
 				</tr>
 			@endforeach

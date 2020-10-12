@@ -3,7 +3,8 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-tit">Computer Details</h4>
+                <h4 class="modal-title">Computer Details</h4>
+                <button class="close" data-dismiss="modal">&times;</button>
             </div>
             <div class="modal-body">
                 <div class="form-group">
@@ -42,10 +43,10 @@
                                     <option value="{{$department->id}}">{{$department->department_name}}</option>
                                 @endforeach
                             </select>
-                            <button class="btn btn-success w-25 ml-2" @if(!$isEditable) disabled @endif wire:click="toggleNewDepartment">Add New</button>
+                            <button class="btn btn-secondary w-25 ml-2" @if(!$isEditable) disabled @endif wire:click="toggleNewDepartment">Add New</button>
                         @else
                             <input type="text" class="form-control w-100 @error('newDepartmentName') is-invalid  @enderror" placeholder="New Department" wire:model="newDepartmentName">
-                            <button class="btn btn-success close w-25 ml-2" wire:click="toggleNewDepartment">&times;</button>
+                            <button class="btn btn-secondary w-25 ml-2" wire:click="toggleNewDepartment">&times;</button>
                             @error('newDepartmentName')
                                 <div class="invalid-feed">
                                     Please enter a department name.
@@ -68,21 +69,21 @@
             <div class="modal-footer">
                 @if( $isEditable )
                     <button class="d-none"></button>
-                    <button class="btn btn-success" wire:click="toggleEdit">
-                        Cancel
+                    <button class="btn btn-outline-danger" wire:click="toggleEdit">
+                        <i class="fa fa-times" aria-hidden="true"></i> Cancel
                     </button>
                     <button class="d-none"></button>
                     <button class="btn btn-success" wire:click="save">
-                        Save
+                        <i class="fas fa-save    "></i> Save
                     </button>
                 @else
                     
-                    <button class="btn btn-success" data-target="#computerDeleteConfirmation" data-toggle="modal">Delete</button>
-                    <button class="btn btn-success" wire:click="toggleEdit">
-                        Update
+                    <button class="btn btn-danger" data-target="#computerDeleteConfirmation" data-toggle="modal"><i class="fa fa-trash" aria-hidden="true"></i> Delete</button>
+                    <button class="btn btn-outline-warning" wire:click="toggleEdit">
+                        <i class="fa fa-edit" aria-hidden="true"></i> Update
                     </button>
-                    <button class="btn btn-success" data-dismiss="modal">
-                        OK
+                    <button class="btn btn-outline-success" data-dismiss="modal">
+                        <i class="fa fa-check" aria-hidden="true"></i> OK
                     </button>
                 @endif
             </div>
@@ -90,8 +91,8 @@
     </div>
 </div>
 <div class="modal fade" id="computerDeleteConfirmation" style="z-index: 2000;">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content" >
+    <div class="modal-dialog mt-5" >
+        <div class="modal-content">
             <div class="modal-header"><h4 class="modal-title">Are you sure?</h4></div>
             <div class="modal-footer">
                 <button class="btn btn-success" wire:click="destroy">Yes</button>

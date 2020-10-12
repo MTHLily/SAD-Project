@@ -15,10 +15,10 @@ h2 {
 .name {
 	text-align: left;
 }
-
+/* 
 .btn {
 	background-color: #14A83B;
-}
+} */
 
 .system a, .system + td a, .warranty a, .detail a, td a {
 	color: #14A83B;
@@ -68,13 +68,13 @@ td a:hover{
 	border-radius: 0;
 }
 
-.modal-header, button.close{
+.modal-header, .close{
 	background: #333333;
 	border-radius: 0;
 	color:white;
 }
 
-button.close:hover{
+.close:hover{
 	color:white;
 }
 
@@ -96,4 +96,16 @@ option[value='HEADER']{
 	text-align: center;
     text-align-last: center;
     -moz-text-align-last: center;
+}
+
+.danger-red{
+	color: #a81494 !important;
+}
+
+.danger-red-light{
+	color: #e3aad6 !important;
+}
+
+.warning-yellow{
+	color: #a86814 !important;
 }

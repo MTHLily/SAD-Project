@@ -36,6 +36,7 @@ class AssignPeripherals extends Component
         unset( $this->peripheralInd[$ind] );
     }
 
+
     public function showAssignPeripherals( $id ){
         $this->assign = Assignment::find( $id );
         $this->peripherals = $this->assign->peripherals->sortBy( 'peripheral_type' );

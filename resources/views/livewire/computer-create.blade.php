@@ -2,7 +2,8 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-tit">Create Computer</h4>
+                <h4 class="modal-title">Create Computer</h4>
+                <button class="close" data-dismiss="modal">&times;</button>
             </div>
             <div class="modal-body">
                 <div class="form-group">
@@ -35,7 +36,7 @@
                     <label for="">Department</label>
                     <div class="d-flex">
                         @if( !$newDepartment )
-                            <select type="text" class="form-control" wire:model="existingDepartmentId">
+                            <select type="text" class="form-control" wire:model="existingDepartmentId" required>
                                 <option>Don't assign a department</option>
                                 @foreach ($departments as $department)
                                     <option value="{{$department->id}}">{{$department->department_name}}</option>
@@ -65,11 +66,11 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button class="btn">
-                    Cancel
+                <button class="btn btn-outline-danger" data-dismiss="modal">
+                    <i class="fa fa-times" aria-hidden="true"></i> Cancel
                 </button>
-                <button class="btn" wire:click="save">
-                    Save
+                <button class="btn btn-success" wire:click="save">
+                    <i class="fas fa-save    "></i> Save
                 </button>
             </div>
         </div>

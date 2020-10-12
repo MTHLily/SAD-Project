@@ -15,15 +15,9 @@ class AssignmentCreate extends Component
     public  $employee;
 
     protected $rules = [
-        'assign.computer_id' => '',
-        'assign.employee_id' => '',
+        'assign.computer_id' => 'Integer',
+        'assign.employee_id' => 'Integer',
     ];
-
-    // protected $listeners = [
-    //     'showAssignmentCreate' => 'showAssignmentCreate',
-    // ];
-
-    // public function showAssignmentCreate(){}
 
     public function updated(){
         // dd($this->assign);
@@ -38,7 +32,7 @@ class AssignmentCreate extends Component
     }
 
     public function getCanSaveProperty(){
-        return $this->assign->computer_id != null && $this->assign->employee_id != null;
+        return $this->assign->computer_id != 0 && $this->assign->employee_id != 0;
     }
 
     public function save(){

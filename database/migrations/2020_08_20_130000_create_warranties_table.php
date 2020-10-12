@@ -21,7 +21,7 @@ class CreateWarrantiesTable extends Migration
             $table->dateTime('purchase_date');
             $table->string('purchase_location');
             $table->string('receipt_url')->nullable();
-            $table->string('serial_no');
+            $table->string('serial_no')->nullable();
             $table->dateTime('warranty_life')->nullable();
             $table->text('notes')->nullable();
             $table->string('status')->default('Active');

@@ -33,17 +33,14 @@
         <nav class="navbar navbar-expand-md navbar-dark shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/home') }}">
-                    {{ config('app.name', 'Inventory System') }}
+                    <img class="logo" src="logo.png">  
+                    {{-- {{ config('app.name', 'Inventory System') }} --}}
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
-                        <img class="logo" src="logo.png">  
-                    </ul>
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
@@ -71,7 +68,7 @@
                                 <a class="nav-link" href="/employees">Employees</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="/assignment">Assignment</a>
+                                <a class="nav-link" href="/assignments">Assignment</a>
                             </li>
 
                             <li class="nav-item dropdown">

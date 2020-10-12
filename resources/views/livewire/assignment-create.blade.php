@@ -13,6 +13,7 @@
                         <div class="form-group">
                             <label for="">Employees</label>
                             <select class="form-control" wire:model="assign.employee_id">
+                                <option value="0">Select an employee</option>
                                 @foreach ( \App\Employee::where('status', 'Available' )->get() as $emp )
                                     <option value="{{$emp->id}}">{{$emp->full_name()}}</option>
                                 @endforeach
@@ -21,7 +22,8 @@
                             <table class="table">
                                 <tr>
                                     <th width="16%">Name</th>
-                                    <td>@if($employee != null ){{$employee->full_name()}}@endif</td>
+                                    <td>
+                                        @if($employee != null ){{$this->employee->full_name()}}@endif</td>
                                 </tr>
                                 <tr>
                                     <th>Email Address</th>
@@ -37,6 +39,7 @@
                         <div class="form-group">
                             <label for="">Computers</label>
                             <select class="form-control" wire:model="assign.computer_id">
+                                <option value="0">Select a computer</option>
                                 @foreach ( \App\Computer::where('status', 'Available' )->get() as $com )
                                     <option value="{{$com->id}}">{{$com->pc_name}}</option>
                                 @endforeach
@@ -52,18 +55,30 @@
                                     <td>@if( $computer != null ) {{$computer->asset_tag}} @endif</td>
                                 </tr>
                                 <tr>
-                                    <th class="th_clickable" colspan="2" @if( $computer != null && $computer->id != null ) onclick="getComputerInfo({{$computer->id}})" @endif>Details</th>
+                                    <th class="th_clickable" colspan="2" @if( $computer != null && $computer->id != null ) onclick="getComputerInfo({{$computer->id}})" @endif><i class="fa fa-info-circle" aria-hidden="true"></i> Details</th>
                                 </tr>
                                 <tr>
-                                    <th class="th_clickable" colspan="2" @if( $computer != null && $computer->id != null ) onclick="showComputerSystemDetails({{$computer->id}})" @endif>System Details</th>
+                                    @if( $computer != null && $computer->id != null )
+                                        <th class="th_clickable" colspan="2"  onclick="showComputerSystemDetails({{$computer->id}})">
+                                            @if( $computer->systemDetails != null && $computer->systemDetails->isComplete() )
+                                                <i class="fa fa-info-circle" aria-hidden="true"></i> System Details
+                                            @else
+                                                <span class="danger-red-light"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> System Lacking Components</span>
+                                            @endif
+                                        </th>
+                                    @else
+                                        <th class="th_clickable" colspan="2">
+                                                <i class="fa fa-info-circle" aria-hidden="true"></i> System Details
+                                        </th>
+                                    @endif
                                 </tr>
                             </table>
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-primary" @if( !$this->canSave ) disabled @endif wire:click="save">Add</button>
+                <button type="button" class="btn btn-success" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true"></i> Cancel</button>
+                <button type="button" class="btn btn-success" @if( !$this->canSave ) disabled @endif wire:click="save"><i class="fas fa-save    "></i> Add</button>
             </div>
         </div>
     </div>

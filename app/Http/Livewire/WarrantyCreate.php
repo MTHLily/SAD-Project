@@ -46,6 +46,13 @@ class WarrantyCreate extends Component
         $this->warranty->warranty_life = Carbon::createFromFormat('Y-m-d', $this->life);
     }
 
+    public function updatedWarrantyImage()
+    {
+        $this->validate([
+            'warrantyImage' => 'image',
+        ]);
+    }
+
     public function showWarrantyCreate( $category, $id ){
         $this->model_category = $category;
         $this->model_id = $id;
@@ -71,7 +78,7 @@ class WarrantyCreate extends Component
         // return;
 
         $data = $this->validate([
-            'warrantyImage' => 'image',
+            'warrantyImage' => '',
             'warranty.purchase_location' => 'required',
             'brandId' => ($this->newBrandName) ? '' : 'required',
         ]);

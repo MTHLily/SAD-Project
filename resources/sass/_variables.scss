@@ -1,6 +1,9 @@
 // Body
 $body-bg: #f8fafc;
 
+$enable-shadows: true;
+$enable-rounded: false;
+
 // Typography
 $font-family-sans-serif: 'Nunito', sans-serif;
 $font-size-base: 0.9rem;
@@ -17,3 +20,11 @@ $yellow: #ffed4a;
 $green: #38c172;
 $teal: #4dc0b5;
 $cyan: #6cb2eb;
+
+// BS4 Theme Colors
+$theme-colors: (
+    "success" : #14A83B,
+    "warning": #a86814,
+    "danger" : #a81494,
+    "secondary" : #333,
+);

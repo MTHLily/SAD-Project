@@ -138,11 +138,11 @@
                                         <option value="{{$component->id}}">{{$component->asset_tag.' - '.$component->component_name}}</option>
                                     @endforeach
                                 </select>
-                                <button wire:click="removeRam({{$i}})" class="close w-25 ml-2">&times;</button>
+                                <button wire:click="removeRam({{$i}})" class="btn-secondary w-25 ml-2">&times;</button>
                             </div>
                             @endfor
                             {{-- {{ "[ ".implode(",", $this->rams)." ] ".$canAddRam." RAM COUNT: ".$ramCount}} --}}
-                            <button @if( !$canAddRam ) disabled @endif class="btn btn-success mt-2" wire:click="addRamCount">Add More RAM</button>
+                            <button @if( !$canAddRam ) disabled @endif class="btn btn-secondary mt-2" wire:click="addRamCount">Add More RAM</button>
                         </div>
                     </div>
 
@@ -167,11 +167,11 @@
                                         <option value="{{$component->id}}">{{$component->asset_tag.' - '.$component->component_name}}</option>
                                     @endforeach
                                 </select>
-                                <button wire:click="removeStorage({{$i}})" class="close w-25 ml-2">&times;</button>
+                                <button wire:click="removeStorage({{$i}})" class="btn-secondary w-25 ml-2">&times;</button>
                             </div>
                             @endfor
                             {{-- {{ "[ ".implode(",", $this->storages)." ] ".$canAddStorage." STORAGE COUNT: ".$storageCount}} --}}
-                            <button @if( !$canAddStorage ) disabled @endif class="btn btn-success mt-2" wire:click="addStorageCount">Add More Storage</button>
+                            <button @if( !$canAddStorage ) disabled @endif class="btn btn-secondary mt-2" wire:click="addStorageCount">Add More Storage</button>
                         </div>
                     </div>
                     </script>
@@ -179,13 +179,13 @@
             </div>
             <div class="modal-footer">
                 @if($isEditable)
-                    <button type="button" class="btn btn-secondary" wire:click="toggleEdit">Cancel</button>
+                    <button type="button" class="btn btn-outline-danger" wire:click="toggleEdit"><i class="fa fa-times" aria-hidden="true"></i> Cancel</button>
                     <button type="button" class="d-none" wire:click="toggleEdit">Cancel</button>
-                    <button type="button" class="d-none" wire:click="save">Save</button>
-                    <button type="button" class="btn btn-primary" @if( !$this->canSave ) disabled @endif wire:click="save">Save</button>
+                    <button type="button" class="d-none" wire:click="save"> Save</button>
+                    <button type="button" class="btn btn-success" @if( !$this->canSave ) disabled @endif wire:click="save"><i class="fas fa-save    "></i> Save</button>
                 @else
-                <button type="button" class="btn btn-primary" wire:click="toggleEdit">Update</button>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">OK</button>
+                <button type="button" class="btn btn-outline-warning" wire:click="toggleEdit"><i class="fas fa-edit    "></i> Update</button>
+                <button type="button" class="btn btn-outline-success" data-dismiss="modal"><i class="fa fa-check" aria-hidden="true"></i> OK</button>
                 @endif
             </div>
         </div>

@@ -9,7 +9,7 @@ $factory->define(Employee::class, function (Faker $faker) {
     return [
         'last_name' => $faker->lastName,
         'first_name' => $faker->firstName,
-        'middle_initial' => $faker->lastName,
+        'middle_initial' => Str::upper($faker->randomLetter),
         'email_address' => $faker->safeEmail,
         'department_id' => rand(1, 5),
     ];

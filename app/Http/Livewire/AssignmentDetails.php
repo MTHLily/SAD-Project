@@ -36,9 +36,8 @@ class AssignmentDetails extends Component
         $this->computer = $this->assign->computer;
     }
 
-    public function updated()
+    public function hydrate()
     {
-        // dd($this->assign);
         $this->employee = $this->assign->employee;
         $this->computer = $this->assign->computer;
     }

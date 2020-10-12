@@ -34,6 +34,12 @@ class ExampleSeed extends Seeder
         	$component->component_type_id = $ind;
         	$component->save();
 		}
+
+		DB::table('users')->insert([
+			'name' => 'Mike',
+			'email' => 'a@a.com',
+			'password' => Hash::make('admin'),
+		]);
 		
 		factory( App\Department::class, 5 )->create();
 		factory( App\Employee::class, 12 )->create();

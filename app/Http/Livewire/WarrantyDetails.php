@@ -34,11 +34,13 @@ class WarrantyDetails extends Component
     ];
 
     public function mount(){
-        $this->warranty = Warranty::find(1);
+        $this->warranty = new Warranty;
     }
 
-    public function hydrate(){
-        $this->validate();
+    public function updatedWarrantyImage(){
+        $this->validate([
+            'warrantyImage' => 'image',
+        ]);
     }
 
     public function showDetails( $id ){
@@ -48,6 +50,9 @@ class WarrantyDetails extends Component
         $this->purchase = $this->warranty->purchase_date->format('Y-m-d');
         $this->life = $this->warranty->warranty_life->format('Y-m-d');
 
+        $this->isEditable = false;
+
+        $this->dispatchBrowserEvent( 'show-warranty-details' );
     }
 
     public function toggleEdit()
@@ -98,6 +103,18 @@ class WarrantyDetails extends Component
         
         $this->isEditable = false;
         $this->emitSelf('refreshComponent');
+
+    }
+
+    public function destroy(){
+        $products = $this->warranty->products();
+
+        foreach( $products as $product ){
+            $product->warranty_id = null;
+            $product->save();
+        }
+
+        $this->warranty->delete();
 
     }
 

@@ -11,7 +11,7 @@
 @endpush
 
 @push('styles')
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+{{-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> --}}
 <link href="{{ asset('css/crud.css') }}" rel="stylesheet">
 @livewireStyles
 @endpush
@@ -29,10 +29,10 @@
 		<div class="col-12">
 			<form class="form-inline float-sm-left">
 				<div class="form-group mr-2">
-					<h1>Assignments</h1>
+					<h2>Assignments</h2>
 				</div>
 			</form>
-			<div class="float-sm-right d-flex">
+			<div class="float-sm-right form-inline">
 				<button class="btn btn-success" data-toggle="modal" data-target="#assignmentCreateModal"><i class="fas fa-plus"></i> Create Assignment</button>
 				<input type="text" class="form-control ml-2" id="searchBox" placeholder="Search">
 			</div>
@@ -41,22 +41,26 @@
 
 	<table class="table table-striped table-bordered dataTable mb-5">
 		<thead>
-            <th>Details</th>
 			<th>Employee Name</th>
 			<th>PC Name</th>
 			<th>Peripherals</th>
 			<th>Department</th>
+			<th>Details</th>
 		</thead>
 		<tbody>
             @foreach ( $assignments as $assign )
                 <tr>
-                    <td><a href='#' onclick="getAssignmentInfo({{$assign->id}})">View Details</a></td>
-                    <td>{{$assign->employee->full_name()}}</td>
+					<td>{{$assign->employee->full_name()}}</td>
                     <td>{{$assign->computer->pc_name}}</td>
                     <td>
-                        <a href="#" onclick="showAssignPeripherals({{$assign->id}})">Assign Peripherals</a>
+						@if( $assign->peripherals->count() != 0 )
+							<a href="#" onclick="showAssignPeripherals({{$assign->id}})"><i class="fa fa-info-circle" aria-hidden="true"></i> View Peripherals</a>
+						@else
+							<a class="warning-yellow" href="#" onclick="showAssignPeripherals({{$assign->id}})"><i class="fa fa-exclamation-circle" aria-hidden="true"></i> No Peripherals Assigned</a>
+						@endif
                     </td>
                     <td>{{$assign->employee->department->department_name}}</td>
+					<td><a href='#' onclick="getAssignmentInfo({{$assign->id}})"><i class="fa fa-info-circle" aria-hidden="true"></i> View Details</a></td>
                 </tr>
             @endforeach
 		</tbody>
