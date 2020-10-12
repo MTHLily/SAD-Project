@@ -84,6 +84,7 @@ class ComputerSystemDetails extends Component
 
     public function removeRam( $ind ){
         unset( $this->rams[$ind] );
+        $this->rams = array_values($this->rams);
         $this->canAddRam = !(in_array(0, $this->rams));
         $this->ramCount--;
     }
@@ -102,6 +103,7 @@ class ComputerSystemDetails extends Component
 
     public function removeStorage( $ind ){
         unset( $this->storages[$ind] );
+        $this->storages = array_values($this->storages);
         $this->canAddStorage = !(in_array(0, $this->storages));
         $this->storageCount--;
     }

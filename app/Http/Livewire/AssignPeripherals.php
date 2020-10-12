@@ -34,6 +34,8 @@ class AssignPeripherals extends Component
 
     public function removePeripheral( $ind ){
         unset( $this->peripheralInd[$ind] );
+        $this->peripheralInd = array_values($this->peripheralInd);
+        $this->emitSelf('refreshComponent');
     }
 
 

@@ -9,10 +9,10 @@
             </div>
             <div class="modal-body">
                 @if( $isEditable )
-                    {{-- {{ "[ ".implode( ",", $peripheralInd )." ] COUNT: ".count($peripheralInd)." CAN ADD MORE: " }}@if($this->canAdd) "YES" @else "NO" @endif --}}
+                    {{ "[ ".implode( ",", $peripheralInd )." ] COUNT: ".count($peripheralInd)." CAN ADD MORE: " }}@if($this->canAdd) "YES" @else "NO" @endif
                     @for ($i = 0; $i < count($peripheralInd); $i++)
                     <div class="d-flex addRamStorage">
-                        <select class="custom-select w-75" wire:model.lazy="peripheralInd.{{$i}}">
+                        <select class="custom-select w-75" wire:model="peripheralInd.{{$i}}">
                             <option value="">Choose a peripheral.</option>
                             @foreach ( $this->availablePeripherals as $type => $groupedPeripherals )
                                 <option disabled value="HEADER">
@@ -23,7 +23,15 @@
                                 @endforeach
                             @endforeach
                         </select>
-                        <button class="close w-25 ml-2" wire:click="removePeripheral({{$i}})">&times;</button>
+                        <button class="btn btn-success w-25 ml-2"
+                            @if( null == $peripheralInd[$i])
+                                disabled 
+                            @else 
+                                onclick="getPeripheralInfo({{$peripheralInd[$i]}}) 
+                            @endif">
+                                Details
+                        </button>
+                        <button class="btn btn-secondary w-25 ml-2" wire:click="removePeripheral({{$i}})">&times;</button>
                     </div>
                     @endfor
                     <div class="d-flex mt-2">

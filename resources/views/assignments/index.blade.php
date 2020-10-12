@@ -23,6 +23,7 @@
 @livewire('assign-peripherals')
 @livewire('computer-system-details')
 @livewire('computer-details')
+@livewire('peripheral-details')
 
 <div class="container">
 	<div class="row">
