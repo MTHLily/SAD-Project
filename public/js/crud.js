@@ -6,7 +6,9 @@ document.addEventListener('DOMContentLoaded', function () {
         "scrollCollapse": true,
 		paging: false,
 		info: false
-    });
+	});
+	
+
 
     document.querySelector('#searchBox').addEventListener( 'input', ( e ) => {
         e.preventDefault();
@@ -75,6 +77,16 @@ document.addEventListener('DOMContentLoaded', function () {
 	}
 
 } );
+
+document.addEventListener( 'livewire:load', ( e ) => {
+
+	$(".custom-file-input").on("change", function () {
+		console.log("CHANGING LABEL ON FILE");
+		var fileName = $(this).val().split("\\").pop();
+		$(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+	});
+
+});
 
 
 async function showDetails( id ){

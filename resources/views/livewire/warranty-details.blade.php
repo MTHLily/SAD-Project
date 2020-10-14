@@ -45,7 +45,11 @@
                         <label for="receipt_url">Receipt</label>
                         <div class="custom-file d-flex align-items-center justify-content-center @error('warrantyImage') is-invalid @enderror">
                             @if( !$isEditable )
-                            <a href="storage/{{ str_replace( "public/", "", ($warranty->receipt_url))}}" id="receipt_url"><h4>See Receipt</h4></a>
+                                @if( $warranty->receipt_url != null )
+                                    <a href="storage/{{ str_replace( "public/", "", ($warranty->receipt_url))}}" id="receipt_url"><h4>See Receipt</h4></a>
+                                @else
+                                    <h4>No Image of Warranty Stored</h4>
+                                @endif
                             @else
                             <label class="custom-file-label" for="receipt_url">Choose file</label>
                             <input name="receipt_url" type="file" class="custom-file-input form-control  " wire:model.lazy="warrantyImage">
