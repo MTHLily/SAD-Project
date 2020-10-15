@@ -25,6 +25,7 @@
         {
         height:50px;
         }
+
     </style>
     
 </head>
@@ -33,7 +34,7 @@
         <nav class="navbar navbar-expand-md navbar-dark shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/home') }}">
-                    <img class="logo" src="logo.png">  
+                    <img class="logo d-inline-block align-top" src="logo.png">
                     {{-- {{ config('app.name', 'Inventory System') }} --}}
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">

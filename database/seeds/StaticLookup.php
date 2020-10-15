@@ -14,7 +14,7 @@ class StaticLookup extends Seeder
     	$component_types = [ "Motherboard", "CPU", "GPU", "RAM", "Storage" ];
         $pc_types = [ "Desktop", "Laptop" ];
         $os = ["Windows", "Mac", "Linux", "ChromeOS" ];
-        $peripheral_types = [ "Monitor", "Keyboard", "Phone", "Tablet", "Miscellaneous", "AVR" ];
+        $peripheral_types = [ "Monitor", "Keyboard", "Mouse", "Phone", "Tablet", "Miscellaneous",  ];
 
     	foreach( $component_types as $type ){
     		DB::table('component_types')->insert(

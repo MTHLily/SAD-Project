@@ -9,7 +9,7 @@
             </div>
             <div class="modal-body">
                 @if( $isEditable )
-                    {{ "[ ".implode( ",", $peripheralInd )." ] COUNT: ".count($peripheralInd)." CAN ADD MORE: " }}@if($this->canAdd) "YES" @else "NO" @endif
+                    {{-- {{ "[ ".implode( ",", $peripheralInd )." ] COUNT: ".count($peripheralInd)." CAN ADD MORE: " }}@if($this->canAdd) "YES" @else "NO" @endif --}}
                     @for ($i = 0; $i < count($peripheralInd); $i++)
                     <div class="d-flex addRamStorage">
                         <select class="custom-select w-75" wire:model="peripheralInd.{{$i}}">
@@ -35,7 +35,7 @@
                     </div>
                     @endfor
                     <div class="d-flex mt-2">
-                        <button @if( !$this->canAdd ) disabled @endif class="btn btn-lg btn-success" style="width: 74% !important;" wire:click="addPeripheral()">Add a perpheral</button>
+                        <button @if( !$this->canAdd ) disabled @endif class="btn btn-lg btn-success" style="width: 74% !important;" wire:click="addPeripheral()">Add a peripheral</button>
                         @if( !$this->canAdd )
                             <div class="alert alert-danger mb-0 ml-2" style="width: 24% !important;">
                                 Choose a peripheral.

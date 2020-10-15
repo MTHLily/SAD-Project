@@ -42,10 +42,10 @@
                                     <option value="{{$department->id}}">{{$department->department_name}}</option>
                                 @endforeach
                             </select>
-                            <button class="btn w-25 mr-2" wire:click="toggleNewDepartment">Add New</button>
+                            <button class="btn btn-secondary w-25 mr-2" wire:click="toggleNewDepartment">Add New</button>
                         @else
                             <input type="text" class="form-control @error('newDepartmentName') is-invalid  @enderror" placeholder="New Department" wire:model="newDepartmentName">
-                            <button class="btn close w-25 mr-2" wire:click="toggleNewDepartment">&times;</button>
+                            <button class="btn btn-secondary w-25 mr-2" wire:click="toggleNewDepartment">&times;</button>
                             @error('newDepartmentName')
                                 <div class="invalid-feed">
                                     Please enter a department name.

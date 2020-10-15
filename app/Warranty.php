@@ -45,19 +45,19 @@ class Warranty extends Model
 
 	public function type(){
 
-		if($this->computer != null && $this->component != null && $this->peripheral != null  )
+		if( ( $this->computer->count() != 0 || $this->component->count()  != 0 ) && $this->peripheral->count() != 0  )
 			return "Mixed";
 
-		if( $this->computer != null )
+		if( $this->computer->count() != 0 )
 			return "Computer";
 
-		if( $this->component != null )
+		if( $this->component->count() != 0 )
 			return "Component";
 
-		if( $this->peripheral != null )
+		if( $this->peripheral->count() != 0 )
 			return "Peripheral";
 
-		return "None Assigned";
+		return "Unassigned";
 	}
 
 }

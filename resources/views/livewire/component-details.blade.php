@@ -18,17 +18,17 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="peripheral_name" class="col-sm-3 col-form-label">Name</label>
+                    <label class="col-sm-3 col-form-label">Name</label>
                     <div class="col-sm-9">
                         <input  type="text"
-                            class="form-control @error('component.peripheral_name') is-invalid @enderror" wire:model="component.component_name"
+                            class="form-control @error('component.component_name') is-invalid @enderror" wire:model="component.component_name"
                             @if(!$isEditable) disabled @endif>
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="peripheral_type" class="col-sm-3 col-form-label">Type</label>
+                    <label class="col-sm-3 col-form-label">Type</label>
                     <div class="col-sm-9">
-                        <select wire:model="peripheral.peripheral_type_id" class="custom-select" @if(!$isEditable) disabled @endif>
+                        <select wire:model="component.component_type_id" class="custom-select" @if(!$isEditable) disabled @endif>
                         {{ $types = \App\ComponentType::all() }}
                         @foreach( $types as $type )
                             <option value="{{$type->id}}">{{$type->component_type}}</option>
