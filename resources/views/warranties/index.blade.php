@@ -58,6 +58,8 @@
                 {{-- <th>BRAND</th>
                 <th>PURCHASE DATE</th>
                 <th>PURCHASE LOCATION</th> --}}
+                <th style="width:15%;">PURCHASE DATE</th>
+                <th style="width:15%;">EXPIRY DATE</th>
                 <th>NOTES</th>
 				<th style="width:10%;">STATUS</th>
 			</thead>
@@ -68,6 +70,8 @@
                             <a href="#" onclick="getInfo({{$warranty->id}})">Details</a>
                         </td>
                         <td>{{$warranty->type()}}</td>
+                        <td>{{$warranty->purchase_date->format('Y-M-d')}}</td>
+                        <td>{{$warranty->warranty_life->format('Y-M-d')}}</td>
                         {{-- <td>{{$warranty->brand->brand_name}}</td>
                         <td>{{$warranty->purchase_date}}</td>
                         <td>{{$warranty->purchase_location}}</td> --}}

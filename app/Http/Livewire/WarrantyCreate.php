@@ -100,7 +100,10 @@ class WarrantyCreate extends Component
             $this->warranty->receipt_url = $imagePath;
         }
 
-        $this->warranty->status = "Active";
+        if( $this->warranty->warranty_life->gt(Carbon::now() ) )
+            $this->warranty->status = "Active";
+        else
+            $this->warranty->status = "Expired";
 
         $this->warranty->save();
         $this->model->warranty_id = $this->warranty->id;

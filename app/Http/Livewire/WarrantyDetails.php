@@ -89,6 +89,11 @@ class WarrantyDetails extends Component
         $this->warranty->purchase_date = Carbon::createFromFormat( 'Y-m-d' ,$this->purchase);
         $this->warranty->warranty_life = Carbon::createFromFormat( 'Y-m-d' ,$this->life);
         
+        if( $this->warranty->warranty_life->gt( Carbon::now() ) )
+            $this->warranty->status = "Active";
+        else
+            $this->warranty->status = "Expired";
+
         if( $this->newBrand ){
             $brand = \App\Brand::firstOrNew(['brand_name' => $this->newBrandName ]);
             $brand->save();
