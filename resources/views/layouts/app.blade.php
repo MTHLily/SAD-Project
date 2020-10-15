@@ -65,6 +65,9 @@
                                 <a class="nav-link" href="/components">Components</a>
                             </li>
                             <li class="nav-item">
+                                <a class="nav-link" href="/warranties">Warranties</a>
+                            </li>
+                            <li class="nav-item">
                                 <a class="nav-link" href="/employees">Employees</a>
                             </li>
                             <li class="nav-item">
