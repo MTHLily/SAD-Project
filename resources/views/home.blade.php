@@ -66,7 +66,7 @@
 @section('content')
 <div class="container">
   <div class="icons">
-      <a class="box" href/computers" >
+      <a class="box" href="/computers" >
         <img class="pic" src="monitor.svg" class="w3-round" color="white" alt="Computer">
         <span class="box_text">Computers</span>
       </a>

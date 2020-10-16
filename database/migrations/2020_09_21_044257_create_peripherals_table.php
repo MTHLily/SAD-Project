@@ -15,7 +15,7 @@ class CreatePeripheralsTable extends Migration
     {
         Schema::create('peripherals', function (Blueprint $table) {
             $table->id();
-            $table->string('asset_tag');
+            $table->string('asset_tag')->unique();
             $table->string('peripheral_name');
             $table->foreignId('assignment_id')->nullable()->references('id')->on('assignments')->onDelete('set null');
             $table->foreignId('peripheral_type')->references('id')->on('peripheral_types');

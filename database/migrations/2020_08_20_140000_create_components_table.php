@@ -17,7 +17,7 @@ class CreateComponentsTable extends Migration
             
             $table->id();
 
-            $table->string('asset_tag');
+            $table->string('asset_tag')->unique();
             $table->string('component_name');
             $table->foreignId('component_type_id')->references('id')->on('component_types');
             $table->foreignId('system_id')->nullable();

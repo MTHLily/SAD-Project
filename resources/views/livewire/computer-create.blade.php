@@ -1,4 +1,9 @@
 <div class="modal fade" id="computerCreateModal" wire:ignore.self>
+{{--     
+    @foreach ($errors->all() as $error)
+    {{ $error }}<br/>
+@endforeach --}}
+    
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -8,8 +13,8 @@
             <div class="modal-body">
                 <div class="form-group">
                     <label for="asset_tag">Asset Tag</label>
-                    <input type="text" class="form-control @error('computer.asset_tag') is-invalid @enderror" wire:model="computer.asset_tag">
-                    @error('computer.asset_tag')
+                    <input type="text" class="form-control @error('asset_tag') is-invalid @enderror" wire:model="asset_tag">
+                    @error('asset_tag')
                         <div class="invalid-feed">
                             Please enter an asset tag.
                         </div>

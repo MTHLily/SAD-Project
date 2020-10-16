@@ -46,7 +46,7 @@ class PeripheralController extends Controller
     {
         $validatedData = $request->validate(
             [
-                'asset_tag' => 'required|max:255',
+                'asset_tag' => 'required|max:255|unique:peripherals',
                 'peripheral_name' => 'required|max:255',
                 'peripheral_type' => 'required',
                 'issues' => '',

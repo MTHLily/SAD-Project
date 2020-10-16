@@ -52,7 +52,7 @@ class ComponentController extends Controller
     
         $validatedData = $request->validate(
             [
-                'asset_tag' => 'required|max:255',
+                'asset_tag' => 'required|max:255|unique:components',
                 'component_name' => 'required|max:255',
                 'component_type_id' => 'required',
                 'issues' => '',

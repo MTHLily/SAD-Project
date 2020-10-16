@@ -59,7 +59,7 @@
 				<td>{{ $computer->asset_tag }}</td>
 					<td class="name">{{ $computer->pc_name }}</td>
 					<td>{{ $computer->typeName->computer_type }}</td>
-					<td>{{ $computer->department->department_name }}</td>
+					<td>@if($computer->department != null ){{ $computer->department->department_name }}@endif</td>
 					<td class="system">
 						@if($computer->system_details_id != null)
 							@if( $computer->systemDetails->isComplete() )

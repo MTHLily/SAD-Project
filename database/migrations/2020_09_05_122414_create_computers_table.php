@@ -16,7 +16,7 @@ class CreateComputersTable extends Migration
         Schema::create('computers', function (Blueprint $table) {
             $table->id();
 
-            $table->string('asset_tag');
+            $table->string('asset_tag')->unique();
             $table->string('pc_name');
 
             $table->foreignId('type')->references('id')->on('computer_types')->onDelete('cascade');

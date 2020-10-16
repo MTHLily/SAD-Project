@@ -11,9 +11,9 @@ class ComputerCreate extends Component
 
     public Computer $computer;
     public $newDepartment, $newDepartmentName, $existingDepartmentId;
+    public $asset_tag;
 
     protected $rules = [
-        'computer.asset_tag' => 'required',
         'computer.pc_name' => 'required',
         'computer.type' => 'required',
         'computer.department_id' => '',
@@ -21,16 +21,20 @@ class ComputerCreate extends Component
         'computer.issues' => '',
         'computer.status' => '',
         'newDepartmentName' => '',
+        'asset_tag' => ['required', 'unique:computers'],
     ];
 
     public function updated( $field ){
+        
         $this->validateOnly( $field, $this->rules );
+
     }
 
     public function mount(){
         $this->computer = new Computer;
         $this->computer->type = 1;
         $this->newDepartment = false;
+        $this->asset_tag = "";
     }
 
     public function toggleNewDepartment(){
@@ -39,7 +43,10 @@ class ComputerCreate extends Component
 
     public function save(){
 
+        $this->validate();
+
         $this->computer->status = "Available";
+        $this->computer->asset_tag = $this->asset_tag;
 
         if( $this->newDepartment ){
             $dept = Department::firstOrNew(['department_name' => $this->newDepartmentName ]);
