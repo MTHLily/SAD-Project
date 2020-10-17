@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
 
     var myTable = $('#warrantyTable').DataTable({
-        "dom": "lrtip",
+        "dom": "lrtip"
     });
 
     document.querySelector('#searchBox').addEventListener('input', (e) => {

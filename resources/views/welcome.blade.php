@@ -12,6 +12,8 @@
         
 
         <!-- Styles -->
+        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+        @stack('styles')
         <style>
             html, body {
                 background-color: #fff;
@@ -68,14 +70,14 @@
                 margin-bottom: 30px;
             }
 
-            .navbar-nav
+            .navbar .bg-dark
             {
-                color: black;
+                color: #333333 !important;
             }
 
             img.logo
             {
-            height:50px;
+                height:50px;
             }           
 
             h3
@@ -104,7 +106,7 @@
         </style>
     </head>
     <body>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <nav class="navbar navbar-expand-md navbar-dark shadow-sm">
             <ul class="navbar-nav mr-auto">
                 <img class="logo" src="logo.png">       
             </ul>
