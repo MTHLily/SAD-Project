@@ -74,6 +74,8 @@ class AssignPeripherals extends Component
             $per->save();
         }
 
+        return redirect()->to('/assignments');
+
         $this->isEditable = false;
         $this->emitSelf('refreshComponent');
 
