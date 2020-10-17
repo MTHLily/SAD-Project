@@ -83,7 +83,7 @@ class ComputerDetails extends Component
 
         if( $this->computer->systemDetails != null ){
             $sys = $this->computer->systemDetails;
-            $sys->clearPeripherals();
+            $sys->clearComponents();
         }
 
         $this->computer->delete();

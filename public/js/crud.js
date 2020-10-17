@@ -13,7 +13,24 @@ document.addEventListener('DOMContentLoaded', function () {
     document.querySelector('#searchBox').addEventListener( 'input', ( e ) => {
         e.preventDefault();
         myTable.search( e.target.value ).draw();
-    });
+	});
+	
+	// document.querySelectorAll('button[name="update_new"]').forEach( ( a )=>{
+	// 	a.addEventListener('click', function (event) {
+			
+	// 		let modal = event.target.parentElement.parentElement;
+	// 		let inputs = modal.querySelectorAll('.modal-body input');
+	// 		let select = modal.querySelectorAll('.modal-body select')
+
+	// 		inputs.forEach( inputs => {
+	// 			if( inputs.name != 'status' && inputs.name != 'new_department')
+	// 				inputs.disabled = !inputs.disabled;
+	// 		});
+	// 		select.forEach( select => {
+	// 			select.disabled = !select.disabled;
+	// 		});
+	// 	});
+	// });
 
 	//Do this function if warranty select table is found.
 	if( $("#warrantySelectTable") != undefined ){
@@ -77,6 +94,7 @@ document.addEventListener('DOMContentLoaded', function () {
 	}
 
 } );
+
 
 document.addEventListener( 'livewire:load', ( e ) => {
 

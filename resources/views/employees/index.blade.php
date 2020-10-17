@@ -130,7 +130,9 @@
             </div>
         </div>
 	</div>
-	
+    
+    <script src=" {{asset('js/addDepartment.js')}}"></script>
+
 @livewire('employee-details');
 @livewireScripts
 

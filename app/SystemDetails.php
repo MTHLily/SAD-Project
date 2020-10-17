@@ -98,4 +98,21 @@ class SystemDetails extends Model
 		return $this->belongsTo( 'App\OperatingSystem', 'operating_system_id');
 	}
 
+	public function clearComponents(){
+		$this->clearRam();
+		$this->clearStorage();
+
+		$comp = $this->motherboard;
+		$comp->status = "Available";
+		$comp->save();
+
+		$comp = $this->processor;
+		$comp->status = "Available";
+		$comp->save();
+
+		$comp = $this->gpu;
+		$comp->status = "Available";
+		$comp->save();
+	}
+
 }
