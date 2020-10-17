@@ -26,7 +26,7 @@
 @section('content')
 
 @livewire('warranty-create')
-@livewire('warranty-details')
+@livewire('warranty-details', [ 'model' => 'Computer'])
 @livewire('computer-create')
 @livewire('computer-details')
 @livewire('computer-system-details')

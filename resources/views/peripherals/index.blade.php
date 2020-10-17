@@ -22,7 +22,7 @@
 @section('content')
 
 @livewire('warranty-create')
-@livewire('warranty-details')
+@livewire('warranty-details', [ 'model' => 'Peripheral'])
 
 	<div class="container">
 

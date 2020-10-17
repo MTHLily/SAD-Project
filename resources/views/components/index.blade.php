@@ -22,7 +22,7 @@
 @section('content')
 
 @livewire('warranty-create')
-@livewire('warranty-details')
+@livewire('warranty-details', [ 'model' => 'Component'])
 @livewire('component-details')
 	<div class="container">
 
@@ -30,8 +30,8 @@
 			<div class="alert alert-danger alert-dismissible fade show" role="alert">
 				{{ $error }}
 				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-    <span aria-hidden="true">&times;</span>
-  </button>
+					<span aria-hidden="true">&times;</span>
+				</button>
 			</div>	
 		@endforeach
 

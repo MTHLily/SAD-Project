@@ -68,20 +68,20 @@
             </div>
             <div class="modal-footer align-items-center">
                 @if( $isEditable )
-                    <button class="btn btn-success" wire:click="toggleEdit">Cancel</button>
+                    <button class="btn btn-outline-danger" wire:click="toggleEdit"><i class="fa fa-times" aria-hidden="true"></i> Cancel</button>
                     <button class="d-none btn btn-success" wire:click="toggleEdit">
                         Cancel
                     </button>
                     <button class="d-none"></button>
                     <button @if( !$this->canSave ) disabled @endif class="btn btn-success" wire:click="save">
-                        Save
+                        <i class="fas fa-save    "></i> Save
                     </button>
                 @else
-                    <button class="btn btn-success" wire:click="toggleEdit">
-                        Update
+                    <button class="btn btn-outline-warning" wire:click="toggleEdit">
+                        <i class="fas fa-edit    "></i> Update
                     </button>
-                    <button class="btn btn-success" data-dismiss="modal">
-                        OK
+                    <button class="btn btn-outline-success" data-dismiss="modal">
+                        <i class="fa fa-check" aria-hidden="true"></i> OK
                     </button>
                 @endif
             </div>

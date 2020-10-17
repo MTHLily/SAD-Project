@@ -40,7 +40,10 @@ class Warranty extends Model
 	}
 
 	public function products(){
-		return $this->component->merge( $this->peripheral )->merge($this->computer);
+		$products = $this->peripheral;
+		$products = $products->merge( $this->component );
+		$products = $products->merge($this->computer);
+		return $products;
 	}
 
 	public function type(){

@@ -23,7 +23,7 @@ class CreateComputersTable extends Migration
             $table->foreignId('department_id')->nullable()->references('id')->on('departments')->onDelete('cascade');
             $table->foreignId('system_details_id')->nullable()->references('id')->on('system_details')->onDelete('cascade');
             $table->foreignId('network_details_id')->nullable()->references('id')->on('network_details')->onDelete('cascade');
-            $table->foreignId('warranty_id')->nullable()->references('id')->on('warranties')->onDelete('cascade');
+            $table->foreignId('warranty_id')->nullable()->references('id')->on('warranties')->onDelete('set null');
 
             $table->string('remarks')->nullable();
             $table->string('issues')->nullable();

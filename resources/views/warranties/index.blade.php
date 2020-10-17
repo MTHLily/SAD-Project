@@ -33,7 +33,7 @@
 
 @section('content')
 
-@livewire('warranty-details')
+@livewire('warranty-details', [ 'model' => 'Warranty'])
 
 
     <div class="container">
@@ -67,7 +67,7 @@
                 @foreach ( $warranties as $warranty )
                     <tr>
                         <td>
-                            <a href="#" onclick="getInfo({{$warranty->id}})">Details</a>
+                            <a href="#" onclick="getInfo({{$warranty->id}})"><i class="fa fa-info-circle" aria-hidden="true"></i> Details</a>
                         </td>
                         <td>{{$warranty->type()}}</td>
                         <td>{{$warranty->purchase_date->format('Y-M-d')}}</td>

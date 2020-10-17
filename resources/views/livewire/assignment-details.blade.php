@@ -80,7 +80,7 @@
             <div class="modal-footer">
                 @if( $isEditable )
                     <button class="d-none"></button>
-                    <button class="btn btn-success" wire:click="toggleEdit">
+                    <button class="btn btn-outline-danger" wire:click="toggleEdit">
                         <i class="fa fa-times" aria-hidden="true"></i> Cancel
                     </button>
                     <button class="d-none"></button>
@@ -89,11 +89,11 @@
                     </button>
                 @else
                     
-                    <button class="btn btn-success" data-target="#assignmentDeleteConfirmation" data-toggle="modal"><i class="fa fa-trash" aria-hidden="true"></i> Delete</button>
-                    <button class="btn btn-success" wire:click="toggleEdit">
+                    <button class="btn btn-danger" data-target="#assignmentDeleteConfirmation" data-toggle="modal"><i class="fa fa-trash" aria-hidden="true"></i> Delete</button>
+                    <button class="btn btn-outline-warning" wire:click="toggleEdit">
                         <i class="fa fa-upload" aria-hidden="true"></i> Update
                     </button>
-                    <button class="btn btn-success" data-dismiss="modal">
+                    <button class="btn btn-outline-success" data-dismiss="modal">
                         <i class="fa fa-check" aria-hidden="true"></i> OK
                     </button>
                 @endif

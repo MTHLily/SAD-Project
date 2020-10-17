@@ -178,6 +178,8 @@ class ComputerSystemDetails extends Component
             $this->system->addStorage( $storage_id );
         }
 
+        return redirect()->to('/computers');
+
         $this->toggleEdit();
         $this->emitSelf('refreshComponent');
 

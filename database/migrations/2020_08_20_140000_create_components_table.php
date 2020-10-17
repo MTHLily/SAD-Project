@@ -21,7 +21,7 @@ class CreateComponentsTable extends Migration
             $table->string('component_name');
             $table->foreignId('component_type_id')->references('id')->on('component_types');
             $table->foreignId('system_id')->nullable();
-            $table->foreignId('warranty_id')->nullable()->references('id')->on('warranties');
+            $table->foreignId('warranty_id')->nullable()->references('id')->on('warranties')->onDelete('set null');
             $table->text('remarks')->nullable();
             $table->text('issues')->nullable();
             $table->string('status')->default('Available');

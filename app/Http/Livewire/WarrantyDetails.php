@@ -16,7 +16,7 @@ class WarrantyDetails extends Component
     // public $brand_id, $purchase_date, $purchase_location, $receipt_url, $serial_no, $warranty_life, $notes, $status;
     public Warranty $warranty;
     public $isEditable = false, $newBrand = false;
-    public $purchase, $life, $warrantyImage, $newBrandName, $brand_id;
+    public $purchase, $life, $warrantyImage, $newBrandName, $brand_id, $model;
 
     protected $rules = [
         'warranty.purchase_date' => '',
@@ -33,8 +33,10 @@ class WarrantyDetails extends Component
         'refreshComponent' => '$refresh',
     ];
 
-    public function mount(){
+    public function mount( $model ){
         $this->warranty = new Warranty;
+        $this->model = $model;
+        // dd($this->model);
     }
 
     public function updatedWarrantyImage(){
@@ -63,6 +65,18 @@ class WarrantyDetails extends Component
 
     public function toggleNewBrand(){
         $this->newBrand = !$this->newBrand;
+    }
+
+    public function getRedirectProperty()
+    {
+        if ($this->model == "Computer")
+        return redirect()->to("/computers");
+        if ($this->model == "Component")
+        return redirect()->to("/components");
+        if ($this->model == "Peripheral")
+        return redirect()->to("/peripherals");
+        if ($this->model == "Warranty")
+        return redirect()->to("/warranties");
     }
 
     public function render()
@@ -106,6 +120,8 @@ class WarrantyDetails extends Component
         // dd( $data );
         $this->warranty->save();
         
+        return $this->redirect;
+
         $this->isEditable = false;
         $this->emitSelf('refreshComponent');
 
@@ -120,6 +136,8 @@ class WarrantyDetails extends Component
         }
 
         $this->warranty->delete();
+
+        return $this->redirect;
 
     }
 

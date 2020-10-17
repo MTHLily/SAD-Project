@@ -77,7 +77,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-success" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true"></i> Cancel</button>
+                <button type="button" class="btn btn-outline-danger" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true"></i> Cancel</button>
                 <button type="button" class="btn btn-success" @if( !$this->canSave ) disabled @endif wire:click="save"><i class="fas fa-save    "></i> Add</button>
             </div>
         </div>
