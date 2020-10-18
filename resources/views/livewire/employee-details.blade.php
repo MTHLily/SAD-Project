@@ -11,28 +11,28 @@
             <div class="modal-body">
                 <div class="d-flex">
                     <div class="form-group w-75">
-                        <label>Last Name</label>
-                            <input  type="text" wire:model="emp.last_name" placeholder="Last Name" 
+                        <label>Last Name<span class="text-danger">*</span></label>
+                            <input required type="text" wire:model="emp.last_name" placeholder="Last Name" 
                                         class="form-control @error('emp.last_name') is-invalid @enderror" 
                                         @if(!$isEditable) disabled @endif>
                     </div>
                     <div class="form-group w-75">
-                        <label>First Name</label>
-                            <input  type="text"
+                        <label>First Name<span class="text-danger">*</span></label>
+                            <input required type="text"
                                 class="form-control @error('emp.first_name') is-invalid @enderror" wire:model="emp.first_name"
                                 @if(!$isEditable) disabled @endif>
                     </div>
                     <div class="form-group w-25">
-                        <label >M.I.</label>
-                            <input  type="text" wire:model="emp.middle_initial" placeholder="Middle Initial" 
+                        <label >M.I.<span class="text-danger">*</span></label>
+                            <input required type="text" wire:model="emp.middle_initial" placeholder="Middle Initial" 
                                 class="form-control"
                                 @if(!$isEditable) disabled @endif>
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="remarks" class="col-sm-3 col-form-label">Email Address</label>
+                    <label for="remarks" class="col-sm-3 col-form-label">Email Address<span class="text-danger">*</span></label>
                     <div class="col-sm-9">
-                        <input  type="text" wire:model="emp.email_address" placeholder="Email Address" 
+                        <input required type="text" wire:model="emp.email_address" placeholder="Email Address" 
                             class="form-control"
                             @if(!$isEditable) disabled @endif>
                     </div>
@@ -47,7 +47,7 @@
                             <option value="{{$type->id}}">{{$type->department_name}}</option>
                         @endforeach
                         </select>
-                        <button class="btn btn-secondary ml-2 w-25" wire:click="toggleNewDepartment">Add New</button>
+                        <button class="btn btn-secondary ml-2 w-25" @if(!$isEditable) disabled @endif wire:click="toggleNewDepartment">Add New</button>
                     @else
                         <input wire:model="newDepartmentName" type="text" class="form-control w-75 @error('newDepartmentName') is-invalid @enderror" placeholder="New Department">
                         <button class="btn btn-secondary ml-2 w-25" wire:click="toggleNewDepartment">&times;</button>
@@ -90,10 +90,10 @@
 <div class="modal fade" id="employeeDeleteConfirmation" style="z-index: 2000;">
     <div class="modal-dialog mt-5" >
         <div class="modal-content">
-            <div class="modal-header"><h4 class="modal-title">Are you sure?</h4></div>
+            <div class="modal-header"><h4 class="modal-title">Are you sure you want to remove {{$emp->full_name()}}?</h4></div>
             <div class="modal-footer">
                 <button class="btn btn-danger" wire:click="destroy">Yes</button>
-                <button class="btn btn-success" data-dismiss="modal">No</button>
+                <button class="btn btn-outline-success" data-dismiss="modal">No</button>
             </div>
         </div>
     </div>

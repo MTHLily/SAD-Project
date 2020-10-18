@@ -66,9 +66,9 @@
 						<td>{{ $component->type()->get()[0]->component_type }}</td>
 						<td class="warranty">
 							@if($component->warranty_id != null)
-								<span onclick="getWarrantyInfo({{$component->warranty_id}})"><i class="fa fa-info-circle" aria-hidden="true"></i> View Warranty</span>
+								<span onclick="getWarrantyInfo({{$component->warranty_id}})"><i class="fas fa-receipt" aria-hidden="true"></i> View Warranty</span>
 							@else
-								<span class="danger-red" onclick="showWarrantyCreate( 'Component', {{$component->id}} )"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Assign Warranty</span>
+								<span class="danger-red" onclick="showWarrantyCreate( 'Component', {{$component->id}} )"><i class="fas fa-receipt" aria-hidden="true"></i> Assign Warranty</span>
 							@endif
 						</td>
 						<td>{{ $component->status }}</td>
@@ -96,7 +96,7 @@
 					</div>
 					<div class="modal-body">
 						<div class="form-group row">
-							<label for="asset_tag" class="col-sm-3 col-form-label">Asset Tag</label>
+							<label for="asset_tag" class="col-sm-3 col-form-label">Asset Tag<span class="text-danger">*</span></label>
 							<div class="col-sm-9">
 								<input  type="text" name="asset_tag" placeholder="Asset Tag" 
 											class="form-control"
@@ -104,7 +104,7 @@
 							</div>
 						</div>
 						<div class="form-group row">
-							<label for="component_name" class="col-sm-3 col-form-label">Name</label>
+							<label for="component_name" class="col-sm-3 col-form-label">Name<span class="text-danger">*</span></label>
 							<div class="col-sm-9">
 								<input  type="text" name="component_name" placeholder="Name" 
 											class="form-control"
@@ -112,7 +112,7 @@
 							</div>
 						</div>
 						<div class="form-group row">
-							<label for="component_type" class="col-sm-3 col-form-label">Type</label>
+							<label for="component_type" class="col-sm-3 col-form-label">Type<span class="text-danger">*</span></label>
 							<div class="col-sm-9">
 								<select name="component_type_id" class="custom-select" required>
 									<option value="1">

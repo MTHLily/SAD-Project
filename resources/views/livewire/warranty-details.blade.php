@@ -9,7 +9,7 @@
             </div>
             <div class="modal-body">
                 <div class="form-group row">
-                    <label for="brand_id" class="col-sm-3 col-form-label">Brand</label>
+                    <label for="brand_id" class="col-sm-3 col-form-label">Brand<span class="text-danger">*</span></label>
                     <div class="col-sm-9 d-flex">
                         <div class=" @if( $newBrand ) d-none @else d-flex @endif w-100 align-items-center">
                             <select name="brand_id" @if(!$isEditable) disabled @endif type="text" class="form-control" wire:model.lazy="brand_id"">
@@ -27,16 +27,16 @@
                 </div>
                 <div class="form-row">
                     <div class="form-group col">
-                        <label for="purchase_date">Purchase Date</label>
-                        <input name="purchase_date" @if(!$isEditable) disabled @endif type="date" class="form-control" wire:model.lazy="purchase"">
+                        <label for="purchase_date">Purchase Date<span class="text-danger">*</span></label>
+                        <input required name="purchase_date" @if(!$isEditable) disabled @endif type="date" class="form-control" wire:model.lazy="purchase"">
                     </div>
                     <div class="form-group col">
-                        <label for="purchase_location">Purchase Location</label>
+                        <label for="purchase_location">Purchase Location<span class="text-danger">*</span></label>
                         <input name="purchase_location" @if(!$isEditable) disabled @endif type="text"class="form-control" wire:model.lazy="warranty.purchase_location">
                     </div>
                     <div class="form-group col" >
-                        <label for="warranty_life">End of Warranty</label>
-                        <input name="warranty_life" @if(!$isEditable) disabled @endif type="date"class="form-control" wire:model.lazy="life"">
+                        <label for="warranty_life">End of Warranty<span class="text-danger">*</span></label>
+                        <input required name="warranty_life" @if(!$isEditable) disabled @endif type="date"class="form-control" wire:model.lazy="life"">
                     </div>
                 </div>
                 <div class="form-row">
@@ -158,13 +158,13 @@
 <div class="modal fade" id="warrantyDeleteConfirmation" style="z-index: 2000;">
     <div class="modal-dialog mt-5" >
         <div class="modal-content">
-            <div class="modal-header"><h4 class="modal-title">Are you sure?</h4></div>
+            <div class="modal-header"><h4 class="modal-title">Are you sure you want to delete this warranty?</h4></div>
             <div class="modal-body">
                 This will unassign all the products currently assigned to this warranty.
             </div>
             <div class="modal-footer">
                 <button class="btn btn-danger" wire:click="destroy">Yes</button>
-                <button class="btn btn-secondary" data-dismiss="modal">No</button>
+                <button class="btn btn-outline-success" data-dismiss="modal">No</button>
             </div>
         </div>
     </div>

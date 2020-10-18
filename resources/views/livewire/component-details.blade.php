@@ -10,7 +10,7 @@
             </div>
             <div class="modal-body">
                 <div class="form-group row">
-                    <label for="asset_tag" class="col-sm-3 col-form-label">Asset Tag</label>
+                    <label for="asset_tag" class="col-sm-3 col-form-label">Asset Tag<span class="text-danger">*</span></label>
                     <div class="col-sm-9">
                         <input  type="text" wire:model="component.asset_tag" placeholder="Asset Tag" 
                                     class="form-control @error('component.asset_tag') is-invalid @enderror" 
@@ -18,7 +18,7 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="col-sm-3 col-form-label">Name</label>
+                    <label class="col-sm-3 col-form-label">Name<span class="text-danger">*</span></label>
                     <div class="col-sm-9">
                         <input  type="text"
                             class="form-control @error('component.component_name') is-invalid @enderror" wire:model="component.component_name"
@@ -26,7 +26,7 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="col-sm-3 col-form-label">Type</label>
+                    <label class="col-sm-3 col-form-label">Type<span class="text-danger">*</span></label>
                     <div class="col-sm-9">
                         <select wire:model="component.component_type_id" class="custom-select" @if(!$isEditable) disabled @endif>
                         {{ $types = \App\ComponentType::all() }}
@@ -90,10 +90,10 @@
 <div class="modal fade" id="componentDeleteConfirmation" style="z-index: 2000;">
     <div class="modal-dialog mt-5" >
         <div class="modal-content">
-            <div class="modal-header"><h4 class="modal-title">Are you sure?</h4></div>
+            <div class="modal-header"><h4 class="modal-title">Are you sure you want to delete {{$component->component_name}}?</h4></div>
             <div class="modal-footer">
                 <button class="btn btn-danger" wire:click="destroy">Yes</button>
-                <button class="btn btn-success" data-dismiss="modal">No</button>
+                <button class="btn btn-outline-success" data-dismiss="modal">No</button>
             </div>
         </div>
     </div>

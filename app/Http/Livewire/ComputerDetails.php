@@ -13,6 +13,7 @@ class ComputerDetails extends Component
     public Computer $computer;
     public $newDepartment, $newDepartmentName, $existingDepartmentId;
     public $isEditable;
+    public $asset_tag, $orig_tag;
 
     protected $listeners = [
         'showComputerDetails' => 'showComputerDetails',
@@ -27,22 +28,27 @@ class ComputerDetails extends Component
         'computer.issues' => '',
         'computer.status' => '',
         'newDepartmentName' => '',
+        'asset_tag' => 'unique:computers|required',
     ];
 
     public function updated($field)
     {
-        $this->validateOnly($field, $this->rules);
+        if($this->asset_tag != $this->orig_tag || $field != 'asset_tag'  )
+            $this->validateOnly($field, $this->rules);
     }
 
     public function mount()
     {
         $this->computer = new Computer;
+        $this->asset_tag = null;
         $this->newDepartment = false;
         $this->isEditable = false;
     }
 
     public function showComputerDetails( $id ){
         $this->computer = Computer::find( $id );
+        $this->asset_tag = $this->computer->asset_tag;
+        $this->orig_tag = $this->asset_tag;
         $this->existingDepartmentId = $this->computer->department_id; 
         // dd($this->computer);
     }

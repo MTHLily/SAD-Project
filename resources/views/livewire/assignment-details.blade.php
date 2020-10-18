@@ -13,12 +13,14 @@
                     <div class="col">
                         <div class="form-group">
                             <label for="">Employees</label>
-                            <select class="form-control" wire:model="assign.employee_id" @if( !$isEditable ) disabled @endif>
+                            <select class="form-control" wire:model="employee_id" @if( !$isEditable ) disabled @endif>
                                 @if( $assign->employee != null )<option value="{{$assign->employee->id}}">{{$assign->employee->full_name()}}</option> @endif
-                                @foreach ( \App\Employee::where('status', 'Available' )->get() as $emp )
+                                @foreach ( $this->filteredEmployees->get() as $emp )
                                     <option value="{{$emp->id}}">{{$emp->full_name()}}</option>
                                 @endforeach
                             </select>
+                            
+                            <input type="text" class="form-control w-100" placeholder="Filter employees" wire:model="filterEmployee">
                         </div>
                             <table class="table">
                                 <tr>
@@ -38,12 +40,13 @@
                     <div class="col">
                         <div class="form-group">
                             <label for="">Computers</label>
-                            <select class="form-control" wire:model="assign.computer_id" @if( !$isEditable ) disabled @endif>
-                                @if( $assign->computer != null )<option value="{{$assign->computer->id}}">{{$assign->computer->pc_name}}</option> @endif
-                                @foreach ( \App\Computer::where('status', 'Available' )->get() as $com )
-                                    <option value="{{$com->id}}">{{$com->pc_name}}</option>
+                            <select class="form-control" wire:model="computer_id" @if( !$isEditable ) disabled @endif>
+                                @if( $assign->computer != null )<option value="{{$assign->computer->id}}">{{$assign->computer->asset_tag.' - '.$assign->computer->pc_name}}</option> @endif
+                                @foreach ( $this->filteredComputers as $com )
+                                    <option value="{{$com->id}}">{{$com->asset_tag.' - '.$com->pc_name}}</option>
                                 @endforeach
                             </select>
+                            <input type="text" class="form-control" placeholder="Filter computers" wire:model="filterComputer">
                         </div>
                             <table class="table">
                                 <tr>
@@ -64,7 +67,7 @@
                                             @if( $computer->systemDetails != null && $computer->systemDetails->isComplete() )
                                                 <i class="fa fa-info-circle" aria-hidden="true"></i> System Details
                                             @else
-                                                <span class="danger-red-light"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> System Lacking Components</span>
+                                                <span class="danger-red-light"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Missing Components</span>
                                             @endif
                                         </th>
                                     @else
@@ -104,10 +107,10 @@
 <div class="modal fade" id="assignmentDeleteConfirmation" style="z-index: 2000;">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content" >
-            <div class="modal-header"><h4 class="modal-title">Are you sure?</h4></div>
+            <div class="modal-header"><h4 class="modal-title">Are you sure you want to delete this assignment?</h4></div>
             <div class="modal-footer">
-                <button class="btn btn-success" wire:click="destroyAssignment">Yes</button>
-                <button class="btn btn-success" data-dismiss="modal">No</button>
+                <button class="btn btn-danger" wire:click="destroyAssignment">Yes</button>
+                <button class="btn btn-outline-success" data-dismiss="modal">No</button>
             </div>
         </div>
     </div>

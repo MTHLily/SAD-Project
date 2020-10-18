@@ -76,7 +76,7 @@
                     </div>
                     <div class="modal-body">
                         <div class="form-group row">
-                            <label for="last_name" class="col-sm-3 col-form-label">Last Name</label>
+                            <label for="last_name" class="col-sm-3 col-form-label">Last Name<span class="text-danger">*</span></label>
                             <div class="col-sm-9">
                                 <input  type="text" name="last_name" placeholder="Last Name" 
                                             class="form-control"
@@ -84,7 +84,7 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="first_name" class="col-sm-3 col-form-label">First Name</label>
+                            <label for="first_name" class="col-sm-3 col-form-label">First Name<span class="text-danger">*</span></label>
                             <div class="col-sm-9">
                                 <input  type="text" name="first_name" placeholder="First Name" 
                                             class="form-control"
@@ -92,7 +92,7 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="middle_initial" class="col-sm-3 col-form-label">Middle Initial</label>
+                            <label for="middle_initial" class="col-sm-3 col-form-label">Middle Initial<span class="text-danger">*</span></label>
                             <div class="col-sm-9">
                                 <input  type="text" name="middle_initial" placeholder="Middle Initial" 
                                             class="form-control"
@@ -100,7 +100,7 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="email_address" class="col-sm-3 col-form-label">Email Address</label>
+                            <label for="email_address" class="col-sm-3 col-form-label">Email Address<span class="text-danger">*</span></label>
                             <div class="col-sm-9">
                                 <input  type="email" name="email_address" placeholder="Email Address" 
                                             class="form-control"

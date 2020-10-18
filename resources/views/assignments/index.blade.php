@@ -55,9 +55,9 @@
                     <td>{{$assign->computer->pc_name}}</td>
                     <td>
 						@if( $assign->peripherals->count() != 0 )
-							<a href="#" onclick="showAssignPeripherals({{$assign->id}})"><i class="fa fa-info-circle" aria-hidden="true"></i> View Peripherals</a>
+							<a href="#" onclick="showAssignPeripherals({{$assign->id}})"><i class="fas fa-mouse    "></i> View Peripherals</a>
 						@else
-							<a class="warning-yellow" href="#" onclick="showAssignPeripherals({{$assign->id}})"><i class="fa fa-exclamation-circle" aria-hidden="true"></i> No Peripherals Assigned</a>
+							<a class="warning-yellow" href="#" onclick="showAssignPeripherals({{$assign->id}})"><i class="fas fa-mouse" aria-hidden="true"></i> No Peripherals Assigned</a>
 						@endif
                     </td>
                     <td>{{$assign->employee->department->department_name}}</td>

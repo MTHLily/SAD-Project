@@ -7,8 +7,6 @@ document.addEventListener('DOMContentLoaded', function () {
 		paging: false,
 		info: false
 	});
-	
-
 
     document.querySelector('#searchBox').addEventListener( 'input', ( e ) => {
         e.preventDefault();

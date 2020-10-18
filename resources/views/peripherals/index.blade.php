@@ -67,9 +67,9 @@
 						<td>{{ $peripheral->type()->get()[0]->peripheral_type }}</td>
 						<td class="warranty">
 							@if($peripheral->warranty_id != null)
-								<span onclick="getWarrantyInfo({{$peripheral->warranty_id}})"><i class="fa fa-info-circle" aria-hidden="true"></i> View Warranty</span>
+								<span onclick="getWarrantyInfo({{$peripheral->warranty_id}})"><i class="fas fa-receipt" aria-hidden="true"></i> View Warranty</span>
 							@else
-								<span class="danger-red" onclick="showWarrantyCreate( 'Peripheral', {{$peripheral->id}} )"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Assign Warranty</span>
+								<span class="danger-red" onclick="showWarrantyCreate( 'Peripheral', {{$peripheral->id}} )"><i class="fas fa-receipt" aria-hidden="true"></i> Assign Warranty</span>
 							@endif
 						</td>
 						<td>{{ $peripheral->status }}</td>
@@ -97,7 +97,7 @@
 					</div>
 					<div class="modal-body">
 						<div class="form-group row">
-							<label for="asset_tag" class="col-sm-3 col-form-label">Asset Tag</label>
+							<label for="asset_tag" class="col-sm-3 col-form-label">Asset Tag<span class="text-danger">*</span></label>
 							<div class="col-sm-9">
 								<input  type="text" name="asset_tag" placeholder="Asset Tag" 
 											class="form-control" 
@@ -106,7 +106,7 @@
 							</div>
 						</div>
 						<div class="form-group row">
-							<label for="peripheral_name" class="col-sm-3 col-form-label">Name</label>
+							<label for="peripheral_name" class="col-sm-3 col-form-label">Name<span class="text-danger">*</span></label>
 							<div class="col-sm-9">
 								<input  type="text" name="peripheral_name" placeholder="Name" 
 											class="form-control" 
@@ -115,7 +115,7 @@
 							</div>
 						</div>
 						<div class="form-group row">
-							<label for="peripheral_type" class="col-sm-3 col-form-label">Type</label>
+							<label for="peripheral_type" class="col-sm-3 col-form-label">Type<span class="text-danger">*</span></label>
 							<div class="col-sm-9">
 								<select name="peripheral_type" class="custom-select" required>
 								{{ $types = \App\PeripheralType::all() }}

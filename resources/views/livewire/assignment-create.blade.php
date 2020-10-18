@@ -14,10 +14,11 @@
                             <label for="">Employees</label>
                             <select class="form-control" wire:model="assign.employee_id">
                                 <option value="0">Select an employee</option>
-                                @foreach ( \App\Employee::where('status', 'Available' )->get() as $emp )
+                                @foreach ( $this->filteredEmployees->get() as $emp )
                                     <option value="{{$emp->id}}">{{$emp->full_name()}}</option>
                                 @endforeach
                             </select>
+                            <input type="text" class="form-control w-100" placeholder="Filter employees" wire:model="filterEmployee">
                         </div>
                             <table class="table">
                                 <tr>
@@ -40,10 +41,12 @@
                             <label for="">Computers</label>
                             <select class="form-control" wire:model="assign.computer_id">
                                 <option value="0">Select a computer</option>
-                                @foreach ( \App\Computer::where('status', 'Available' )->get() as $com )
-                                    <option value="{{$com->id}}">{{$com->pc_name}}</option>
+                                {{-- @foreach ( \App\Computer::where('status', 'Available' )->get() as $com ) --}}
+                                @foreach ( $this->filteredComputers as $com )
+                                    <option value="{{$com->id}}">{{$com->asset_tag.' - '.$com->pc_name}}</option>
                                 @endforeach
                             </select>
+                            <input type="text" class="form-control" placeholder="Filter computers" wire:model="filterComputer">
                         </div>
                             <table class="table">
                                 <tr>

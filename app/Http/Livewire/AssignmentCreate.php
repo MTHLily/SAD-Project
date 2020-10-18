@@ -13,6 +13,7 @@ class AssignmentCreate extends Component
     public Assignment $assign;
     public  $computer;
     public  $employee;
+    public $filterEmployee, $filterComputer;
 
     protected $rules = [
         'assign.computer_id' => 'Integer',
@@ -29,10 +30,21 @@ class AssignmentCreate extends Component
         $this->assign = new Assignment;
         $this->computer = new Computer;
         $this->employee = new Employee;
+        $this->filterEmployee = '';
+        $this->filterComputer = '';
     }
 
     public function getCanSaveProperty(){
         return $this->assign->computer_id != 0 && $this->assign->employee_id != 0;
+    }
+
+    public function getFilteredEmployeesProperty(){
+        return Employee::where( 'last_name', 'like', $this->filterEmployee.'%')->orWhere('first_name', 'like', $this->filterEmployee . '%');
+    }
+
+    public function getFilteredComputersProperty(){
+        $filtered = Computer::where( 'pc_name', 'like', $this->filterComputer.'%' )->orWhere('asset_tag', 'like', $this->filterComputer . '%')->get();
+        return $filtered->where('status', 'Available');
     }
 
     public function save(){
@@ -45,6 +57,7 @@ class AssignmentCreate extends Component
 
         return redirect()->to('/assignments');
     }
+
 
     public function render()
     {

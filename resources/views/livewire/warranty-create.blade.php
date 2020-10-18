@@ -47,7 +47,7 @@
                 </table>
                 <div id="newWarrantyDiv" class="collapse show" aria-labelledby="newWarrantyHeading" data-parent="#warrantyCreateModal div div .modal-body">
                     <div class="form-group row">
-                        <label for="brand_id" class="col-sm-3 col-form-label">Brand</label>
+                        <label for="brand_id" class="col-sm-3 col-form-label">Brand<span class="text-danger">*</span></label>
                         <div class="col-sm-9 d-flex">
                             <div class=" @if( $newBrand ) d-none @else d-flex @endif w-100 align-items-center">
                                 <select name="brand_id" type="text" class="form-control @error('brandId') is-invalid @enderror" wire:model="brandId">
@@ -67,11 +67,11 @@
                     
                     <div class="form-row">
                         <div class="form-group col">
-                            <label for="purchase_date">Purchase Date</label>
-                            <input name="purchase_date" type="date" class="form-control" wire:model="purchase"">
+                            <label for="purchase_date">Purchase Date<span class="text-danger">*</span></label>
+                            <input required name="purchase_date" type="date" class="form-control" wire:model="purchase"">
                         </div>
                         <div class="form-group col">
-                            <label for="purchase_location">Purchase Location</label>
+                            <label for="purchase_location">Purchase Location<span class="text-danger">*</span></label>
                             <input name="purchase_location" type="text"class="form-control @error('warranty.purchase_location') is-invalid @enderror" wire:model="warranty.purchase_location">
                             @error('warranty.purchase_location')
                             <div class="invalid-feedback">
@@ -80,8 +80,8 @@
                             @enderror
                         </div>
                         <div class="form-group col" >
-                            <label for="warranty_life">End of Warranty</label>
-                            <input name="warranty_life" type="date"class="form-control" wire:model="life"">
+                            <label for="warranty_life">End of Warranty<span class="text-danger">*</span></label>
+                            <input required name="warranty_life" type="date"class="form-control" wire:model="life"">
                         </div>
                     </div>
                     <div class="form-row">

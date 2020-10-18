@@ -10,7 +10,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.js"></script> --}}
 
-<script src=" {{asset('js/crud.js')}}"></script>
+
 <script src=" {{asset('js/computer.js')}}"></script>
 
 @endpush
@@ -63,12 +63,12 @@
 					<td class="system">
 						@if($computer->system_details_id != null)
 							@if( $computer->systemDetails->isComplete() )
-								<a href="#" onclick="showComputerSystemDetails( {{$computer->id }})"><i class="fa fa-info-circle" aria-hidden="true"></i> View System Details</a>
+								<a href="#" onclick="showComputerSystemDetails( {{$computer->id }})"><i class="fas fa-server" aria-hidden="true"></i> View System Details</a>
 							@else
-								<a class="warning-yellow" href="#" onclick="showComputerSystemDetails( {{$computer->id }})"><i class="fas fa-exclamation-circle    "></i> System Details Incomplete</a>
+								<a class="warning-yellow" href="#" onclick="showComputerSystemDetails( {{$computer->id }})"><i class="fas fa-server"></i> System Details Incomplete</a>
 							@endif
 						@else
-							<a href="#" class="danger-red" onclick="showComputerSystemDetails( {{$computer->id }})"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Assign System Details</a>
+							<a href="#" class="danger-red" onclick="showComputerSystemDetails( {{$computer->id }})"><i class="fas fa-server    "></i> Assign System Details</a>
 						@endif
 					</td>
 					<td>
@@ -108,7 +108,7 @@
 									</div>
 								</div>
 							</div>
-							<a data-toggle="modal" href="#network_modal_{{$computer->id}}_modify"><i class="fa fa-info-circle" aria-hidden="true"></i> View Network Details</button>
+							<a data-toggle="modal" href="#network_modal_{{$computer->id}}_modify"><i class="fas fa-network-wired    "></i> View Network Details</button>
 						@else
 							<div class="modal fade" id="network_modal_{{$computer->id}}">
 								<div class="modal-dialog">
@@ -144,14 +144,14 @@
 									</div>
 								</div>
 							</div>
-							<a class="warning-yellow" data-toggle="modal" href="#network_modal_{{$computer->id}}"><i class="fa fa-exclamation-circle" aria-hidden="true"></i> Assign Network Details</button>
+							<a class="warning-yellow" data-toggle="modal" href="#network_modal_{{$computer->id}}"><i class="fas fa-network-wired    "></i> Assign Network Details</button>
 						@endif
 				    </td>
 					<td class="warranty">
 						@if($computer->warranty_id != null)
-							<span onclick="getWarrantyInfo({{$computer->warranty_id}})"><i class="fa fa-info-circle" aria-hidden="true"></i> View Warranty</span>
+							<span onclick="getWarrantyInfo({{$computer->warranty_id}})"><i class="fas fa-receipt    "></i> View Warranty</span>
 						@else
-							<span class="danger-red" onclick="showWarrantyCreate( 'Computer', {{$computer->id}} )"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Assign Warranty</span>
+							<span class="danger-red" onclick="showWarrantyCreate( 'Computer', {{$computer->id}} )"><i class="fas fa-receipt" aria-hidden="true"></i> Assign Warranty</span>
 						@endif
 					</td>
 					<td>{{ $computer->status }}</td>
@@ -163,5 +163,6 @@
 		</tbody>
 	</table>
 </div>
+<script src=" {{asset('js/crud.js')}}"></script>
 @livewireScripts
 @endsection

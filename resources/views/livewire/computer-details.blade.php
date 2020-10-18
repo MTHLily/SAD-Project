@@ -9,10 +9,10 @@
             <div class="modal-body">
                 <div class="form-group">
                     <label for="asset_tag">Asset Tag</label>
-                    <input @if(!$isEditable) disabled @endif type="text" class="form-control @error('computer.asset_tag') is-invalid @enderror" wire:model="computer.asset_tag">
-                    @error('computer.asset_tag')
+                    <input @if(!$isEditable) disabled @endif type="text" class="form-control @error('asset_tag') is-invalid @enderror" wire:model="asset_tag">
+                    @error('asset_tag')
                         <div class="invalid-feed">
-                            Please enter an asset tag.
+                            {{$message}}
                         </div>
                     @enderror
                 </div>
@@ -93,10 +93,10 @@
 <div class="modal fade" id="computerDeleteConfirmation" style="z-index: 2000;">
     <div class="modal-dialog mt-5" >
         <div class="modal-content">
-            <div class="modal-header"><h4 class="modal-title">Are you sure?</h4></div>
+            <div class="modal-header"><h4 class="modal-title">Are you sure you want to delete {{$computer->pc_name}}?</h4></div>
             <div class="modal-footer">
-                <button class="btn btn-success" wire:click="destroy">Yes</button>
-                <button class="btn btn-success" data-dismiss="modal">No</button>
+                <button class="btn btn-danger" wire:click="destroy">Yes</button>
+                <button class="btn btn-outline-success" data-dismiss="modal">No</button>
             </div>
         </div>
     </div>
