@@ -9,6 +9,7 @@ class ComponentDetails extends Component
 
     public \App\Component $component;
     public $isEditable;
+    public $asset_tag, $orig_tag;
 
     protected $rules = [
         'component.asset_tag' => 'required',
@@ -23,9 +24,18 @@ class ComponentDetails extends Component
         'showComponentDetails' => 'showComponentDetails',
     ];
 
+    public function updated($field)
+    {
+        if ($field == 'asset_tag' && $this->asset_tag != $this->orig_tag)
+            $this->validate(['asset_tag' => 'unique:components|required',]);
+        else
+            $this->validateOnly($field, $this->rules);
+    }
     public function showComponentDetails($id)
     {
         $this->component = \App\Component::find($id);
+        $this->asset_tag = $this->component->asset_tag;
+        $this->orig_tag = $this->asset_tag;
         $this->isEditable = false;
     }
 
@@ -42,6 +52,9 @@ class ComponentDetails extends Component
 
     public function save()
     {
+        if($this->asset_tag != $this->orig_tag )
+            $this->validate(['asset_tag' => 'unique:components|required',]);
+        $this->component->asset_tag = $this->asset_tag;
         $this->validate();
         $this->component->save();
         return redirect()->to('/components');

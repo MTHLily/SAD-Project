@@ -28,12 +28,14 @@ class ComputerDetails extends Component
         'computer.issues' => '',
         'computer.status' => '',
         'newDepartmentName' => '',
-        'asset_tag' => 'unique:computers|required',
     ];
 
     public function updated($field)
     {
-        if($this->asset_tag != $this->orig_tag || $field != 'asset_tag'  )
+        if($this->asset_tag != $this->orig_tag && $field == 'asset_tag' )
+            $this->validate(['asset_tag' => 'unique:computers|required',
+            ]);
+        else
             $this->validateOnly($field, $this->rules);
     }
 
@@ -68,9 +70,13 @@ class ComputerDetails extends Component
 
     public function save()
     {
-
-        $this->computer->status = "Available";
-
+        
+        if ($this->asset_tag != $this->orig_tag)
+            $this->validate(['asset_tag' => 'unique:computers|required',]);
+        $this->computer->asset_tag = $this->asset_tag;
+        
+                $this->computer->status = "Available";
+        
         if ($this->newDepartment) {
             $dept = Department::firstOrNew(['department_name' => $this->newDepartmentName]);
             $dept->save();

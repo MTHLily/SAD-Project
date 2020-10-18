@@ -71,7 +71,14 @@
 								<span class="danger-red" onclick="showWarrantyCreate( 'Component', {{$component->id}} )"><i class="fas fa-receipt" aria-hidden="true"></i> Assign Warranty</span>
 							@endif
 						</td>
-						<td>{{ $component->status }}</td>
+						<td>
+                            <span class=
+                                @if($component->status=='Assigned') 
+                                    "text-danger"
+                                @else
+                                    "text-success"
+                                @endif
+                                >{{$component->status}}</span></td>
 						<td class="detail">
 							<a href="#" onclick="getComponentInfo({{$component->id}})"><i class="fa fa-info-circle" aria-hidden="true"></i> View Details</a>
 						</td>  

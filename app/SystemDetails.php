@@ -102,17 +102,23 @@ class SystemDetails extends Model
 		$this->clearRam();
 		$this->clearStorage();
 
-		$comp = $this->motherboard;
-		$comp->status = "Available";
-		$comp->save();
+		if( $this->motherboard != null ){
+			$comp = $this->motherboard;
+			$comp->status = "Available";
+			$comp->save();
+		}
 
+		if( $this->processor != null ){
 		$comp = $this->processor;
 		$comp->status = "Available";
 		$comp->save();
+		}
 
+		if( $this->gpu != null ){
 		$comp = $this->gpu;
 		$comp->status = "Available";
 		$comp->save();
+		}
 	}
 
 }

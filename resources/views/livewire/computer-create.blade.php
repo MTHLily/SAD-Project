@@ -12,7 +12,7 @@
             </div>
             <div class="modal-body">
                 <div class="form-group">
-                    <label for="asset_tag">Asset Tag</label>
+                    <label for="asset_tag">Asset Tag<span class="text-danger">*</span></label>
                     <input type="text" class="form-control @error('asset_tag') is-invalid @enderror" wire:model="asset_tag">
                     @error('asset_tag')
                         <div class="invalid-feed">
@@ -21,7 +21,7 @@
                     @enderror
                 </div>
                 <div class="form-group">
-                    <label>Computer Name</label>
+                    <label>Computer Name<span class="text-danger">*</span></label>
                     <input type="text" class="form-control @error('computer.pc_name') is-invalid @enderror" wire:model="computer.pc_name">
                     @error('computer.pc_name')
                         <div class="invalid-feed">
@@ -30,7 +30,7 @@
                     @enderror
                 </div>
                 <div class="form-group">
-                    <label for="">Type</label>
+                    <label for="">Type<span class="text-danger">*</span></label>
                     <select type="text" class="form-control" wire:model="computer.type">
                         @foreach ( $types as $type )
                             <option value="{{$type->id}}">{{$type->computer_type}}</option>

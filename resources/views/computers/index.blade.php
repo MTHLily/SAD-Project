@@ -154,7 +154,14 @@
 							<span class="danger-red" onclick="showWarrantyCreate( 'Computer', {{$computer->id}} )"><i class="fas fa-receipt" aria-hidden="true"></i> Assign Warranty</span>
 						@endif
 					</td>
-					<td>{{ $computer->status }}</td>
+					<td>
+                            <span class=
+                                @if($computer->status=='Assigned') 
+                                    "text-danger"
+                                @else
+                                    "text-success"
+                                @endif
+                                >{{$computer->status}}</span></td>
 					<td class="detail">
 						<a href="#" onclick="getComputerInfo({{$computer->id}})"><i class="fa fa-info-circle" aria-hidden="true"></i> View Details</a>
 					</td>  

@@ -12,9 +12,14 @@
                 <div class="form-group row">
                     <label for="asset_tag" class="col-sm-3 col-form-label">Asset Tag<span class="text-danger">*</span></label>
                     <div class="col-sm-9">
-                        <input  type="text" wire:model="component.asset_tag" placeholder="Asset Tag" 
-                                    class="form-control @error('component.asset_tag') is-invalid @enderror" 
+                        <input  type="text" wire:model="asset_tag" placeholder="Asset Tag" 
+                                    class="form-control @error('asset_tag') is-invalid @enderror" 
                                     @if(!$isEditable) disabled @endif>
+                                    @error('asset_tag')
+                        <div class="invalid-feed">
+                            {{$message}}
+                        </div>
+                    @enderror
                     </div>
                 </div>
                 <div class="form-group row">

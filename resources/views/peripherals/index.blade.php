@@ -72,7 +72,14 @@
 								<span class="danger-red" onclick="showWarrantyCreate( 'Peripheral', {{$peripheral->id}} )"><i class="fas fa-receipt" aria-hidden="true"></i> Assign Warranty</span>
 							@endif
 						</td>
-						<td>{{ $peripheral->status }}</td>
+						<td>
+                            <span class=
+                                @if($peripheral->status=='Assigned') 
+                                    "text-danger"
+                                @else
+                                    "text-success"
+                                @endif
+                                >{{$peripheral->status}}</span></td>
 						<td class="detail">
 							<a data-toggle="modal" onclick="getPeripheralInfo({{$peripheral->id}})" href="#peripheral-info"><i class="fa fa-info-circle" aria-hidden="true"></i> View Details</a>
 						</td>  

@@ -39,7 +39,7 @@ class ExampleSeed extends Seeder
 		]);
 		
 		factory( App\Department::class, 5 )->create();
-		factory( App\Employee::class, 12 )->create();
+		factory( App\Employee::class, 60 )->create();
 		// factory(App\Peripheral::class, 12)->create();
 		// factory(App\Computer::class, 12)->create();
 		// factory(App\Component::class, 12)->create();

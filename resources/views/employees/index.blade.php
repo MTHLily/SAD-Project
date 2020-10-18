@@ -52,7 +52,14 @@
 						<td>{{ $employee->middle_initial }}</td>
                         <td>{{ $employee->email_address }}</td>
                         <td>{{ $employee->department->department_name }}</td>
-                        <td>{{ $employee->status }}</td>
+                        <td>
+                            <span class=
+                                @if($employee->status=='Assigned') 
+                                    "text-danger"
+                                @else
+                                    "text-success"
+                                @endif
+                                >{{$employee->status}}</span></td>
 						<td class="detail">
 							<a data-toggle="modal" onclick="getEmployeeInfo({{$employee->id}})" href="#employee-info"><i class="fa fa-info-circle" aria-hidden="true"></i> View Details</a>
                         </td>

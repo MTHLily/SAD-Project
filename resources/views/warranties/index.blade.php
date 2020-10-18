@@ -76,7 +76,15 @@
                         <td>{{$warranty->purchase_date}}</td>
                         <td>{{$warranty->purchase_location}}</td> --}}
                         <td>{{$warranty->notes}}</td>
-                        <td>{{$warranty->status}}</td>
+                        <td>
+                            <span class=
+                                @if($warranty->status=='Expired') 
+                                    "text-danger"
+                                @else
+                                    "text-success"
+                                @endif
+                                >{{$warranty->status}}</span>
+                        </td>
                     </tr>
                 @endforeach
 			</tbody>
@@ -86,5 +94,6 @@
 
     @livewireScripts
     <script src=" {{asset('js/warranty.js')}}"></script>
+    <script src=" {{asset('js/crud.js')}}"></script>
 
 @endsection

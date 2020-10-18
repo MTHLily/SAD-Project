@@ -9,7 +9,8 @@ document.addEventListener('DOMContentLoaded', function () {
 	});
 
     document.querySelector('#searchBox').addEventListener( 'input', ( e ) => {
-        e.preventDefault();
+		e.preventDefault();
+		// console.log("HELO");
         myTable.search( e.target.value ).draw();
 	});
 	
