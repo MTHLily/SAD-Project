@@ -15,7 +15,7 @@
 5. composer install
 6. npm install
 7. npm run dev
-8. Copy and name .env.example to .env
+8. Copy, paste and name .env.example to .env and place it in same directory.
 9. Configure .env
  * DB_HOST and DB_PORT to the configuration of your postgres server.
  * DB_DATABASE to any empty database in postgres.
